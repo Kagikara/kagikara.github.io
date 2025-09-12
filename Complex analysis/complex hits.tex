@@ -1,0 +1,772 @@
+\documentclass[lang=cn,10pt]{elegantbook}
+
+\title{复变函数速成}
+
+
+\extrainfo{咕咕嘎嘎}
+
+\setcounter{tocdepth}{3}
+
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
+
+\usepackage{pdfpages}
+\cover{katyayan-gauniyal-1c0rfpjBc_k-unsplash (1).pdf}
+\usepackage{amssymb}
+\usepackage{braket}
+% 修改标题页的橙色带
+\definecolor{customcolor}{RGB}{17,97,98}
+\colorlet{coverlinecolor}{customcolor}
+
+\begin{document}
+	\definecolor{structurecolor}{RGB}{15, 5, 128}
+	\definecolor{main}{RGB}{42, 108, 145}
+	\definecolor{second}{RGB}{119, 164, 189}
+	\definecolor{third}{RGB}{82, 191, 182}
+	
+	\maketitle
+	\frontmatter
+	
+	\tableofcontents
+	
+	\mainmatter
+
+
+		本手册浓缩了复积分（留数法）中常用的工具、Jordan 大弧与小弧引理、以及若干典型例题的解法步骤.
+		
+	\chapter{全纯函数}
+	\section{Cauchy--Riemann 方程}
+	
+	\begin{theorem}[解析（全纯）函数的定义]
+		设 \(U\subset\mathbb C\) 为开集。函数 \(f:U\to\mathbb C\) 在 \(z_0\in U\) 处称为全纯（解析），若复导数
+		\[
+		f'(z_0)=\lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}
+		\]
+		存在；若对 \(U\) 中每一点均存在该极限，则称 \(f\) 在 \(U\) 全纯。
+	\end{theorem}
+	
+	\begin{definition}[Cauchy--Riemann 方程]
+		设 \(f=u+iv\)（\(u,v\) 为实值函数），若 \(u,v\) 在点 \(z_0=(x_0,y_0)\) 的偏导存在且连续，则 \(f\) 在该点可复微的充分必要条件为
+		\[
+		u_x=v_y,\qquad u_y=-v_x
+		\]
+		（在点处成立）。
+	\end{definition}
+	
+	\begin{proof}
+		（要点）从复定义出发，写
+		\[
+		\frac{f(z_0+h)-f(z_0)}{h}=\frac{u(x_0+\Delta x,y_0+\Delta y)-u(x_0,y_0)}{\Delta x+i\Delta y}
+		+i\frac{v(x_0+\Delta x,y_0+\Delta y)-v(x_0,y_0)}{\Delta x+i\Delta y}.
+		\]
+		分别沿实轴方向与虚轴方向取极限，并比较实部与虚部，得到 CR 方程；带反向条件并用偏导连续性可将局部实可微性与 CR 推回复可微性。
+	\end{proof}
+	
+	\begin{example}
+		令 \(f(z)=\overline z\). 写 \(u(x,y)=x,\ v(x,y)=-y\)。代入 CR 得 \(u_x=1\), \(v_y=-1\)，不满足 \(u_x=v_y\)，因此 \(f\) 处处不可复微（除非退化情形）。
+	\end{example}
+	
+	\section{Cauchy 积分定理与 Cauchy 积分公式}
+	
+	\begin{definition}[Cauchy 积分定理]
+		设 \(U\) 是单连通开集，\(f\) 在 \(U\) 全纯。若 \(\Gamma\subset U\) 为分段光滑的闭曲线，则
+		\[
+		\oint_\Gamma f(z)\,dz=0.
+		\]
+	\end{definition}
+	
+	\begin{proof}
+		（要点）可用 Green 定理把复积分转为实二重积分：写 \(f=u+iv\)，则
+		\[
+		\oint_\Gamma f(z)\,dz = \int\!\!\int_D\left(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\right)\,dx\,dy + i\int\!\!\int_D\left(\frac{\partial u}{\partial x}-\frac{\partial v}{\partial y}\right)\,dx\,dy,
+		\]
+		CR 方程使被积为零，从而积分为 0。另一种更抽象的证明用同伦变形或原始函数存在性。
+	\end{proof}
+	
+	\begin{definition}[Cauchy 积分公式]
+		设 \(f\) 在闭盘 \(\overline{D(a,R)}\) 上解析，则对任意 \(|z-a|<R\),
+		\[
+		f(z)=\frac{1}{2\pi i}\oint_{|w-a|=R}\frac{f(w)}{w-z}\,dw,
+		\]
+		并且对任意整数 \(n\ge0\),
+		\[
+		f^{(n)}(z)=\frac{n!}{2\pi i}\oint_{|w-a|=R}\frac{f(w)}{(w-z)^{n+1}}\,dw.
+		\]
+	\end{definition}
+	
+	\begin{proof}
+		（要点）对固定 \(z\) 把 \(\dfrac{f(w)}{w-z}\) 看作 \(w\) 的全纯函数（在去掉 \(w=z\) 的区域），用留数定理在小圆上计算积分，或将 \(f(w)\) 在 \(w\) 处展开为 Taylor 级数并逐项积分，得出公式。
+	\end{proof}
+	
+	\begin{example}
+		由 Cauchy 公式可推导 Cauchy 导数估计：若 \(|f(w)|\le M\) 在 \(|w-a|=R\) 上成立，则
+		\[
+		|f^{(n)}(a)|\le \frac{n! M}{R^n}.
+		\]
+		这在许多处证明唯一延拓、Liouville 定理时非常有用。
+	\end{example}
+	
+	\section{Taylor 与 Laurent 展开}
+	
+	\begin{definition}[Taylor 展开（局部）]
+		若 \(f\) 在 \(D(a,R)\) 全纯，则存在唯一系数列 \(\{c_n\}\) 使
+		\[
+		f(z)=\sum_{n=0}^\infty c_n (z-a)^n,\qquad |z-a|<R,
+		\]
+		且 \(c_n=f^{(n)}(a)/n!\)。
+	\end{definition}
+	
+	\begin{proof}
+		（要点）由 Cauchy 导数公式可写
+		\[
+		c_n=\frac{1}{2\pi i}\oint_{|w-a|=\rho}\frac{f(w)}{(w-a)^{n+1}}\,dw,\quad 0<\rho<R,
+		\]
+		由此得到幂级数展开与收敛半径。
+	\end{proof}
+	
+	\begin{definition}[Laurent 展开]
+		若 \(f\) 在环域 \(A=\{z: r<|z-a|<R\}\) 全纯，则存在唯一 Laurent 级数
+		\[
+		f(z)=\sum_{n=-\infty}^\infty c_n (z-a)^n
+		\]
+		在该环域内一致收敛。Laurent 展开中的负幂部分描述了 \(f\) 在中心点的奇性。
+	\end{definition}
+	
+	\begin{example}
+		函数 \(\dfrac{1}{z(z-1)}\) 在 \(0<|z|<1\) 的 Laurent 展开可由部分分式分解：
+		\[
+		\frac{1}{z(z-1)}=-\frac{1}{z} - \sum_{n=0}^\infty z^n,\qquad 0<|z|<1,
+		\]
+		可见 \(z=0\) 为简单极点。
+	\end{example}
+	
+	\section{留数与实积分}
+	
+	\begin{definition}[留数定理]
+		设 \(U\) 为单连通开集，\(f\) 在 \(U\) 上解析，除有限孤立奇点 \(a_1,\dots,a_n\)。若 \(\Gamma\subset U\) 为逆时针简单闭曲线将这些奇点包住，则
+		\[
+		\oint_\Gamma f(z)\,dz = 2\pi i\sum_{j=1}^n \operatorname{Res}(f,a_j).
+		\]
+	\end{definition}
+	
+	\begin{proof}
+		（要点）取每个奇点小圆 \(C_j\)（互不相交）并把 \(\Gamma\) 通过形变替换为这些小圆的合（方向相反），再对每个小圆用 Laurent 展开逐项积分，只留下 \(c_{-1}\) 项，从而得到结论。
+	\end{proof}
+	
+	
+	\section{奇点的分类（可去 / 极点 / 本性）}
+	
+	\begin{theorem}[孤立奇点的分类（定义）]
+		设 \(a\) 为孤立奇点。按 Laurent 展开中的负次项个数分类：
+		\begin{itemize}
+			\item 若 Laurent 负次项全为 0，则为 \emph{可去奇点}；
+			\item 若 Laurent 仅有有限多项负次项（最大为 \((z-a)^{-m}\)），则为 \emph{极点}（阶为 \(m\)）；
+			\item 若 Laurent 具有无限多负次项，则为 \emph{本性奇点}。
+		\end{itemize}
+	\end{theorem}
+	
+	\begin{definition}[Casorati--Weierstrass 与 Picard 小定理]
+		若 \(a\) 为本性奇点，则 \(f\) 在任何去心邻域内的像在 \(\mathbb C\) 中稠密（Casorati--Weierstrass）。Picard 小定理更强：在本性奇点任意邻域内，\(f\) 取得所有复值，至多舍去一个例外值。
+	\end{definition}
+	
+	\begin{example}
+		\(e^{1/z}\) 在 \(z=0\) 处为本性奇点；在任意小环域中其值几乎取遍整个复平面（除 0 外也能任意接近 0）。
+	\end{example}
+	
+	\section{最大模原理与 Liouville 定理}
+	
+	\begin{definition}[最大模原理]
+		若 \(f\) 在连通域 \(U\) 全纯且存在 \(z_0\in U\) 使得 \(|f(z_0)|\ge |f(z)|\) 对所有 \(z\in U\) 成立，则 \(f\) 为常数。
+	\end{definition}
+	
+	\begin{definition}[Liouville 定理]
+		若 \(f\) 在全平面 \(\mathbb C\) 上全纯且有界，则 \(f\) 为常数。
+	\end{definition}
+	
+	\begin{proof}
+		（Liouville 简洁证法）设 \(|f(z)|\le M\) 对所有 \(z\) 成立。对任意 \(R>0\)，Cauchy 导数估计给出
+		\[
+		|f'(0)|\le \frac{M}{R}.
+		\]
+		令 \(R\to\infty\) 得 \(f'(0)=0\)。把中心移到任意点可得 \(f'\equiv0\)，从而 \(f\) 常数。
+	\end{proof}
+	
+	\begin{example}
+		用 Liouville 可证明基本代数定理：若多项式 \(p(z)\) 无根，则 \(1/p(z)\) 在全平面解析且有界（因 \(|p(z)|\to\infty\) 当 \(|z|\to\infty\)），由 Liouville 得常数矛盾，因此 \(p\) 有根。
+	\end{example}
+	
+	\section{解析延拓（Analytic continuation）}
+	
+	\begin{theorem}[局部定义与全纯性的回顾]
+		设 \(U\subset\mathbb C\) 为开集，\(f:U\to\mathbb C\) 在 \(U\) 全纯。若 \(a\in U\)，则
+		存在以 \(a\) 为中心的圆盘 \(D(a,r)\subset U\) 以及幂级数
+		\[
+		f(z)=\sum_{n=0}^\infty c_n (z-a)^n,\qquad |z-a|<r,
+		\]
+		在该圆盘上一致收敛。这给出“局部数据”去构造更大域上的函数的出发点。
+	\end{theorem}
+	
+		\begin{definition}[恒等定理（Identity Theorem）]
+		若 \(f\) 与 \(g\) 在连通域 \(U\) 上全纯，且 \(f(z)=g(z)\) 在 \(U\) 的一集合上成立，该集合有聚点，则 \(f\equiv g\) 在 \(U\) 上恒等。
+	\end{definition}
+	
+	\begin{proof}
+		（恒等定理要点）令 \(h=f-g\)，则 \(h\) 在 \(U\) 全纯，且在有聚点的集合上为 0。若 \(h\not\equiv0\)，则零点必须是孤立的，与有聚点矛盾，故 \(h\equiv0\)。
+	\end{proof}
+	
+	\begin{example}
+		幂级数 \(\sum_{n=0}^\infty z^{n!}\) 在单位圆内解析，若其在某有聚点的集合上与 0 相等，则恒为 0（由恒等定理）。
+	\end{example}
+	
+	\begin{definition}[解析延拓（analytic continuation）——直观定义]
+		设 \(f\) 在开集 \(U\) 全纯，\(V\) 是包含 \(U\) 的更大开集。若存在在 \(V\) 全纯的函数 \(F\) 使得 \(F|_U=f\)，则称 \(F\) 是 \(f\) 在 \(V\) 上的解析延拓。解析延拓（若存在）在交集中有聚点时是唯一的（由恒等定理）。
+	\end{definition}
+	
+	\begin{definition}[延拓的基本原理（Principle of analytic continuation）]
+		若 \(f\) 在连通开集 \(U\) 全纯，且存在开集链
+		\[
+		U=U_0\subset U_1\subset\cdots\subset U_N
+		\]
+		使得对每个 \(k\) 存在全纯函数 \(f_k\) 在 \(U_k\) 上，且 \(f_k|_{U_{k-1}}=f_{k-1}\)，则把这些局部定义粘接得到 \(f_N\) 即为沿这条链的解析延拓。换句话说：从幂级数或积分表示“向外延伸”可以通过链式延拓完成。
+	\end{definition}
+	
+	\begin{proof}
+		（说明）此条是对“局部幂级数可拼接”的表述，由恒等定理保证在相交的重叠部分粘接一致，因此可得到一致的延拓。
+	\end{proof}
+	
+	\begin{definition}[沿路径的解析延拓与 Monodromy]
+		设 \(f\) 在以基点 \(z_0\) 为中心的一个邻域 \(U_0\) 上解析。给定一条从 \(z_0\) 到 \(z_1\) 的路径 \(\gamma\subset\Omega\)（\(\Omega\) 是连通开集），若可以沿着 \(\gamma\) 逐步在小圆盘上继续幂级数，从而在终点 \(z_1\) 得到一个值，这个过程称为“沿路径\(\gamma\)的解析延拓”。若沿不同同伦类的路径延拓得到不同的值，就产生单值性的障碍；Monodromy（单值性/复回绕性）研究沿闭路延拓回到起点时函数值的变化。
+	\end{definition}
+	
+	\begin{definition}[Monodromy 定理（简洁表述）]
+		设 \(U\) 为连通开集，\(f\) 在包含基点 \(z_0\) 的某小邻域解析。若对任意闭路 \(\gamma\) （以基点为端点）沿 \(\gamma\) 的解析延拓得到的函数回到起点时与原始函数一致（即单值），则沿路径的延拓对路径同伦类不依赖；反之若依赖则出现非平凡 monodromy。
+	\end{definition}
+	
+	\begin{example}
+		经典现象：对函数 \(f(z)=\log z\)（取主支在 \(\arg z\in(0,2\pi)\)），沿绕原点一圈的路径延拓会使 \(\log z\) 增加 \(2\pi i\)，产生非平凡 monodromy；为了得到单值需要在复平面上切开一条分支切口，或考虑 \(\log\) 的 Riemann 面。
+	\end{example}
+	
+	\subsection*{解析延拓的常用方法（分类与说明）}
+	下面把“如何做延拓”分成若干常见策略，并给出每种方法的核心要点与例子。
+	
+	\begin{definition}[方法 A：幂级数拼接（直接用 Taylor / Laurent）]
+		当你有 \(f\) 在 \(D(a,r)\) 的幂级数表示，并且该幂级数在边界上没有天然障碍时，可以在某边界点 \(b\) 取 \(D(b,\rho)\) 的新的幂级数（由原幂级数的和定义），从而把定义域“向外推”。
+	\end{definition}
+	
+	\begin{example}[幂级数延拓示例]
+		函数 \(\sum_{n=0}^\infty z^{n!}\) 在 \(|z|<1\) 内解析，但其收敛圈可能有自然边界；与之相对，几何级数 \(\sum z^n\) 在 \(|z|<1\) 的和 \(1/(1-z)\) 可延拓到 \(\mathbb C\setminus\{1\}\)。
+	\end{example}
+	
+	\begin{definition}[方法 B：通过积分表示延拓（Cauchy 积分、Mellin/Bromwich 变换等）]
+		若 \(f\) 有某种积分表示（例如 Mellin 变换、Laplace 逆变换、Cauchy 积分式、Euler 型积分等），并且该积分在较大区域里依然有意义或可解析延拓，则该表示直接给出了延拓。例如 Gamma 函数：
+		\[
+		\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt \quad(\Re s>0)
+		\]
+		通过分部积分得到函数方程 \(\Gamma(s+1)=s\Gamma(s)\)，利用递推可把定义延拓到除非正整数外的整个复平面。
+	\end{definition}
+	
+	\begin{example}[Gamma 函数的延拓]
+		使用递推关系并用极点解析可以把 \(\Gamma(s)\) 延拓为亚纯函数（meromorphic），其在非正整数处有极点。此处的关键不是直接把积分交换顺序，而是利用函数方程与插值来延拓。
+	\end{example}
+	
+	\begin{definition}[方法 C：利用函数方程或代数关系（functional equations）]
+		许多重要函数（比如 Riemann zeta）满足函数方程或可与更好行为的函数组合。例如
+		\[
+		\eta(s)=\sum_{n=1}^\infty\frac{(-1)^{n-1}}{n^s}
+		\]
+		（Dirichlet eta）在 \(\Re s>0\) 绝对收敛且与 \(\zeta\) 通过 \(\zeta(s)=(1-2^{1-s})^{-1}\eta(s)\) 相连，从而给出 \(\zeta\) 的延拓（除了 \(s=1\) 的极点）。
+	\end{definition}
+	
+	\begin{example}[Riemann zeta 的经典延拓思路]
+		用 Mellin 变换结合 Jacobi theta 函数的变换性质可推导出 zeta 的函数方程，从而把 \(\zeta(s)\) 延拓到整个复平面（仅在 \(s=1\) 有极点）。
+	\end{example}
+	
+	\begin{definition}[方法 D：用微分方程（解析延拓 via ODE）]
+		若 \(f\) 是某线性常微分方程（系数为解析函数）的解，则在连通域上可解析延拓该解，障碍仅来自系数的奇点（Fuchsian 理论、等）。因此微分方程是构造全纯延拓的强大工具（例如超几何函数的延拓）。
+	\end{definition}
+	
+	\begin{example}[常见：Gauss 超几何函数]
+		Gauss 超几何函数 \({}_2F_1(a,b;c;z)\) 由幂级数在 \(|z|<1\) 定义，但通过解析延拓可推广到 \( \mathbb C\setminus[1,\infty)\)（沿不同路径可得到不同分支）。
+	\end{example}
+	
+	\subsection*{延拓中的障碍与自然边界}
+	
+	\begin{definition}[自然边界（natural boundary）]
+		若函数的定义域主连通延拓到某界面仍无法通过任何方法继续（即任意穿过该界点的延拓都会遇到本性奇点的堆积），则称该界面为自然边界。通俗地说：没有任何更大的域可以包含原函数的解析延拓。
+	\end{definition}
+	
+	\begin{example}
+		函数 \(\sum_{n=0}^\infty z^{n!}\) 的收敛区 \(|z|<1\) 的边界单位圆是自然边界（这是经典构造），因单位圆上有密集奇性使得无法跨越。
+	\end{example}
+	
+	\subsection*{Riemann 面与全局单值化}
+	为了解决多值延拓（比如 \(\sqrt{z},\log z\)）的问题，引入 Riemann 面的观点：把每个分支当作一层，把这些层沿分支点粘接起来，得到一个连通的曲面（Riemann 面），此后函数在该面上成为单值的全纯函数。Riemann 面给出了将多值函数“升格”为单值全纯函数的最自然几何框架。
+	
+	\begin{example}
+		\(\sqrt{z}\) 的 Riemann 面由两层复平面沿 \(0\)（和 \(\infty\)）粘接而成；\(\log z\) 的 Riemann 面是无限层的螺旋面。
+	\end{example}
+	
+	\subsection*{单值性、Monodromy 群与解析延拓的代数描述}
+	沿闭路的延拓作用在函数的分支集合上，构成一个置换群，即 Monodromy 群。若该群平凡，则全局单值，若非平凡则需要 Riemann 面来“展开”单值化。Monodromy 群的研究将解析延拓与代数拓扑联系起来。
+	
+	\begin{definition}[Monodromy 群（概要）]
+		给定基点 \(z_0\) 与函数的一个局部分支，沿 \(\pi_1(\Omega,z_0)\)（基本群）中路的延拓作用给出对局部分支的置换，从而得到 Monodromy 表示 \(\pi_1(\Omega,z_0)\to S_m\)（若分支数有限）。
+	\end{definition}
+	
+	\subsection*{解析延拓的唯一性与恒等定理的角色}
+	解析延拓的一个核心性质是唯一性：若两个全纯函数在连通域的一个有聚点的集合上相等，则它们在该连通域上一致。这保证了“沿两条同伦路径延拓若在交集一致则合并”为可行操作。
+	
+	\begin{definition}[解析延拓的唯一性（恒等定理的应用）]
+		若 \(f\) 在 \(U\) 全纯，\(g\) 在 \(V\) 全纯，且 \(U\cap V\) 含有聚点并且 \(f=g\) 在 \(U\cap V\)，则存在并且唯一的全纯函数 \(h\) 在 \(U\cup V\) 上延拓 \(f\) 与 \(g\)。
+	\end{definition}
+	
+	\subsection*{若干重要实例（步骤式）}
+	
+	\begin{example}[例：用幂级数拼接把 \(1/(1-z)\) 从 \(|z|<1\) 延拓到 \(\mathbb C\setminus\{1\}\)]
+		在 \(|z|<1\) 中有 \(\sum z^n = 1/(1-z)\)。但 \(1/(1-z)\) 作为有理函数在整个复平面解析延拓，除了 \(z=1\) 的极点外无其他奇点；这说明幂级数的和已是一个可以在更大域解释的函数（代数延拓非常直接）。
+	\end{example}
+	
+	\begin{example}[例：Gamma 函数通过函数方程延拓]
+		起始定义 \(\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt\) 仅对 \(\Re s>0\) 收敛。利用 \(\Gamma(s+1)=s\Gamma(s)\) 递推以及对负整数点的极点结构可把 \(\Gamma\) 延拓为在全平面上亚纯（meromorphic）的函数（非正整数处为极点）。这是“利用函数方程与解析延拓”的经典范例。
+	\end{example}
+	
+	\begin{example}[例：Riemann zeta 函数的延拓（概要）]
+		从 Dirichlet eta 函数 \(\eta(s)=\sum_{n\ge1}(-1)^{n-1}n^{-s}\)（对 \(\Re s>0\) 绝对/条件收敛）和关系
+		\[
+		\zeta(s) = \frac{1}{1-2^{1-s}}\eta(s)
+		\]
+		得到 \(\zeta(s)\) 在 \(\Re s>0\) 的延拓（除 \(s=1\)），再结合 theta 函数或 Mellin 变换得到全平面的解析延拓与函数方程（详见专著）。
+	\end{example}
+	
+	\subsection*{练习与思考题（推荐）}
+	\begin{enumerate}
+		\item 用分部积分从 Euler 型积分推导出 \(\Gamma(s+1)=s\Gamma(s)\)，并据此把 \(\Gamma\) 延拓到 \(\Re s\le 0\) 的域（说明极点位置）。
+		\item 对函数 \(\sum_{n=0}^\infty z^{2^n}\)，讨论其收敛域与是否存在自然边界。
+		\item 证明：若 \(f\) 在连通域 \(\Omega\) 的每条闭路沿解析延拓均返回原值（monodromy 平凡），则 \(f\) 沿任意路径的延拓都与路径同伦类无关。
+		\item 展示如何用钥匙孔轮廓把 \(\int_0^\infty \dfrac{x^{\alpha-1}}{1+x}\,dx\)（\(0<\Re\alpha<1\)）与 Beta/Gamma 函数联系起来，从而证明公式。
+	\end{enumerate}
+	
+
+	\chapter{复积分的计算：留数定理}
+	\section{工具}
+	\begin{definition}[留数]
+		解析函数\(f(z)\)的Laurent展开中的\(-1\)次项的系数就是留数.即
+		\[f(z)=\sum_{n=-\infty}^\infty a_nz^n\]中，留数是\(a_{-1}\).
+	\end{definition}
+	\begin{definition}[留数定理] 
+		设 \(f\) 在简单闭曲线 \(\Gamma\) 内解析，除有限个孤立极点 \(a_k\)。若 \(\Gamma\) 逆时针，则
+		\[
+		\oint_{\Gamma} f(z)\,dz = 2\pi i \sum_k \operatorname{Res}(f;a_k).
+		\]
+	\end{definition}
+	
+	\begin{theorem}[留数的常用计算公式]
+		\begin{enumerate}[leftmargin=*,itemsep=4pt]
+			\item 若 \(a\) 是 \(f\) 的简单极点，则
+			\[
+			\operatorname{Res}(f,a)=\lim_{z\to a}(z-a)f(z).
+			\]
+			\item 若 \(f(z)=\dfrac{\phi(z)}{(z-a)^m}\) 且 \(\phi\) 在 \(a\) 解析，则
+			\[
+			\operatorname{Res}(f,a)=\frac{1}{(m-1)!}\phi^{(m-1)}(a).
+			\]
+			\item 若 \(f=\dfrac{g}{h}\) 且 \(h(a)=0,\ h'(a)\neq0\)，则
+			\[
+			\operatorname{Res}(f,a)=\frac{g(a)}{h'(a)}.
+			\]
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		\noindent\textbf{证明法一（用 Laurent 展开）：}
+		对于每个奇点 \(a_j\)，因为是孤立的，所以存在小圆盘 \(D_j=\{z:|z-a_j|<r_j\}\) 使得这些小盘互不相交且都被 \(\Gamma\) 的内部包含，并且 \(f\) 在 \(D_j\setminus\{a_j\}\) 可作 Laurent 展开：
+		\[
+		f(z)=\sum_{k=-\infty}^{\infty} c_{k}^{(j)}(z-a_j)^k,\qquad 0<|z-a_j|<r_j.
+		\]
+		在每个小圆周 \(C_j=\{z:|z-a_j|=r_j\}\) 上对该级数逐项积分（在收敛圆环内允许逐项积分）得到
+		\[
+		\oint_{C_j} f(z)\,dz
+		= \sum_{k=-\infty}^{\infty} c_k^{(j)} \oint_{C_j} (z-a_j)^k\,dz.
+		\]
+		但对整数 \(k\) 有
+		\[
+		\oint_{C_j} (z-a_j)^k\,dz =
+		\begin{cases}
+			2\pi i, & k=-1,\\
+			0, & k\ne -1.
+		\end{cases}
+		\]
+		因此
+		\[
+		\oint_{C_j} f(z)\,dz = 2\pi i\, c_{-1}^{(j)} = 2\pi i\,\operatorname{Res}(f,a_j).
+		\]
+		把 \(\Gamma\) 的积分变形（取 \(\Gamma\) 的内部减去这些小盘边界）可由解析延拓与 Cauchy 定理得到等价：沿 \(\Gamma\) 的积分等于这些小圆周积分的和（方向相反，但注意取向约定），整理符号后便得到
+		\[
+		\oint_{\Gamma} f(z)\,dz = 2\pi i\sum_{j=1}^n \operatorname{Res}(f,a_j).
+		\]
+		
+		\medskip
+		\noindent\textbf{证明法二（利用 Cauchy 原理与区域变形）：}
+		从拓扑角度，我们可以把 \(\Gamma\) 连续缩形到一组绕每个奇点的正向小圆（注意在缩形过程中避开奇点），由 Cauchy 的定理可知，如果把区域上去掉小盘后 \(f\) 在剩下区域内解析，那么沿边界的积分保持不变。于是积分可以写成这些小圆积分之和（方向约定为正向），每个小圆的积分按上面用 Laurent 展开或用局部表示计算，只留下 \((z-a)^{-1}\) 项的贡献，即 \(2\pi i\) 倍的留数。汇总即得定理结论。
+	\end{proof}
+	
+	\section{复积分计算的一般步骤（Recipe）}
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item 将实积分写为沿实轴的复积分（或把被积函数看作复函数）；若含三角函数可写为复指数。
+		\item 选择合适闭合轮廓（上/下半圆、钥孔、单位圆等），并判断哪些奇点位于区域内部。
+		\item 计算这些奇点的留数。
+		\item 检查轮廓上其它弧段的贡献（通常用 Jordan 大弧引理估算），并说明其在 \(R\to\infty\) 时是否消失。
+		\item 应用留数定理，按需取实部/虚部或主值 (PV) 得到原实积分。
+	\end{enumerate}
+	
+	\section{Jordan 大小弧引理}
+	\subsection{Jordan 大弧引理（常用版本）}
+	
+	\begin{definition}[Jordan 大弧引理]
+		 设 \(k>0\)。对每 \(R>0\) 令 \(C_R\) 为以原点为中心、半径 \(R\) 的上半圆 \(z=R e^{i\theta}\), \(\theta\in[0,\pi]\)。若 \(f\) 在该半盘上解析且在弧上满足
+		\[
+		M_R:=\max_{\theta\in[0,\pi]}|f(R e^{i\theta})|,
+		\]
+		则对于被积子 \(e^{ikz}f(z)\) 有估计
+		\[
+		\left|\int_{C_R} e^{ikz} f(z)\,dz\right|
+		\le R M_R \int_0^\pi e^{-kR\sin\theta}\,d\theta
+		\le \frac{\pi}{k} M_R.
+		\]
+		于是若 \(M_R\to0\)（例如 \(f(z)=o(1)\) 或 \(M_R=O(R^{-\alpha})\)），则弧积分趋于 \(0\)。
+	\end{definition}
+	
+	\begin{proof}
+	参数化圆弧 \(C_R\) 为 \(z=Re^{i\theta}\) (\(\theta\in[0,\pi]\))，则 \(dz=iR e^{i\theta}d\theta\)。因此
+	\[
+	\left|\int_{C_R} e^{ikz} f(z)\,dz\right|
+	\le \int_0^\pi \big|e^{ikRe^{i\theta}} f(Re^{i\theta})\, iR e^{i\theta}\big|\,d\theta
+	\le R M_R \int_0^\pi \big|e^{ikRe^{i\theta}}\big|\,d\theta.
+	\]
+	注意对 \(k>0\) 有
+	\[
+	\big|e^{ikRe^{i\theta}}\big| = e^{-kR\sin\theta}.
+	\]
+	于是
+	\[
+	\left|\int_{C_R} e^{ikz} f(z)\,dz\right|
+	\le R M_R \int_0^\pi e^{-kR\sin\theta}\,d\theta.
+	\]
+	利用对称性并在 \([0,\pi/2]\) 上用不等式 \(\sin\theta\ge \tfrac{2\theta}{\pi}\)（可直接验证），得
+	\[
+	\int_0^\pi e^{-kR\sin\theta}\,d\theta
+	=2\int_0^{\pi/2} e^{-kR\sin\theta}\,d\theta
+	\le 2\int_0^{\pi/2} e^{-kR\cdot \tfrac{2\theta}{\pi}}\,d\theta
+	= \frac{\pi}{kR}\big(1-e^{-kR}\big)
+	\le \frac{\pi}{kR}.
+	\]
+	代回上式得到
+	\[
+	\left|\int_{C_R} e^{ikz} f(z)\,dz\right|
+	\le R M_R \cdot \frac{\pi}{kR} = \frac{\pi}{k} M_R.
+	\]
+	当 \(M_R\to0\) 时右端趋于 \(0\)，从而弧积分趋于 \(0\)。对 \(k<0\) 改用下半圆并类似估计。
+\end{proof}
+	
+	\subsection{Jordan 小弧引理（绕过实轴上极点）}
+	
+	\begin{definition}[小弧引理，简单极点情况]
+		设 \(a\in\mathbb R\)，且 \(f\) 在 \(a\) 附近（去掉 \(a\)）解析，且在 \(a\) 处存在简单极点：
+		\[
+		f(z)=\frac{r}{z-a}+h(z),\qquad h \text{ 在 } a \text{ 解析}.
+		\]
+		令 \(C_\varepsilon\) 为以 \(a\) 为中心、半径 \(\varepsilon\) 的小半圆（上半圆，参数 \(\theta\in[0,\pi]\) 从右到左）。则当 \(\varepsilon\to0^+\) 时
+		\[
+		\int_{C_\varepsilon} f(z)\,dz \to i\pi\,r = i\pi\,\operatorname{Res}(f,a).
+		\]
+		若绕行下半圆则极限为 \(-i\pi\,\operatorname{Res}(f,a)\)。
+	\end{definition}
+	\begin{proof}
+		将上小半弧参数化为 \(z=a+\varepsilon e^{i\theta}\), \(\theta\in[0,\pi]\)。则
+		\[
+		\int_{C_\varepsilon} \frac{r}{z-a}\,dz
+		= \int_0^\pi \frac{r}{\varepsilon e^{i\theta}} \, i\varepsilon e^{i\theta}\,d\theta
+		= i r \int_0^\pi d\theta = i\pi r.
+		\]
+		而余项
+		\(\left|\int_{C_\varepsilon} h(z)\,dz\right|\le \pi\varepsilon \max_{C_\varepsilon}|h|\),
+		由 \(h\) 在 \(a\) 解析可知上界随 \(\varepsilon\to0\) 趋于 \(0\)。因此小弧积分的极限为 \(i\pi r\)。
+	\end{proof}
+
+	
+	\section{典型例题}
+	
+	\begin{example}
+		 计算
+		\[
+		I_1=\int_{-\infty}^\infty \frac{dx}{x^2+1}.
+		\]
+		\textbf{要点：} 令 \(f(z)=1/(z^2+1)\)。上半平面包含极点 \(i\)。留数 \(\operatorname{Res}(f,i)=1/(2i)\)。大弧因 \(f=O(1/R^2)\) 而贡献 \(0\)。由留数定理，
+		\[
+		I_1 = 2\pi i\cdot\frac{1}{2i}=\pi.
+		\]
+	\end{example}
+	
+	\begin{example}
+		计算
+		\[
+		I_2=\int_{-\infty}^\infty \frac{\cos x}{x^2+1}\,dx.
+		\]
+		\textbf{要点：} 写作实部 \(I_2=\Re \int_{-\infty}^\infty \dfrac{e^{ix}}{x^2+1}\,dx\)。取 \(F(z)=e^{iz}/(z^2+1)\) 并闭合于上半平面。留数在 \(i\)： \(\operatorname{Res}(F,i)=e^{ii}/(2i)=e^{-1}/(2i)\)。因此整体积分为 \(\pi e^{-1}\)，取实部得 \(I_2=\pi e^{-1}\)。
+	\end{example}
+	
+	\begin{example}
+		 周期积分
+		\[
+		I_3=\int_0^{2\pi}\frac{d\theta}{a+b\cos\theta},\qquad |a|>|b|.
+		\]
+		\textbf{要点：} 用 \(z=e^{i\theta}\) 代换（\(\cos\theta=(z+z^{-1})/2,\ d\theta=dz/(iz)\)），把积分化为单位圆上的有理函数积分，找圆内极点并求留数。结果为
+		\[
+		I_3=\frac{2\pi}{\sqrt{a^2-b^2}}.
+		\]
+	\end{example}
+	
+	\begin{example}
+		钥孔轮廓：
+		\[
+		I_4(\alpha)=\int_0^\infty\frac{x^{\alpha-1}}{1+x}\,dx,\qquad 0<\alpha<1.
+		\]
+		\textbf{要点：} 考虑 \(f(z)=z^{\alpha-1}/(1+z)\)（主值分支），用钥孔轮廓绕过正实轴，内部包含 \(z=-1\)。计算并整理相位差，得到
+		\[
+		I_4(\alpha)=\frac{\pi}{\sin(\pi\alpha)}.
+		\]
+	\end{example}
+	
+	\begin{example}
+		主值积分（傅里叶主值）
+		\[
+		\operatorname{PV}\int_{-\infty}^\infty \frac{e^{ix}}{x}\,dx.
+		\]
+		\textbf{要点：} 设 \(f(z)=e^{iz}/z\)。用上半平面闭合并避开原点（上小半弧），大弧贡献为 \(0\)。上小弧贡献为 \(i\pi\operatorname{Res}(f,0)=i\pi\)。整体积分 \(2\pi i\)（内部只有 \(0\)），因此
+		\[
+		\operatorname{PV}\int_{-\infty}^\infty \frac{e^{ix}}{x}\,dx = i\pi,
+		\]
+		并得 \(\int_{-\infty}^\infty \frac{\sin x}{x}\,dx=\pi\)。
+	\end{example}
+	
+	
+	\begin{example}
+		 计算
+		\[
+		\int_{-\infty}^{\infty}\frac{x^2}{x^4+1}\,dx.
+		\]
+		\textbf{解：} 被积函数为有理函数 \(f(z)=\dfrac{z^2}{z^4+1}\)。多项式 \(z^4+1=0\) 的根为
+		\[
+		e^{i\pi/4},\ e^{3i\pi/4},\ e^{5i\pi/4},\ e^{7i\pi/4}.
+		\]
+		上半平面包含两个根 \(z_1=e^{i\pi/4}\) 与 \(z_2=e^{3i\pi/4}\)，且这些都是简单根。若 \(g(z)=z^4+1\)，则 \(g'(z)=4z^3\)，对于简单极点 \(a\) 有
+		\[
+		\operatorname{Res}\!\left(\frac{z^2}{z^4+1},a\right)=\frac{a^2}{g'(a)}=\frac{a^2}{4a^3}=\frac{1}{4a}.
+		\]
+		因此
+		\[
+		\operatorname{Res}(f,z_1)=\frac{1}{4z_1},\qquad
+		\operatorname{Res}(f,z_2)=\frac{1}{4z_2}.
+		\]
+		计算两者和：
+		\[
+		\frac{1}{4}\left(\frac{1}{e^{i\pi/4}}+\frac{1}{e^{3i\pi/4}}\right)
+		=\frac{1}{4}\left(e^{-i\pi/4}+e^{-3i\pi/4}\right)
+		=\frac{1}{4}\left(\frac{1-i}{\sqrt2}+\frac{-1-i}{\sqrt2}\right)
+		=-\frac{i}{2\sqrt2}.
+		\]
+		由留数定理及 Jordan 大弧引理（弧贡献为 0），
+		\[
+		\int_{-\infty}^{\infty}\frac{x^2}{x^4+1}\,dx = 2\pi i\cdot\left(-\frac{i}{2\sqrt2}\right)=\frac{\pi}{\sqrt2}.
+		\]
+	\end{example}
+	
+	\begin{example}
+		 计算
+		\[
+		\int_{-\infty}^{\infty}\frac{dx}{x^4+1}.
+		\]
+		\textbf{解要点：} 与上例类似，考虑 \(f(z)=1/(z^4+1)\)。上半平面极点仍为 \(e^{i\pi/4},e^{3i\pi/4}\)。对简单极点 \(a\),
+		\[
+		\operatorname{Res}\!\left(\frac{1}{z^4+1},a\right)=\frac{1}{g'(a)}=\frac{1}{4a^3}.
+		\]
+		计算并求和可得总留数之和为 \(\dfrac{1}{2\sqrt2}(-i)\)（与上例计算类似），于是总体积分为 \( \pi/\sqrt2\)。（也可利用偶性：\(\int_0^\infty dx/(1+x^4)=\pi/(2\sqrt2)\)）
+	\end{example}
+	\begin{example}[Fresnel]
+		记
+		\[
+		C=\int_0^\infty \cos(x^2)\,dx,\qquad S=\int_0^\infty \sin(x^2)\,dx.
+		\]
+		则
+		\[
+		C=S=\frac{\sqrt{\pi}}{2\sqrt{2}}=\sqrt{\frac{\pi}{8}}.
+		\]
+	\end{example}
+	
+	\begin{proof}
+		考虑复积分
+		\[
+		I=\int_0^\infty e^{i x^2}\,dx.
+		\]
+		做旋转变换：令 \(u=e^{i\pi/4}x\)（在复平面将实正半轴逆时针旋转 \(\pi/4\)），注意 \(du=e^{i\pi/4}dx\) 且 \(e^{ix^2}=e^{-u^2}\). 在允许交换路径与被积函数（此处可用高斯积分解析延拓）的前提下
+		\[
+		I=e^{-i\pi/4}\int_0^{\infty e^{i\pi/4}} e^{-u^2}\,du
+		= e^{-i\pi/4}\int_0^{\infty} e^{-u^2}\,du
+		= e^{-i\pi/4}\cdot\frac{\sqrt{\pi}}{2}.
+		\]
+		因此
+		\[
+		\int_0^\infty e^{ix^2}\,dx = \frac{\sqrt{\pi}}{2} e^{-i\pi/4}
+		= \frac{\sqrt{\pi}}{2}\frac{1-i}{\sqrt{2}} = \frac{\sqrt{\pi}}{2\sqrt{2}}(1-i).
+		\]
+		取实部与虚部得
+		\[
+		C=\Re I=\frac{\sqrt{\pi}}{2\sqrt{2}},\qquad
+		S=\Im I=-\frac{\sqrt{\pi}}{2\sqrt{2}}\cdot(-1)=\frac{\sqrt{\pi}}{2\sqrt{2}}.
+		\]
+		（即 \(C=S=\sqrt{\pi/(8)}\)。）
+	\end{proof}
+	
+	\bigskip
+	
+	\begin{example}
+		证明
+		\[
+		\int_{-\infty}^{\infty}\frac{dx}{(1+x^2)^{\,n+1}}
+		=\sqrt{\pi}\,\frac{\Gamma\!\big(n+\tfrac12\big)}{\Gamma(n+1)},\qquad n>-1/2.
+		\]
+	\end{example}
+	
+	\begin{proof}
+		由偶性
+		\[
+		\int_{-\infty}^{\infty}\frac{dx}{(1+x^2)^{n+1}}
+		=2\int_0^\infty\frac{dx}{(1+x^2)^{n+1}}.
+		\]
+		作代换 \(x=\tan\theta\)（\(\theta\in[0,\pi/2)\)），有 \(dx=\sec^2\theta\,d\theta\) 与 \(1+x^2=\sec^2\theta\)。于是
+		\[
+		\int_0^\infty\frac{dx}{(1+x^2)^{n+1}}
+		=\int_0^{\pi/2}\frac{\sec^2\theta\,d\theta}{\sec^{2n+2}\theta}
+		=\int_0^{\pi/2}\cos^{2n}\theta\,d\theta
+		=\tfrac12 B\!\Big(\tfrac{1}{2},\,n+\tfrac12\Big),
+		\]
+		其中 \(B\) 为 Beta 函数。于是原积分为
+		\[
+		2\cdot \tfrac12 B\!\Big(\tfrac{1}{2},\,n+\tfrac12\Big)
+		= B\!\Big(\tfrac{1}{2},\,n+\tfrac12\Big)
+		= \frac{\Gamma(\tfrac12)\Gamma(n+\tfrac12)}{\Gamma(n+1)}.
+		\]
+		使用 \(\Gamma(\tfrac12)=\sqrt{\pi}\) 得所需结果。
+	\end{proof}
+	
+	\bigskip
+	
+	\begin{example}
+		当 \(a>1\) 时，求
+		\[
+		\int_0^{2\pi}\frac{dx}{(a+\cos x)^2}.
+		\]
+	\end{example}
+	
+	\begin{proof}
+		先令
+		\[
+		J(a)=\int_0^{2\pi}\frac{dx}{a+\cos x},\qquad a>1.
+		\]
+		我们已知（或可由变换 \(z=e^{ix}\) 求得）
+		\[
+		J(a)=\frac{2\pi}{\sqrt{a^2-1}}.
+		\]
+		注意
+		\[
+		\frac{d}{da}\frac{1}{a+\cos x} = -\frac{1}{(a+\cos x)^2},
+		\]
+		所以令
+		\[
+		K(a)=\int_0^{2\pi}\frac{dx}{(a+\cos x)^2} = -J'(a).
+		\]
+		直接求导：
+		\[
+		J'(a)=\frac{d}{da}\Big(2\pi (a^2-1)^{-1/2}\Big)
+		=2\pi\cdot\Big(-\tfrac12\Big)(a^2-1)^{-3/2}\cdot 2a
+		=-\frac{2\pi a}{(a^2-1)^{3/2}}.
+		\]
+		因此
+		\[
+		K(a)=-J'(a)=\frac{2\pi a}{(a^2-1)^{3/2}}.
+		\]
+	\end{proof}
+	
+	\bigskip
+	
+	\begin{example}
+		计算
+		\[
+		\int_0^1 \log(\sin\pi x)\,dx.
+		\]
+	\end{example}
+	
+	\begin{proof}
+		作变换 \(t=\pi x\)：
+		\[
+		\int_0^1 \log(\sin\pi x)\,dx
+		=\frac{1}{\pi}\int_0^\pi \log(\sin t)\,dt.
+		\]
+		已知（可用对称性与 Fourier 展开或复方法得到）
+		\[
+		\int_0^\pi \log(\sin t)\,dt = -\pi\log 2.
+		\]
+		因此原积分为 \(-\log 2\).
+	\end{proof}
+	
+	\bigskip
+	
+	\begin{example}
+		对 \(a>0\)，证明
+		\[
+		\int_0^\infty \frac{\log x}{x^2+a^2}\,dx = \frac{\pi}{2a}\log a.
+		\]
+	\end{example}
+	
+	\begin{proof}
+		作换元 \(x=a t\) 得
+		\[
+		\int_0^\infty \frac{\log x}{x^2+a^2}\,dx
+		= \int_0^\infty \frac{\log(a t)}{a^2(t^2+1)} a\,dt
+		= \frac{1}{a}\int_0^\infty \frac{\log a + \log t}{t^2+1}\,dt.
+		\]
+		拆开：
+		\[
+		\frac{1}{a}\log a \int_0^\infty\frac{dt}{1+t^2}
+		+\frac{1}{a}\int_0^\infty\frac{\log t}{1+t^2}\,dt.
+		\]
+		第一个积分等于 \(\frac{\pi}{2}\)。第二个积分记为 \(I_0\)。对 \(I_0\) 做 \(t\mapsto 1/t\)：
+		\[
+		I_0=\int_0^\infty\frac{\log t}{1+t^2}\,dt
+		=\int_\infty^0\frac{\log(1/u)}{1+1/u^2}\cdot\frac{-du}{u^2}
+		=\int_0^\infty\frac{-\log u}{1+u^2}\,du = -I_0.
+		\]
+		因此 \(I_0=0\)。最终结果为
+		\[
+		\frac{1}{a}\log a\cdot\frac{\pi}{2} = \frac{\pi}{2a}\log a.
+		\]
+	\end{proof}
+	
+	
+	\section{常用技巧与陷阱}
+	\begin{itemize}[leftmargin=*,itemsep=4pt]
+		\item 选择闭合半平面时必须与 \(e^{ikz}\) 中 \(k\) 的符号匹配：若 \(k>0\) 用上半平面，若 \(k<0\) 用下半平面。
+		\item 若极点位于实轴，需用主值并加上小弧贡献（Jordan 小弧引理）。
+		\item 对有理函数 \(P/Q\)，若 \(\deg Q - \deg P\ge2\)，则在大弧上被积函数通常衰减得足够快（弧贡献 \(0\)）。
+		\item 注意路径方向（顺时针/逆时针）会影响符号（\(2\pi i\) 的正负）。
+	\end{itemize}
+	
+	\section{快速参考公式}
+	\begin{align*}
+		&\int_{-\infty}^\infty \frac{dx}{x^2+a^2}=\frac{\pi}{a},\qquad a>0,\\
+		&\int_{-\infty}^\infty \frac{\cos(bx)}{x^2+a^2}\,dx=\frac{\pi}{a}e^{-a|b|},\\
+		&\int_0^\infty \frac{x^{\alpha-1}}{1+x}\,dx=\frac{\pi}{\sin(\pi\alpha)},\quad 0<\alpha<1.
+	\end{align*}
+
+\end{document}
+
