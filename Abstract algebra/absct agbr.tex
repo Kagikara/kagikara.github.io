@@ -1,0 +1,572 @@
+\documentclass[lang=cn,10pt]{elegantbook}
+
+\title{抽象代数入门}
+
+
+\extrainfo{咕咕嘎嘎}
+
+\setcounter{tocdepth}{3}
+\usepackage{pdfpages}
+\cover{jacob-mejicanos-8XBnhU3vfYw-unsplash (1).pdf}
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{faktor}
+\usepackage{tikz-cd}
+% 修改标题页的橙色带
+\definecolor{customcolor}{RGB}{235, 245, 39}
+\colorlet{coverlinecolor}{customcolor}
+
+\begin{document}
+	
+	\definecolor{structurecolor}{RGB}{184, 115, 51}
+	\definecolor{main}{RGB}{255, 181, 46}
+	\definecolor{second}{RGB}{218, 165, 32}
+	\definecolor{third}{RGB}{139, 108, 18}
+	
+	\maketitle
+	\frontmatter
+	
+	\tableofcontents
+	
+	\mainmatter
+	\chapter{群环域模初识}
+	\begin{introduction}
+		\item 群环域模的定义
+		\item 子结构
+		\item 同构
+	\end{introduction}
+	\section{群环域模的基本结构}
+	\subsection{群}
+	群是一种最基本的代数结构，它只规定了对象和对象间的运算及运算法则.群是一个非空集合\(G\)和在上面定义的运算的整体\((G,\cdot)\).
+	\begin{definition}[群]
+		$G$是非空集合，$e \in G$并且$G$上配有乘法：
+		\[G\times G\rightarrow G,  \ \ (g_1,g_2)\mapsto g_1\cdot g_2,\]
+		满足如下性质
+		\begin{enumerate}
+			\item  对任意$g_1,g_2,g_3\in G$，有结合律$(g_1\cdot g_2)\cdot g_3=g_1\cdot (g_2 \cdot g_3)$；
+			\item  $e$是乘法单位元，即对任意$g\in G$，有$e\cdot g=g\cdot e$;
+			\item  每个$g\in G$有逆元存在，即对任意$g$，存在$g^{-1}\in G$，使得$g\cdot g^{-1}=g^{-1}\cdot g=e$。
+		\end{enumerate}
+		就称$(G,\cdot)$或者$G$是{\bf 群}。我们通常把$e$记为$1_{_G}$或$1$。
+	\end{definition}
+	\begin{note}
+		群的运算(这里姑且称其为乘法)要求满足结合律、有乘法单位元(identity)，逆元(inverse).其中并不要求所有群中的元素都是可交换的，而只是要求单位元、逆元可交换(事实上存在更普遍的群结构，使得这里的条件可以再减弱至只有左或者右元存在).
+		
+		群的乘法单位元和逆元都是唯一的.事实上，设有单位元e\(e_1,e_2\),则有\(e_1\cdot e_2=e_1=e_2.\)另一方面，设\(a\)有逆元\(s,t\),则\(s\cdot a \cdot s=s\cdot a \cdot t=s=t.\)
+		
+		群上定义的乘法是\(G\times G\rightarrow G\)的映射.
+	\end{note}
+	对任意$g\in G$和$n\geqslant 1$，我们将使用如下记号：
+	\[g^n=\underbrace{g\cdot g\cdot \cdots \cdot g}_{n 个}， \ \ g^{-n}=\underbrace{g^{-1}\cdot g^{-1}\cdot \cdots \cdot g^{-1}}_{n 个},  \ \ g^0=1.\]
+	
+	若对任意$g_1,g_2\in G$，$g_1\cdot g_2=g_2\cdot g_1$，就称$(G,\cdot)$是{\bf 交换群}或{\bf Abel群}。若$|G|$有限(集合\(G\)的元素个数有限)，就称$G$是{\bf 有限群}并把$|G|$称作是群的{\bf 阶}；否则称$G$为{\bf 无限群}。
+	
+	只有一个元素的群（即$G=\{e\}$）被称为{\bf 平凡群}。简单起见，我们把平凡群直接写成$1$。
+	
+	\begin{definition}[循环群]
+		若存在$g_0\in G$，使得对任意$g\in G$，存在$n\in \mathbb{Z}$，$g_0^n=g$，就称$G$是{\bf 循环群}而$g_0$为其（一个）{\bf 生成元}。
+	\end{definition}
+	\begin{example}
+		令$G=\mathbb{Z,Q,R,C},对任意\(g_1,g_2\in G\)，定义\(g_1\cdot g_2=g_1+g_2\)，其中\(+\)是\(G\)自然的加法运算。那么，\(G\)是交换群，0是单位元。
+		
+		当$G$是交换群时，我们习惯上把乘法符号$\cdot$写成$+$，把$g$的逆写成$-g$，把单位元记作$0$。
+	\end{example}
+	
+	\begin{example}[域上的一般线性群]
+		$K$是域，$G=\mathbf{GL}(n;K)$是$K$上$n\times n$可逆矩阵的集合，令$\cdot$为矩阵的乘法，$e$为单位矩阵，$\mathbf{GL}(n;K)$是群（被称为{\bf 一般线性群}）。如果$n\geqslant 2$，$\mathbf{GL}(n;K)$不是交换群。
+	\end{example}
+	\begin{example}[二面体群]
+		二面体群$\mathfrak{D}_n$,详情参照讲义.
+	\end{example}
+	对称群具有重要的地位.在本章后续部分会讨论对称群的构成.
+	\begin{definition}[集合的对称群]
+		$X$是集合，$X\neq \emptyset$，$\mathfrak{S}_X$为$X$到自身的双射的集合。对任意$g_1,g_2\in\mathfrak{S}_X$，令$g_1\cdot g_2$为$g_1$与$g_2$的复合，即
+		\[\begin{tikzcd}
+			X \arrow[r, "g_2"] \arrow[rd, "g_1\cdot g_2",swap] &  X \arrow[d, "g_1"]\\
+			&    X \arrow[u, dash]  \end{tikzcd}
+		\]
+		那么，$(\mathfrak{S}_X,\cdot)$是群：单位映射是群的单位元，而元素在群中的逆恰为其对应的映射的逆映射。
+	\end{definition}
+	
+	\begin{definition}[子群]
+		给定群$G$，$H\subset G$为非空子集，如果$H$对乘法和取逆封闭，即对任意$h_1,h_2\in H$，$h_1\cdot h_2\in H$以及对任意$h\in H$，$h^{-1}\in H$，就称$H$是$G$的{\bf 子群}并记作$H<G$。
+	\end{definition}
+	\begin{note}
+		在子群上使用群的乘法，子群也是群.因为子群\(H\)满足结合律(继承于\(G\)的结合律)，有逆元(子群定义)，有单位元(\(h\cdot h^{-1}=1\),子群对取逆、乘法封闭).
+		
+		$G$是群，则$\{1\}$和$G$都是子群。我们称这两个子群是{\bf 平凡的子群}。
+	\end{note}
+	
+	\begin{example}
+		\(\mathbb{C}^\times\)为全体非零复数，其群乘法为复数的乘法，这是群。尽管\(\mathbb{C}^\times \subset \mathbb{C}\),但是\((\mathbb{C}^\times,\cdot)\)不是\((\mathbb{C},+)\)的子群.因为两个群定义的乘法不同.
+	\end{example}
+	\begin{proposition}[由子集生成的子群]
+		$G$是群。
+	\begin{enumerate}
+		\item  假设$\{G_i\}_{i\in I}$是$G$的一族子群，那么，$\displaystyle\bigcap_{i\in I}G_i$是子群。
+		
+		\item 子集$S\subset G$并且$S\neq \emptyset$，根据上述，存在唯一的、包含$S$的、最小的（在包含关系下）子群，它被称作是{\bf 由$S$生成的子群}并记作$\langle S \rangle$。实际上，$\langle S \rangle$是包含$S$的所有子群之交(类比集生成的\(\sigma\)代数)。
+		
+		\item $S\subset G$，那么，$\langle S\rangle$具有如下描述：
+		\[\langle S \rangle=\big\{s_1^{n_1}\cdot s_2^{n_2} \cdots s_{k}^{n_{k}}\bigm|k\in \mathbb{N}, s_i\in S, n_i\in \mathbb{Z}, s_i\neq s_{i+1}\big\}.\]
+		如果$G$的某个子群包含$S$，它必然包含上述集合。所以，只要证明$\langle S \rangle$是子群即可。
+		
+		我们讨论$S$中元素的相乘。注意到如果$s_i=s_{i+1}$，我们可以把$s_i^{n_i}s_{i+1}^{n_{i+1}}$换成$s_i^{n_i+n_{i+1}}$ 。对于$s_1^{n_1} \cdots  s_{k}^{n_k}$和${s'}_1^{n'_1}\cdots {s'}_{k'}^{n'_{k'}}$，它们相乘得
+		\[s_1^{n_1} \cdots  s_{k}^{n_{k}} \cdot {s'}_1^{n'_1}\cdots {s'}_{k'}^{n'_{k'}}.\]
+		如果$s_{k} ={s'}_1$，我们可以将采取上述替换，然后再看是否还有相邻两项相同，如此往复一直到得到上述对于$\langle S\rangle$中元素的形式，这表明$\langle S\rangle$对乘法封闭。
+		
+		我们还有
+		\[\big(s_1^{n_1}\cdot s_2^{n_2} \cdots s_{k}^{n_{k}}\big)^{-1}=s_{k}^{-n_{k}}\cdots s_2^{-n_2} \cdot s_1^{-n_1}. \]
+		这表明$\langle S\rangle$对取逆封闭。
+	\end{enumerate}
+	换句话说，由子集\(S\)生成的子群是由\(S\)中元素构成的群乘法组合.
+	\end{proposition}
+	
+	\begin{proposition}[有限阶]
+		当$S=\{g\}$只有一个元素时，记它生成的子群为$\langle g\rangle$。很明显，$\langle g\rangle$是循环群并且
+		\[\langle g\rangle=\{\cdots, g^{-2},g^{-1},1,g,g^2,\cdots\}.\]
+		若有正整数$n$，使得$g^n=1$，就称$g$是{\bf 有限阶的元}（否则称之为{\bf 无限阶的元}）并用${\rm ord}(g)$来记最小的这种整数且称之为{\bf $g$的阶}。此时，$\langle g\rangle$是有限循环群并且$|\langle g\rangle|=n$。
+		
+		我们注意到
+		\begin{itemize}
+			\item 若$g$是有限阶的元，$k,l\in $\(\mathbb{Z}\)，则$g^k=g^l$当且仅当${\rm ord}(g)\mid k-l$。而这就给出了一个等价类，对\(m\)模同余等价类是一个例子.
+			\item $G$是有限群，则所有$g\in G$均为有限阶的。
+		\end{itemize}
+		
+		在二面体群$\mathfrak{D}_n$中，$\langle r\rangle$生成的子群是$n$阶循环群，由所有旋转构成。
+	\end{proposition}
+	\begin{definition}[中心化子、群的中心]
+		$G$是群，$g\in G$， 定义$g$的{\bf 中心化子}：
+		\[{\rm C}_g(G)=\{h\in G\mid gh=hg\}.\]
+		这是子群，由群中与$g$交换的元素构成。
+		
+		容易证明中心化子中的元素对乘法封闭：设\(h_1,h_2\in {\rm C}_g(G)\),则\(gh_1h_2=h_1gh_2=h_1h_2g\).
+		
+		同时可以证明对取逆封闭：由于\(gh=hg\),因此两边同时取逆：\(h^{-1}g^{-1}=g^{-1}h^{-1}\),而\(g^{-1}=g'\in G\),因此\(g'h^{-1}=h^{-1}g',h^{-1}\in {\rm C}_g(G)\).
+		
+		$G$的{\bf 中心}${\rm Z(G)}$是群中与所有元素均交换的元素组成的子群，按定义，我们有
+		\[{\rm Z(G)}=\bigcap_{g\in G}{\rm C}_g(G).\]
+	\end{definition}
+	
+	\subsection{环}
+	环比群复杂的地方在于，环上定义了两种运算，且乘法没有群的乘法性质良好：环并不要求元素有逆，而是规定了乘法分配律.
+	\begin{definition}[环]
+		集合$A$非空并且$|A|\geqslant 2$。如果$A$上定义了乘法$\cdot$和加法$+$，即有映射
+		\[A\times A\rightarrow A,  \ \ (a_1,a_2)\mapsto a_1+ a_2,\]
+		和
+		\[A\times A\rightarrow A,  \ \ (a_1,a_2)\mapsto a_1\cdot a_2,\]
+		并且存在元素$0_{_A}, 1_{_A}\in A$，$0_{_A}\neq 1_{_A}$，使得
+		\begin{enumerate}[label=\arabic*)]
+			\item  $(A,+)$是交换群，其中，$0_{_A}$是加法单位元；
+			\item  \begin{itemize}
+				\item 乘法具有结合律，即对任意$a_1,a_2,a_3\in A$，有$(a_1\cdot a_2)\cdot a_3=a_1\cdot (a_2 \cdot a_3)$；
+				\item $1_{_A}$是乘法单位元，即对任意$a\in A$，有$1_{_A}\cdot a=a\cdot 1_{_A}$;
+			\end{itemize}
+			\item  乘法分配律成立：对任意的$a_1,a_2,a_3\in A$，有
+			\[(a_1+ a_2)\cdot a_3=a_1\cdot a_3 +a_2\cdot a_3,\ \ a_3\cdot (a_1+ a_2)=a_3\cdot a_1 +a_3\cdot a_2.\]
+		\end{enumerate}
+		就称$(A,\cdot,+)$或$A$是一个{\bf 环}。
+	\end{definition}
+	\begin{note}
+		如果对任意$a,b\in A$，$a\cdot b=b\cdot a$，就称$A$是{\bf 交换环}。
+	\end{note}
+	\begin{definition}[逆]
+		给定$a\in A$，如果存在$a'\in A$，使得$a\cdot a'=1$，就称$a'$是$a$的一个{\bf 右逆}；类似地，如果存在$a''\in A$，使得$a''\cdot a=1$，就称$a''$是$a$的一个{\bf 左逆}。
+		
+		注意到，如果$a$即有左逆又有右逆，它们必然相同（都等于$a''aa'$）并且唯一。此时，它被称为$a$的{\bf 逆}。
+		
+		用$A^\times$表示环$A$中有逆的元素（即有左逆又有右逆）的元素的集合。增强了环的乘法没有要求存在逆的条件，这让$(A^\times,\cdot)$成为群。
+	\end{definition}
+	\begin{note}
+		根据定义，如果每个非零的$a \in A$均有逆，那么$A$是{\bf 域}（我们并不要求域的乘法是交换的）。简而言之，域可以做加减乘除（乘逆）的四则运算而环只能做加减乘这三种运算。
+	\end{note}
+
+	\begin{example}
+		$A$是环，$\mathbf{M}_n(A)$是环$A$上$n\times n$的矩阵的集合。
+		注意到，矩阵的乘法和加法只用到了分量上的乘法和加法并且不使用乘法的逆或者交换律，
+		所以，在矩阵的加法和乘法下，$\mathbf{M}_n(A)$是环，
+		其单位矩阵和零矩阵对应着$1_{_{\mathbf{M}_n(A)}}$和$0_{_{\mathbf{M}_n(A)}}$。
+		
+		一般而言，$n\geqslant 2$，$\mathbf{M}_n(A)$不是交换环。
+		
+		对于域$K$，有$M_n(K)^\times=\mathbf{GL}(n,K)$。
+		
+		对于交换环$A$，我们仍然可以定义行列式：
+		\[\det\colon {\mathbf{M}_n(A)}\rightarrow A,  \ \ M\mapsto \!\!\! \!\!\! \!\!\!\sum_{(k_1,\cdots,k_n)\text{ 为 }(1,\cdots,n)\text{ 的排列}} \!\!\! \!\!\! \!\!\! (-1)^{\sigma(k_1,\cdots,k_n)}M_{1,k_1}M_{2,k_2}\cdots M_{n,k_n},\]
+		其中，$M_{i,j}\in A$为$M$在第$i$行第$j$列处的数而$\sigma(k_1,\cdots,k_n)$为排列$(k_1,\cdots,k_n)$的奇偶性。此时，我们仍然有
+		\[M\cdot M^*=\det(M)\cdot \mathbf{I}_n,\]
+		其中，$M^*$为$M$的伴随矩阵，$\mathbf{I}_n$为单位矩阵。从而，$M\in {\mathbf{M}_n(A)}^\times$当且仅当$\det(M)\in A^\times$。
+	\end{example}
+	\begin{example}[多项式环]
+		$A$是环，$A[X]$是$A$上以$X$为不定元的多项式的集合，即每个$P\in A[X]$均形如
+		\[P(X)=\sum_{k=0}^n a_k X^k.\]
+		其中，$a_k\in A$，$a_n\neq 0$。这里，$n$被称为{\bf $P$的次数}并记作$\deg P$。
+		另外多项式之间的乘法和加法形式上与传统一致，这就是多项式环$A[X]$的定义。
+		
+		另外，我们强调多项式不是多项式函数。
+		
+		我们有如下简单的性质：
+		
+		\begin{itemize}
+			\item[a)]若$A$是交换环，则$A[X]$也是交换环。
+			\item[b)]若$K$是域，则对任意非零的$P,Q\in K[X]$，$\deg(P\cdot Q)=\deg(P)+\deg(Q)$。
+			
+			作为练习，试举例使得$P,Q\in A[X]$是非零多项式而$P\cdot Q=0$。
+		\end{itemize}
+	\end{example}
+	\begin{example}[$K$-代数]
+		$K$是域，$A$是环并且是$K$-线性空间，如果对任意的$x,y\in A$和$k\in K$，我们有
+		\[k\cdot(x\cdot_{_A}y) = (k x)\cdot_{_A} y = x\cdot_{_A} (k y),\]
+		就称$A$是{\bf $K$-代数}。
+		
+		我们有如下三类重要的例子：
+		\begin{itemize}
+			\item $K$是域，多项式环$K[X]$是$K$-代数。
+			\item $K$是域，$n\times n$的矩阵环$\mathbf{M}_n(K)$是$K$-代数。
+			\item $K$是域，$G$是群，所谓的{\bf 群代数$K[G]$}定义如下：$K[G]$是$K$-线性空间并且$\{e_g\bigm|g\in G\}\subset K[G]$是一组基；对任意的$x=\sum_{g\in G}x_g e_g, y=\sum_{h\in G}y_h e_h\in K[G]$（以上均为有限和），其中，$x_g,y_h\in K$，其乘法由下面公式给出：
+			\[x\cdot y=\sum_{g\in G}\sum_{h\in G}x_g y_h e_{gh}.\]
+			这是一个$K$-代数，它的乘法记录了群$G$的乘法。
+		\end{itemize}
+	\end{example}
+	\begin{definition}[子环]
+		$A$是环，$B\subset A$为其加法群的子群。如果$1_{_A}\in B$并且$B$对乘法封闭，即对任意$a,b\in B$，$a\cdot b\in B$，就称$B$是$A$的{\bf 子环}。
+		
+		使用环$A$的加法和乘法，子环$B$具有自然的环结构。
+		
+	\end{definition}
+	
+	\subsection{域}
+	域上也配置了两种运算，但是具有良好性质.
+	\begin{definition}[域]
+		$K$是集合并且至少有$2$个元素。如果$K$上定义了{\bf 乘法}$\cdot$和{\bf 加法}$+$，即映射
+		\[K\times K\rightarrow K,  \ \ (a,b)\mapsto a+ b,\]
+		和
+		\[K\times K\rightarrow K,  \ \ (a,b)\mapsto a\cdot b,\]
+		并且存在元素$0_{_K}, 1_{_K}\in K$，$0_{_K}\neq 1_{_K}$，使得如下公理成立：
+		\begin{enumerate}
+			\item \((K,+)\)是交换群.
+			\item
+				\((K,\cdot)\)是交换群.
+			\item 乘法和加法满足乘法分配律：对任意的$a_1,a_2,a_3\in K$，有
+			\[(a_1+ a_2)\cdot a_3=a_1\cdot a_3 +a_2\cdot a_3,\]
+		\end{enumerate}
+		就称$(K,\cdot,+)$或$K$是一个{\bf 域}。
+	\end{definition}
+	\begin{example}
+		$p$是素数。我们用$\faktor{\mathbb{Z}}{p\mathbb{Z}}$表示整数集除$p$的同余类，即
+		\[\faktor{\mathbb{Z}}{p\mathbb{Z}}=\big\{\overline{0},\overline{1},\cdots,\overline{p-1}\big\},\]
+		其中，$\overline{k}=\big\{m\in \mathbb{Z}\big| m\equiv k\pmod{p}\big\}$，$k=0,\cdots, p-1$。换而言之，我们在$\mathbb{Z}$上定义等价关系$\sim$，其中，$m\sim n$当且仅当$m\equiv n\pmod{p}$，那么，$\faktor{\mathbb{Z}}{p\mathbb{Z}}:= \faktor{\mathbb{Z}}{\sim}$。对于任意的$l\in \mathbb{Z}$，用$\overline{l}$表示它在$\faktor{\mathbb{Z}}{p\mathbb{Z}}$所对应的同余类。
+		
+		
+		在$\faktor{\mathbb{Z}}{p\mathbb{Z}}$上定义加法：对任意的$k,l \in \mathbb{Z}$，规定$\overline{k}+\overline{l}=\overline{k+l}$。容易验证，这是良好定义的，即这个定义不依赖于等价类中代表元的选择：如果$\overline{k}=\overline{k'}, \overline{l}=\overline{l'}$，那么，$\overline{k+l}=\overline{k'+l'}$。这样定义的加法显然是交换的并且$\overline{0}$是加法单位元。
+		
+		
+		
+		
+		在$\faktor{\mathbb{Z}}{p\mathbb{Z}}$上定义乘法：对任意的$k,l \in \mathbb{Z}$，规定$\overline{k}\cdot \overline{l}=\overline{k\cdot l}$。这是也良好定义的并且这个乘法是交换的，$\overline{1}$是乘法单位元。为了说明乘法有逆元，考虑任意的非零元$\overline{k}\in \faktor{\mathbb{Z}}{p\mathbb{Z}}$。由于$p$是素数，所以，$(k,p)=1$（互素）。根据B\'ezout定理，存在$a,b\in \mathbb{Z}$，使得$ak+bp=1$。那么，在$ \faktor{\mathbb{Z}}{p\mathbb{Z}}$中，就有$\overline{ak}=1$，即$\overline{a}\overline{k}=1$。这表明$\overline{k}$有逆元$\overline{a}$。
+		
+		综上所述，$\faktor{\mathbb{Z}}{p\mathbb{Z}}$配有以上定义的加法和乘法是域。
+		
+		对素数$p$，约定$\mathbb{F}_p$表示域$\faktor{\mathbb{Z}}{p\mathbb{Z}}$。这是有限域，因为$|\mathbb{F}_p|=p$。
+	\end{example}
+	
+	\subsection{模}
+	和前几种代数结构不同，模是两个不同集合生成的映射.模可以被视作是环上的线性空间：
+	\begin{definition}[模]
+		$A$是环，$(M,+)$是交换群。如果存在映射
+		\[A\times M\rightarrow M,  \ \ (a,m)\mapsto a\cdot m,\]
+		使得对任意$a,a'\in A,m,m'\in M$，有
+		\begin{align*}
+			\begin{cases}
+				&1\cdot m=m, \\ 
+				&a\cdot (a' \cdot m)=(a\cdot a')\cdot m,\\
+				&a\cdot (m+m')=a\cdot m +a\cdot m', \\ 
+				&(a+a')\cdot m=a\cdot m+a'\cdot m,
+			\end{cases}
+		\end{align*}
+		就称$(M,+)$或$M$是{\bf (左)$A$-模}。
+	\end{definition}
+	\begin{definition}[子模]
+			如果$N<M$是$M$的加法子群并且对上述乘法封闭，即对任意$a\in A$和$n\in N$，有$a\cdot n \in N$，就称$(N,+)$是$M$的一个{\bf 子$A$-模}或{\bf 子模}。在$A$对$M$的乘法下，$N$是$A$-模。
+	\end{definition}
+	\begin{example}
+		$K$是域，则$K$-模是$K$-线性空间。
+	\end{example}
+	\begin{example}
+		$K$是域，$A=K[X]$为$K$上的多项式环，$V$是$K$-线性空间。给定线性映射$T\in {\rm End}_{K}(V)$，这定义出$V$上的$K[X]$-模的结构：
+		\[K[X]\times V\rightarrow V, \ \  (P(X), v)\mapsto P(X)\cdot v= P(T)\cdot v.\]
+		即对任意$P(X)=a_nX^n+\cdots+a_1X +a_0\in K[X]$，其中，$a_i\in K$，要求
+		\[P(T)\cdot v = a_n\cdot T^n(v)+\cdots+a_1\cdot T(v) +a_0\cdot v.\]
+		很显然，我们有
+		\[(P+Q)(T) \cdot v=P(T)\cdot v+Q(T)\cdot v , \ \ (P\cdot Q)(T)\cdot v=P(T)\cdot \big(Q(T)\cdot v\big).\]
+		这是最重要的一类$K[X]$-模（由线性映射$T$决定）。
+	\end{example}
+	
+	\section{同态}
+	\subsection{群同态}
+	\begin{definition}[群同态]
+		$(G_1,\cdot_{_1})$和$(G_2,\cdot_{_2})$是群，$\varphi\colon G_1\rightarrow G_2$是映射。如果$\varphi$将\(G_1\)中的乘法保持到\(G_2\)上，即对任意$g,h\in G_1$，有
+		\[\varphi(g \cdot_{_1} h)=\varphi(g)\cdot_{_2} \varphi(h),\]
+		就称$\varphi$是$(G_1,\cdot_{_1})$到$(G_2,\cdot_{_2})$的{\bf 群同态}。我们用${\rm Hom}(G_1,G_2)$表示群同态组成的集合。
+		
+		如果群同态$\varphi$是双射，就称$\varphi$是$G_1$到$G_2$的{\bf 群同构}。
+	\end{definition}
+	\begin{note}
+		在群同构之前，群中的元素存在一一对应(集合的同构：对称群).进一步地，群同构保持了群之间的乘法结构.
+	\end{note}
+	\begin{property}
+		对于群同态$\varphi\colon G_1\rightarrow G_2$，通过考虑$\varphi(1_{_{G_1}}\cdot 1_{_{G_1}})=\varphi(1_{_{G_1}})$即知$\varphi(1_{_{G_1}})=1_{_{G_2}}$。另外，对任意$g\in G_1$，$\varphi(g^{-1})=\varphi(g)^{-1}$。.
+		
+		这就是说，群同态保留了单位元.
+	\end{property}
+	\begin{note}
+		若有$G_1$到$G_2$的群同构，就称它们是{\bf 同构的}并记作是$G_1\simeq G_2$。注意到这个符号并不精确，因为没说明$\varphi$是如何定义的。实际上，群$G_1$和$G_2$同构而它们之间的同构映射$\varphi$可能不唯一。
+		
+		假设$G_1$和$G_2$均为\((\mathbb{C}^\times,+)\)，对任意的$\lambda\in $\(\mathbb{C}^\times\)，映射$z\mapsto \lambda \cdot z$均为$G_1$到$G_2$的同构。
+	\end{note}
+	\begin{proposition}[同态的复合]
+		群同态的复合仍为群同态，即有映射
+		\[{\rm Hom}(G,G')\times {\rm Hom}(G',G'') \longrightarrow {\rm Hom}(G,G''), \ \ (\varphi,\psi)\mapsto\psi\circ \varphi . \]
+		其中，$G,G',G''$是群。换而言之，若$\varphi\in {\rm Hom}(G,G')$，$\psi\in {\rm Hom}(G',G'')$，则$\psi\circ \varphi$也是群同态。
+		\[\begin{tikzcd}
+			G \arrow[r, "\varphi"] \arrow[dr, "\psi\circ\varphi",swap] &  G' \arrow[d, "\psi"]\\
+			&G''           \end{tikzcd}
+		\]	
+	\end{proposition}	
+	\begin{definition}[自同构]
+		用$Aut(G)$表示$G$到自身的群同构的集合，配有映射的复合作为$Aut(G)$上的乘法，那么$(Aut(G),\circ)$是群。我们称$Aut(G)$是$G$的{\bf 自同构群}。
+		
+		考虑集合$G$（忘掉其群结构）的对称群$\mathfrak{S}_G$，它由所有$G$到自身的双射构成。${\rm Aut}(G)$中的元素还要尊重$G$的群结构，从而${\rm Aut}(G)<\mathfrak{S}_G$是子群。
+	\end{definition}
+	研究映射的一个必不可缺的话题就是映射的核与像.
+	\begin{definition}[群同态的像与核]
+		给定群同态$\varphi\in {\rm Hom}(G_1,G_2)$，定义$\varphi$的{\bf 像}${\rm Im}(\varphi)$和{\bf 核}${\rm Ker}(\varphi)$分别为
+		\[{\rm Im}(\varphi)=\big\{\varphi(g) \bigm|g\in G_1\big\}, \ \ {\rm Ker}(\varphi)=\big\{g\in G_1\bigm|\varphi(g)=1_{_{G_2}}\big\}.\]
+		那么，${\rm Ker}(\varphi)<G_1$是子群，${\rm Im}(\varphi)<G_2$也是子群。
+		
+		注意到$\varphi$是单射当且仅当${\rm Ker}(\varphi)=\{1\}(\varphi(x)=1\Rightarrow x=1)$；$\varphi$是满射当且仅当${\rm Im}(\varphi)=G_2$。在群论中常用的一个结论是为说明$\varphi$是单射只要验证$1\in G_2$的原像唯一。
+		
+		实际上，如果${\rm Ker}(\varphi)=\{1\}$，假设$g,h\in G_2$使得$\varphi(g)=\varphi(h)$，那么，$\varphi(gh^{-1})=\varphi(g)\varphi(h)^{-1}=1$，即$gh^{-1}\in {\rm Ker}(\varphi)$。这表明$gh^{-1}=1$，即$g=h$。所以，$\varphi$是单射。
+	\end{definition}
+	\begin{example}
+		$G$是群，$g\in G$，则映射
+		\[\varphi_g\colon\mathbb{Z}\rightarrow G, \ \ n\mapsto g^n
+		\]
+		是群同态，其像${\rm Im}(\varphi_g)$为$\langle g\rangle$。
+	\end{example}
+	\begin{definition}[共轭映射]
+		$G$是群，对任意$g\in G$，定义共轭映射${\rm Int}(g)$：
+		\[{\rm Int}(g)\colon G\rightarrow G, \ \ h \mapsto {\rm Int}(g)(h)=ghg^{-1}.
+		\]
+		对任意$h_1,h_2\in G$，有$gh_1h_2g^{-1}=gh_1g^{-1}\cdot gh_2g^{-1}$，即\(Int(g)(h_1)\cdot Int(g)(h_2)=Int(g)(h_1\cdot h_2)\),从而${\rm Int}(g)\in {\rm Hom}(G,G)$(变量是\(h\in G\))；由于${\rm Int}(g)$可逆，其逆为${\rm Int}(g^{-1})$，从而${\rm Int}(g)\in {\rm Aut}(G)$。所以，我们定义了映射：
+		\[{\rm Int}\colon G\rightarrow {\rm Aut}(G), \ \ g\mapsto {\rm Int}(g).\]
+		对任意$h,g_1,g_2\in G$，我们有
+		\[ {\rm Int}(g_1g_2)(h)=g_1(g_2hg_2^{-1})g_1^{-1}= {\rm Int}(g_1)(g_2hg_2^{-1})={\rm Int}(g_1)\circ {\rm Int}(g_2)(h).\]
+		所以，${\rm Int}\colon G\rightarrow {\rm Aut}(G)$是群同态(变量是\(g\in G\))。我们显然有${\rm Ker}({\rm Int})={\rm Z}(G)$。我们称像${\rm Int}(G)< {\rm Aut}(G)$是$G$的{\bf 内自同构群}。
+	\end{definition}
+	
+	\subsection{环同态}
+	同态是相对于运算而言的，因此环同态具有两个因子：乘法和加法.
+	\begin{definition}[环同态]
+		$(A_1,+_{_1},\cdot_{_1})$和$(A_2,+_{_2},\cdot_{_2})$是环，$\varphi\colon A_1\rightarrow A_2$是映射。
+		如果$\varphi$保持加法和乘法，即对任意的$a,b\in A_1$，有
+		\[\varphi(a +_{_1} b)=\varphi(a)+_{_2} \varphi(b), \ \ \varphi(a \cdot_{_1} b)=\varphi(a)\cdot_{_2} \varphi(b),\]
+		并且$\varphi(1_{_{A_1}})=1_{_{A_2}}$，就称$\varphi$是从$A_1$到$A_2$的{\bf 环同态}。
+		我们用${\rm Hom}(A_1,A_2)$表示从$A_1$到$A_2$的环同态的集合。
+		如果环同态$\varphi$是双射，就称$\varphi$是从$A_1$到$A_2$的一个{\bf 环同构}；
+		如果$A_1$与$A_2$之间存在环同构，就称这两个环是{\bf 同构的}并记作是$A_1\simeq A_2$。
+	\end{definition}
+	\begin{note}
+		和群同态一样，环同态保持了乘法单位元.
+		
+			给定从$A_1$到$A_2$的环同构$\varphi$，它的逆
+			\[\varphi^{-1}\colon A_2\longrightarrow A_1\]
+			是环同态（也是双射），即$\varphi^{-1}\in {\rm Hom}(A_2,A_1)$。
+	\end{note}
+	\begin{definition}[核]
+		对任意的$\varphi\in {\rm Hom}(A_1,A_2)$，它{\bf 核}定义为
+		\[{\rm Ker}(\varphi)=\big\{a\in A_1\bigm|\varphi(a)=0_{_{A_2}}\big\}.\]
+		这是$A_1$的加法子群，但是${\rm Ker}(\varphi)$并非子环，因为$1_{_A}\notin {\rm Ker}(\varphi)$。
+		
+		另外，$\varphi$为单射当且仅当${\rm Ker}(\varphi)=\{0\}$。
+	\end{definition}
+	\begin{note}
+		应该注意，环同态的核把环内的元素映为加法单位元\(0_{A_2}\).
+	\end{note}
+	\begin{lemma}
+		$K$是域，$A$是环，$\varphi\colon K\rightarrow A$是环同态，则$\varphi$是单射。
+	\end{lemma}
+	\begin{proof}
+		实际上，对任意$k\in K^\times$，有
+		\[\varphi(k)\cdot \varphi(k^{-1})=\varphi(k \cdot k^{-1})=\varphi(1)=1.\]
+		所以，$k\notin {\rm Ker}(\varphi)$。从而，${\rm Ker}(\varphi)=\{0\}$。
+	\end{proof}
+	
+	\subsection{模同态}
+	\begin{proposition}
+		$A$和$B$是环，$\varphi\colon A\rightarrow B$是环同态，则$B$具有自然的$A$-模结构：
+		\[A\times B\rightarrow B, \ \ (a,b)\mapsto  a\cdot b:=\varphi(a)\cdot_{_B} b.\]
+	\end{proposition}
+	\begin{definition}[$A$-模同态]
+		$(M_1,+_{_1})$和$(M_2,+_{_2})$是$A$-模，$\varphi\colon M_1\rightarrow M_2$是加法群同态并且保持乘法，即对任意的$a\in A$和$m,m'\in M_1$，有
+		\[\varphi(m +_{_1} m')=\varphi(m)+_{_2} \varphi(m'), \ \ \varphi(a \cdot_{_1} m)=a\cdot_{_2} \varphi(m),\]
+		就称$\varphi$是从$M_1$到$M_2$的{\bf $A$-模同态}或{\bf $A$-线性映射}。
+		我们用${\rm Hom}_A(M_1,M_2)$表示从$M_1$到$M_2$的模同态的集合。
+		如果$\varphi$是双射，称$\varphi$是它们之间的{\bf $A$-模同构}。
+		如果$M_1$与$M_2$之间存在$A$-模同构，就称$M_1$和$M_2$是{\bf 同构的}并记为$M_1\simeq M_2$。
+	\end{definition}
+	\begin{definition}[核]
+		给定$A$-模之间的同态$\varphi\in {\rm Hom}_A(M_1,M_2)$，它的{\bf 核}定义为：
+		\[{\rm Ker}(\varphi):=\big\{m\in M_1\bigm|\varphi(m)=0\big\}.\]
+		这是$M_1$的子模。
+		
+		另外，$\varphi$是单射当且仅当${\rm Ker}(\varphi)=\{0\}$。
+	\end{definition}
+	
+	
+	\subsection{正规子群和商结构}
+	\begin{definition}[左陪集]
+		$G$是群，$H<G$是子群。对任意$g\in G$， 称如下集合为一个{\bf 左陪集}：
+		\[gH=\big\{gh\bigm| h\in H\big\}.\]
+	\end{definition}
+	在陪集概念下，可以定义等价类：
+	
+	由于$H$是子群，所以对任意$h\in H$，$hH=1\cdot H=H$。
+	我们说明$g_1H\cap g_2H\neq \emptyset$当且仅当$g_1H= g_2H$。
+	实际上，如果$g_1H\cap g_2H\neq \emptyset$，
+	那么存在$h_1, h_2\in H$，使得$g_1h_1=g_2h_2$。所以，$g_2=g_1h_1h_2^{-1}$。此时，
+	\[g_2H=g_1h_1h_2^{-1}H=g_1\big(h_1h_2^{-1}H\big)=g_1H.\]
+	这表明$\{gH\}_{g\in G}$是$G$的一个划分(用\(H\))，从而定义出等价关系$\sim$。实际上，$g_1\sim g_2$等价于$g_1^{-1}g_2\in H$。
+	\begin{definition}[商集和指标]
+		我们定义左陪集的集合
+		\[\faktor{G}{H}=\big\{gH\bigm| g\in G\big\},\]
+		并称$[G:H]=\big|\faktor{G}{H}\big|$为$H$在$G$中的{\bf 指标}。
+	\end{definition}
+	事实上也可以定义右陪集，但是二者实质上没有区别.
+	\begin{proposition}[左陪集的元素个数]
+			对任意的$gH$和$g'H$，如下映射为双射：
+			\[gH \rightarrow g'H, \ \ x \mapsto g'g^{-1}x.\]
+			特别地，若$H$是有限子群，则其每个左陪集的元素个数均为$|H|$。如果进一步$G$是有限群，我们就有
+			\[|G|=[G:H]|H|.\]
+	\end{proposition}
+	\begin{theorem}[Lagrange]
+		若$G$是有限群，则其子群的元素个数整除$|G|$。特别地，对任意$g\in G$，${\rm ord}(g)\mid |G|$。
+	\end{theorem}
+	\begin{definition}[正规子群]
+			$H$是群$G$的子群。如果对任意$g\in H$，$g H g^{-1}=H$，其中，$gHg^{-1}=\big\{ghg^{-1}\bigm| h\in H\big\}$，就称$H$是{\bf 正规子群}并记作$H \lhd G$。
+	\end{definition}
+	\begin{note}
+		为了验证$H$是正规子群，只要对任意$h\in H,g\in G$，验证$ghg^{-1}\in H$：因为我们显然有$\bigcup_{g\in G}gHg^{-1}\supset H$。
+	\end{note}
+	\begin{example}
+		$G$是交换群，其所有子群都是正规子群。
+	\end{example}
+	\begin{example}
+		群同态的核是正规子群，即若$\varphi\colon G\rightarrow G'$是群同态，则${\rm Ker}(\varphi)\lhd G$。
+		
+		对任意$g\in G$和$h\in {\rm Ker}(\varphi)$，我们验证
+		\[\varphi(ghg^{-1})=\varphi(g )\varphi(h)\varphi( g^{-1})=\varphi(g )\cdot 1 \cdot\varphi( g)^{-1}=1.\]
+		所以，$ghg^{-1}\in {\rm Ker}(\varphi)$。
+	\end{example}
+	\begin{definition}[正规化子]
+			$H$是群$G$的子群，定义$H$在$G$中的{\bf 正规化子}为：
+			\[{\rm N}_G(H)=\big\{g\in G\bigm| gHg^{-1}=H\big\}.\]
+			容易验证${\rm N}_G(H)$是$G$的子群。按定义，我们有
+			\[H\lhd {\rm N}_G(H) <G.\]
+			这是$G$的使得$H$在其中为正规子群的最大子群。
+	\end{definition}
+	$G$是群，$H$为子群，我们希望在$\faktor{G}{H}$上面定义乘法。对左陪集$g_1H$和$g_2H$，自然的尝试是要求
+	\[g_1H \cdot g_2H := g_1g_2 H.\]
+	我们必须验证以上是良好定义的（乘法在等价类上一致）。假设$g'_1=g_1h$，其中，$h\in H$，那么，$g_1H=g'_1H$。所以，上述直观的定义还应该给出
+	\[g_1H \cdot g_2H=g'_1H \cdot g_2H := g'_1g_2 H=g_1hg_2 H.\]
+	为了保证两个公式给出了同样的陪集，我们要保证$(g_1g_2)^{-1}g_1hg_2= g_2^{-1} hg_2\in H$。根据以上元素选择的任意性，这等价于$H$是正规子群。
+	
+	有了陪集上的良好定义的乘法，我们可以定义群到陪集的群同态：商映射.
+	\begin{theorem}[商映射]
+		$H\lhd G$是正规子群。在$\faktor{G}{H}$存在唯一的群结构，使得自然的商映射
+		\[\pi\colon G\longrightarrow \faktor{G}{H}\]
+		是群同态。另外，${\rm Ker}(\pi)=H$。
+		
+		实际上，左陪集的乘法定义为$g_1H \cdot g_2H = g_1g_2 H$,当\(H\)正规，这个乘法是良好定义的.
+	\end{theorem}
+	\begin{proof}
+		定义$\faktor{G}{H}$上乘法为$g_1H \cdot g_2H = g_1g_2 H$，
+		这是良好定义的：假设$g_1'H=g_1H$，$g_2'H=g_2H$，
+		则存在$h_1,h_2\in H$，使得$g_1'=g_1 h_1,g_2'=g_2h_2$，从而
+		\[g'_1g'_2 H=g_1 h_1g_2h_2H=g_1 g_2 \cdot \underbrace{g_2^{-1}h_1 g_2}_{\in H} \cdot h_2H=g_1 g_2H.\]
+		此时，
+		\[\pi(g_1\cdot g_2)=(g_1\cdot g_2)H=g_1H \cdot g_2H=\pi(g_1)\pi(g_2)\]
+		所以，$\pi$是群同态。
+		
+		唯一性是明显的：为了保证$\pi$是群同态，必须有$\pi(1_{_G})=1_{_{\faktor{G}{H}}}$，即$H$是$\faktor{G}{H}$中的单位元。另外，
+		\[\pi(g_1\cdot g_2)=\pi(g_1)\cdot \pi(g_2) \ \ \Leftrightarrow \ \ g_1H \cdot g_2H = g_1g_2 H.\]
+		这表明群的乘法结构由同态决定。
+	\end{proof}
+	\begin{theorem}[群同态基本定理]
+		$G$是群，$H\lhd G$是正规子群，$\varphi\colon G \rightarrow G'$是群同态。
+		若$H<{\rm Ker}(\varphi)$，则存在唯一的群同态$\overline{\varphi}\colon\faktor{G}{H} \rightarrow G'$，使得$\overline{\varphi}\circ\pi=\varphi$，其中，$\pi\colon G\rightarrow \faktor{G}{H}$是自然的同态。
+		\[\begin{tikzcd}
+			G \arrow[r, "\varphi"] \arrow[d, "\pi"] &  G' \\
+			\faktor{G}{H}  \arrow[ur, "\overline{\varphi}",swap] &      \end{tikzcd}
+		\]
+		进一步，我们还有群同构$\overline{\varphi}\colon\faktor{G}{{\rm Ker}(\varphi)} \stackrel{\simeq}{\longrightarrow} {\rm Im}(\varphi)$。
+	\end{theorem}
+	\begin{proof}
+		对任意的左陪集$gH$，定义\[\overline{\varphi}(gH)=\varphi(g).\]
+		对于$g'H=gH$，由于$g^{-1}g'\in H\subset {\rm Ker}(\varphi)$以及$H<{\rm Ker}(\varphi)$，有$\varphi(g^{-1}g')=1$，即$\varphi(g)=\varphi(g')$，这表明$\overline{\varphi}$是良好定义的。映射$\overline{\varphi}$是群同态。另外，我们显然有$\overline{\varphi}\circ\pi=\varphi$。
+		
+		选取$H={\rm Ker}(\varphi)$，我们显然有满射
+		\[\overline{\varphi}\colon \faktor{G}{{\rm Ker}(\varphi)} \twoheadrightarrow  {\rm Im}(\varphi).\]
+		另一方面,\(\overline{\varphi}(a)=\overline{\varphi}(b)\Leftrightarrow \overline{\varphi}(a)\overline{\varphi}(b)^{-1}=1\Leftrightarrow \overline{\varphi}(ab^{-1})=1\Leftrightarrow ab^{-1}\in {\rm Ker}\overline{\varphi}\Leftrightarrow a{\rm Ker}\overline{\varphi}=b{\rm Ker}\overline{\varphi}\)，所以该同态是单射，从而为同构。
+	\end{proof}
+	\begin{corollary}[循环群的结构]
+		$G$是群，$g\in G$，那么$\langle g \rangle$要么与\(\mathbb{Z}\)同构，要么与$\faktor{\mathbb{Z}}{n\mathbb{Z}}$同构，其中，$n={\rm ord}(g)$。
+	\end{corollary}
+	\begin{proof}
+		考虑群同态$\varphi\colon \mathbb{Z}\rightarrow G$，其中，$\varphi(m)=g^m$，$m\in \mathbb{Z}$。
+		那么，$\varphi(\mathbb{Z})=\langle g\rangle$。
+		如果${\rm Ker}(\varphi)=\{0\}$，根据以上定理，$\mathbb{Z}\simeq \langle g\rangle$；
+		否则，${\rm Ker}(\varphi)=n\mathbb{Z}$，其中，$n$是${\rm Ker}(\varphi)$中最小的正整数，
+		从而，$\faktor{\mathbb{Z}}{n\mathbb{Z}}\simeq \langle g \rangle$。
+	\end{proof}
+	我们把与$\faktor{\mathbb{Z}}{n\mathbb{Z}}$同构的群称为{\bf $n$-阶循环群}，
+	把与$\mathbb{Z}$同构的群称为{\bf 无限循环群}。
+	上面的证明表明循环群（即由一个元素生成的群）只有这两种。
+	
+	\begin{definition}[商模]
+		给定$A$-模$M$及其子模$N$，我们可以构造其{\bf 商模}~$\faktor{M}{N}$。
+		
+		首先将$M$视为交换群，其所有子群均为正规子群，从而，我们可以定义商群：
+		\[\faktor{M}{N}=\big\{m+N\bigm|m\in M\big\}.\]
+		这自然也是交换群，其$A$-模结构由如下公式给出：
+		\[A\times \faktor{M}{N}\rightarrow \faktor{M}{N}, \ \ (a,m+N)\mapsto a(m+N):= am+N.\]
+		这个乘法的定义不依赖于$m+N$中代表元的选取，即若$m+N=m'+N$，则$am+N=am'+N$，这是因为$m-m'\in N$，从而，$am-am'\in N$。至此，我们定义了商模$\faktor{M}{N}$。另外，自然的投影映射是$A$-模同态：
+		\[\pi\colon M\rightarrow \faktor{M}{N}, \ \ m\mapsto m+N.\]
+		这个同态是满射。
+	\end{definition}
+	\begin{theorem}[线性代数基本定理]
+		$M$和$M'$是$A$-模，$N\subset M$是子模，$\varphi\colon M \rightarrow M'$是$A$-模同态。
+		如果$N\subset{\rm Ker}(\varphi)$，那么存在唯一的$A$-模同态$\overline{\varphi}\colon\faktor{M}{N} \rightarrow M'$，使得$\overline{\varphi}\circ\pi=\varphi$，其中，$\pi\colon M\rightarrow \faktor{M}{N}$是自然的同态。
+		\[\begin{tikzcd}
+			M \arrow[r, "\varphi"] \arrow[d, "\pi"] &  M'\\
+			\faktor{M}{N}  \arrow[ur, "\overline{\varphi}",swap] &      \end{tikzcd}
+		\]
+		进一步，我们还有$A$-模同构$\overline{\varphi}\colon\faktor{M}{{\rm Ker}(\varphi)} \stackrel{\simeq}{\longrightarrow} {\rm Im}(\varphi)$。
+	\end{theorem}
+	\begin{proof}
+		对任意$m+N$，定义\[\overline{\varphi}(m+N)=\varphi(m).\]
+		现在验证这是良好定义的：对$m+N=m'+N$，$m-m'\in N\subset {\rm Ker}(\varphi)$，从而，$\varphi(m)=\varphi(m')$。
+		容易看出，映射$\overline{\varphi}$是$A$-模同态并且$\overline{\varphi}\circ\pi=\varphi$。
+		
+		选取$N={\rm Ker}(\varphi)$，我们显然有满射
+		\[\overline{\varphi}\colon \faktor{M}{{\rm Ker}(\varphi)} \twoheadrightarrow  {\rm Im}(\varphi).\]
+		根据定义，$\overline{\varphi}(m+N)=0$当且仅当$m\in {\rm Ker}(\varphi)$，所以该同态是单射，从而为同构。
+	\end{proof}
+	
+	\chapter{群作用}
+
+
+\end{document}
