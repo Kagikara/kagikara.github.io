@@ -48,6 +48,8 @@
 \contentsline {subsection}{\numberline {7.2.1}泊松过程}{38}{subsection.7.2.1}%
 \contentsline {subsection}{\numberline {7.2.2}泊松过程衍生分布}{39}{subsection.7.2.2}%
 \contentsline {subsection}{\numberline {7.2.3}泊松过程的推广过程}{39}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}更新过程}{40}{section.7.3}%
+\contentsline {section}{\numberline {7.4}马尔可夫过程}{40}{section.7.4}%
 \contentsline {chapter}{\numberline {第 8{} 章}鞅}{41}{chapter.8}%
 \contentsline {chapter}{\numberline {第 9{} 章}布朗运动}{42}{chapter.9}%
 \contentsline {chapter}{\numberline {第 10{} 章}ITO公式和随机微积分}{43}{chapter.10}%

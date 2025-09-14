@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  11 SEP 2025 23:34
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  13 SEP 2025 10:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1882,8 +1882,14 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `An&P.out' has not changed.
-(rerunfilecheck)             Checksum: 21CCD9B00BD6092771AFE547168985C2;7698.
+
+Package rerunfilecheck Warning: File `An&P.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `An&P.out':
+(rerunfilecheck)             Before: ECD6DBD4692814F77EC9A4E07469378D;7751
+(rerunfilecheck)             After:  BB197DD5B16DD20BED8286EE5F726E07;7932.
 Package logreq Info: Writing requests to 'An&P.run.xml'.
 \openout1 = `An&P.run.xml'.
 
