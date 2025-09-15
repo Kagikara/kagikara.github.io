@@ -1560,7 +1560,7 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 	\begin{note}
 		\begin{enumerate}
 			\item 泊松过程的增量服从参数为\(\lambda(t-s)\)的泊松分布，因此泊松过程具有平稳增量性。
-			\item 泊松过程的均值函数\(m(t)=E[N(t)]=E[N(t)-N(0)]=\lambda t.\)协方差函数\(R(s,t)=E[N(s)N(t)]=E[N(s)(N(t)-N(s))+N^2(s)]=\lambda s+\lambda^2st(t\ge s).\)这里应用了增量的独立性。
+			\item 泊松过程的均值函数\(m(t)=E[N(t)]=E[N(t)-N(0)]=\lambda t.\)协方差函数\(R(s,t)=E[N(s)N(t)]-E[N(s)]E[N(t)]=E[N(s)(N(t)-N(s))+N^2(s)]-E[N(s)]E[N(t)]=\lambda s.\)这里应用了增量的独立性。
 		\end{enumerate}
 	\end{note}
 	泊松过程还有很多种定义方式。
@@ -1636,7 +1636,46 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 			\[\lim_{h\to 0}\frac{P(N(t+h)-N(t)=1)}{h}=\lambda(t),\ \lim_{h\to 0}\frac{P(N(t+h)-N(t)\ge 2)}{t}=0.\]
 		\end{enumerate}
 	\end{definition}
-	还有
+	除了非齐次泊松过程，我们还看复合泊松过程。复合泊松过程不一定是计数过程，我们看看保险公司理赔的例子。保险公司理赔的总金额就是事件发生的次数和每次事件损失的金额的加权和，而这里事件的发生次数\(\{N(t),t\ge 0\}\)是泊松过程，而每次赔偿金额独立同分布。满足这样的条件的随机过程就是复合泊松过程。
+	\begin{definition}[复合泊松过程]
+		设\(\{N(t),t\ge 0\}\)为参数为\(\lambda\)的泊松过程，且\(\{Y_i,i=1,2,\cdots\}\)为一列独立同分布的随机变量，且与\(\{N(t),t\ge 0\}\)独立.定义
+		\[X(t)=\sum_{i=1}^{N(t)}Y_i.\]
+		则称\(\{X(t),t\ge 0\}\)为复合泊松过程。
+	\end{definition}
+	\begin{note}
+		复合泊松过程不一定是泊松过程，因为虽然复合泊松过程是独立增量的，但不一定是平稳增量的。但是若上式的\(Y_i\)恒为常数，则复合泊松过程就是泊松过程。
+	\end{note}
+	下面我们来看复合泊松过程的独立增量性和数字特征函数。
+	\begin{theorem}
+		设\(\{X(t)=\sum_{i=1}^{N(t)},t\ge 0\}\)为复合泊松过程，其中\(\{N(t),t\ge 0\}\)为参数为\(\lambda\)的泊松过程，且\(E|Y_i|<\infty,Var(Y_i)<\infty.\)则\(\{X(t),t\ge 0\}\)独立增量，且
+		\[m(t)=E[X(t)]=\lambda tEY_i,\]
+		\[R(s,t)=cov(X(s),X(t))=\lambda \min(s,t)E[Y_i^2].\]
+	\end{theorem}
+	\begin{proof}
+		独立增量性容易证明：取分割\(T=\{t_0=0<t_1<\cdots<t_n\}\),则
+		\[X(t_i)-X(t_{i-1})=\sum_{j=N(t_{i-1})+1}^{N(t_i)}Y_j.\]
+		由于\(Y_i\)独立同分布，而\(\{N(t),t\ge 0\}\)独立增量，因此\(\{X(t_i)-X(t_{i-1}),i=1,2,\cdots,n\}\)相互独立。
+
+		然后我们计算均值函数：这里我们使用全期望公式。
+		\begin{align*}
+		m(t)&=E[X(t)]=E\left[E\left(\sum_{i=1}^{n}Y_i|N(t)=n\right)\right]=E[N(t)EY_i]=E[N(t)]EY_i=\lambda tEY_i.
+		\end{align*}
+		再来看协方差函数(不妨设\(s<t\))：
+		\begin{align*}
+		R(s,t)&=E[X(s)X(t)]-E[X(s)]E[X(t)]\\
+		&=E\left[E\left(\sum_{i=1}^{N(s)}Y_i\sum_{j=1}^{N(t)}Y_j|N(s),N(t)\right)\right]-m(s)m(t)\\
+		&=E\left[E\left(\sum_{i=1}^{N(s)}Y_i^2|N(s),N(t)\right)+E\left(\sum_{i\ne j}^{N(s),N(t)}Y_iY_j|N(s),N(t)\right)\right]-m(s)m(t)\\
+		&=E\left[N(s)E[Y_i^2]+(N(s)N(t)-N(s))(EY_i)^2\right]-m(s)m(t)\\
+		&=\lambda sE[Y_i^2].
+		\end{align*}
+		这里我们使用了增量的独立性:\(E[N(s)N(t)]=E[N(s)(N(t)-N(s)+N(s))]=E[N(s^2)]+E[(N(s)-N(0))(N(t)-N(s))]=E[N(s^2)]+E[N(s)]E[N(t)-N(s)]=\lambda s+\lambda^2 s^2+\lambda^2 s(t-s)=\lambda s+\lambda^2 st.\)
+	\end{proof}
+	\begin{note}
+		这就是说，复合泊松过程的均值函数就是泊松过程的均值函数乘以每次事件的均值，协方差函数也是类似,只不过乘的是每次事件的二阶矩。
+	\end{note}
+
+	
+	
 
 	\section{更新过程}
 	我们熟知的泊松过程是一种特殊的更新过程。设\(\{N(t),t\ge0\}\)为计数过程,若其满足以下条件,则称其为更新过程.
