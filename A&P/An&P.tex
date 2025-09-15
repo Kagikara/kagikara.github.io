@@ -1549,7 +1549,7 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 		\item \(N(t)\)随时间单调不减；
 		\item \(N(t)\)轨道右连续，且左极限存在。
 	\end{enumerate}
-	计数过程是一个随机过程的框架，我们向其增加一些定量定性的假设，就可以得到更新过程、泊松过程等重要的随机过程。我们先考虑泊松过程。
+	若\(\{N(t),t\ge 0\}\)是一个计数过程，那么\(N(t)-N(s)\)就代表了\((s,t]\)这段时间内发生事件的总数。计数过程是一个随机过程的框架，我们向其增加一些定量定性的假设，就可以得到更新过程、泊松过程等重要的随机过程。我们先考虑泊松过程。
 	\begin{definition}[泊松过程1]
 		设\(\{N(t),t\ge0\}\)为计数过程，若其满足以下条件，我们称其为泊松过程。
 		\begin{enumerate}
@@ -1574,7 +1574,52 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 	\end{definition}
 	\begin{note}
 		第二条条件实际上说明在很短的时间间隔内只可能发生一次事件（所谓稀有事件），发生两个或两个以上事件的概率可以忽略不计。
+	下面来验证这两个定义的等价性。先证明1可以推出2.
+	\begin{proof}
+		由泊松过程的定义，\(N(t+h)-N(t)\sim P(\lambda h)\),因此
+		\[P(N(t+h)-N(t)=1)=\lambda he^{-\lambda h},\ P(N(t+h)-N(t)\ge 2)=1-e^{-\lambda h}-\lambda he^{-\lambda h}.\]
+		于是
+		\[\lim_{h\to 0}\frac{P(N(t+h)-N(t)=1)}{h}=\lim_{h\to 0}\lambda e^{-\lambda h}=\lambda,\]
+		\[\lim_{h\to 0}\frac{P(N(t+h)-N(t)\ge 2)}{h}=\lim_{h\to 0}\frac{1-e^{-\lambda h}-\lambda he^{-\lambda h}}{h}=0.\]
+
+		然后来验证2能推出1.我们只要证明\(N(t)-N(s)\sim P(\lambda(t-s))\)即可.我们知道\((t,t+h]\)这段时间内不发生事件的概率为\(1-\lambda h+o(h)\),发生一次事件的概率为\(\lambda h+o(h)\),发生两个或两个以上事件的概率为\(o(h)\).我们记\(P_n(t)=P(N(t)=n)\),于是由独立增量性：
+		\begin{align*}
+			P_0(t+h)=&P(N(t+h)-N(t)=0,N(t)=0)\\
+			=&P(N(t+h)-N(t)=0)P(N(t)=0)\\
+			=&(1-\lambda h+o(h))P_0(t).
+		\end{align*}
+		于是
+		\[\frac{P_0(t+h)-P_0(t)}{h}=1-\lambda+o(1),\]
+		令\(h\to 0,\)
+		\[\frac{d}{dt}P_0(t)=-\lambda P_0(t),\]
+		解这个常微分方程就得到了\(P_0(t)=\exp{(-\lambda t)}.\)
+
+		现在我们用数学归纳法得出一般情形。假设
+		\[P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t},\]
+		对于\(0,1,2,\cdots ,n-1\)都成立，我们来验证\(n\)也成立。由独立增量性
+		\[P_n(t+h)=\sum_{k=0}^{\infty}P(N(t+h)-N(t)=k,N(t)=n-k)=\]
+
+
+	\end{proof}
+
+
 	\end{note}
+	我们给出一条泊松过程的渐近性质。
+	\begin{property}
+		设\(\{N(t),t\ge0\}\)为参数为\(\lambda\)的泊松过程，则对于任意的\(t>0\),都有
+		\[\frac{N(t)}{t}\xrightarrow{L^2}\lambda.\]
+	\end{property}
+	\begin{proof}
+		证明很简单：空间\(L^2(\Omega,\mathcal{F},P)\)中的收敛就是均方收敛，因此式子改写为
+		\[\lim_{t \to \infty}E[(\frac{N(t)}{t}-\lambda)^2]=0.\]
+		通分就得
+
+		\(E[(\frac{N(t)}{t}-\lambda)^2]=E[(\frac{N(t)-\lambda t}{t}])^2=\frac{1}{t^2}E[(N(t)-\lambda t)]=\frac{1}{t^2}V[N(t)]=\frac{\lambda}{t}\to 0.\)
+
+		实际上这就给出了泊松过程速率\(lambda\)的另一种解释：在很长一段时间内时间发生数和时间的比值。
+	\end{proof}
+
+
 	若事件\(A\)的发生服从参数为\(\lambda\)的泊松过程，若每次事件发生时都有概率\(p\)记录事件\(A\)的发生，并以\(M(t),t\ge 0\)记在时点\(t\)已经记录的事件数，则\(M(t),t\ge 0\)也是一个泊松过程，且其参数为\(\lambda p\).我们称其为原泊松过程的稀释过程。
 
 	事实上，泊松过程的稀释过程可以这样解释其平稳增量性：事件的记录与否和这件事发生的时点无关，因此有独立增量性；又因为事件的发生概率恒为\(p\)，与时间无关，因此就有平稳增量性。下面只要证明\(M(t),t\ge 0\)的速率为\(\lambda p\).这只要借助全概率公式就能说明：
@@ -1676,10 +1721,6 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 
 	
 	
-
-	\section{更新过程}
-	我们熟知的泊松过程是一种特殊的更新过程。设\(\{N(t),t\ge0\}\)为计数过程,若其满足以下条件,则称其为更新过程.
-
 	\section{马尔可夫过程}
 
 
