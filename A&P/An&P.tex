@@ -35,12 +35,30 @@
 	\tableofcontents
 	
 	\mainmatter
-	\chapter{测度}
+	\chapter{测度和积分}
 	\begin{introduction}
 		\item 测度与外测度
 		\item 可测函数和抽象积分
-		\item \(L^p\)空间
+	\end{introduction}
+	测度起源于测量图形面积（体积）的需求。我们很容易就能定义、计算简单图形的面积，比如矩形、三角形等。但是对于人工构造出来的极其复杂的图形，测量面积这个任务就显得很棘手。比如说Contor集这样涉及到无穷多步分割、丢弃后产生的图形，它的长度是多少？传统几何无法回答这些问题。
+
+	我们将在\(\sigma-\)代数这一具有强大性质的代数结构上构造出测度，并用外测度延拓测度的定义范围。
+	\section{\(\sigma-\)代数}
+
+	\section{测度}
+
+	\section{外测度}
+
+	\section{可测函数}
+
+	\section{函数积分和收敛定理}
+
+	\section{乘积测度与Fubini-Tonelli定理}
+
+	\chapter{符号测度和微分}
+	\begin{introduction}
 		\item 符号测度
+		\item 微分
 	\end{introduction}
 	
 	\chapter{度量空间}
@@ -341,9 +359,7 @@
 	
 	\begin{theorem}[闭球套定理和度量空间的完备性等价(T1.4.4,1.4.5)]
 		闭球套定理成立的度量空间完备，完备度量空间成立闭球套定理.
-		
-		\textit{闭球套定理}
-		
+
 		设\(X\)是完备的度量空间，设\(B_n=\{x\in X:d(x,x_n) \le \epsilon_n\}\)是一列单调下降的闭球：
 		\[B_{n+1} \subset B_n,\]
 		若球的半径\(\epsilon_n \to 0,\)则存在唯一的\(x\in X,\)使得\(x\in B_n,\forall n\in \mathbb{N}.\)
@@ -1596,8 +1612,16 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 
 		现在我们用数学归纳法得出一般情形。假设
 		\[P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t},\]
-		对于\(0,1,2,\cdots ,n-1\)都成立，我们来验证\(n\)也成立。由独立增量性
-		\[P_n(t+h)=\sum_{k=0}^{\infty}P(N(t+h)-N(t)=k,N(t)=n-k)=\]
+		对于\(0,1,2,\cdots ,n-1\)都成立，我们来验证\(n\)也成立。由全概率公式和独立增量性
+		\[P_n(t+h)=\sum_{k=0}^{\infty}P(N(t+h)-N(t)=k,N(t)=n-k)=\sum_{k=0}^{\infty}P(N(t+h)-N(t)=k)P(N(t)=n-k)\]
+		我们知道在短时间段\((t,t+h]\)内发生至少两次事件的概率为\(o(h)\),因此
+		\[\sum_{k=2}^{\infty}P(N(t+h)-N(t)=k)P(N(t)=n-k)=o(h).\]
+		而\(P(N(t+h)-N(t)=0)P(N(t)=n)=(1-\lambda h+o(h))P_n(t)\),\(P(N(t+h)-N(t)=1)P(N(t)=n-1)=\lambda hP_{n-1}(t).\)
+		综合几个式子就得到了
+		\[\lim_{h\to 0}\frac{P(t+h)-P(t)}{h}=\lambda(P_{n-1}(t)-P_n(t)),\]
+		代入假设\(P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t},\)移项就有了
+		\[e^{\lambda t}(P_n(t)'+\lambda P(n))\frac{d}{dt}(e^{\lambda t}P_n(t))=\frac{\lambda^n t^{n-1}}{(n-1)!},\]
+		结合边界条件\(P_n(0)=P(N(0)=n)=0\)就可验证假设在\(k=n\)时成立。
 
 
 	\end{proof}
@@ -1616,7 +1640,7 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 
 		\(E[(\frac{N(t)}{t}-\lambda)^2]=E[(\frac{N(t)-\lambda t}{t}])^2=\frac{1}{t^2}E[(N(t)-\lambda t)]=\frac{1}{t^2}V[N(t)]=\frac{\lambda}{t}\to 0.\)
 
-		实际上这就给出了泊松过程速率\(lambda\)的另一种解释：在很长一段时间内时间发生数和时间的比值。
+		实际上这就给出了泊松过程速率\(\lambda\)的另一种解释：在很长一段时间内时间发生数和时间的比值。
 	\end{proof}
 
 
