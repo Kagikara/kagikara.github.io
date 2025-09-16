@@ -44,8 +44,65 @@
 
 	我们将在\(\sigma-\)代数这一具有强大性质的代数结构上构造出测度，并用外测度延拓测度的定义范围。
 	\section{\(\sigma-\)代数}
+	集族是元素为集合的集合。
+	\begin{definition}[代数和\(\sigma-\)代数]
+		设集族\(\mathcal{A}\)非空，如果\(\mathcal{A}\)对取补集和有限并集封闭，也就是说若有\(E\in \mathcal{A}\)，则有\(E^c\in \mathcal{A}\)；若有\(E_j\in \mathcal{A},j=1,2,\cdots n\)，则\(\cup_{j=1}^nE_j\in \mathcal{A},\)则说\(\mathcal{A}\)是一个代数。
+
+		如果把代数定义中的对有限并封闭改为对可数并封闭，那么就得到了\(\sigma-\)代数。
+	\end{definition}
+	最“小”的\(\sigma-\)代数就是\(\{X,\varnothing\}\),其中\(X\)是任意集合。最“大”的\(\sigma-\)代数就是\(\mathcal{P}(X)\),这就是\(X\)的幂集，它由集合\(X\)的所有子集构成（有些时候写成\(2^X\)，代表其中有\(2^{|X|}\)个元素）。
+
+	给定一个集族\(\mathcal{E}\),我们能找到很多个\(\sigma-\)代数，使得这个\(\sigma-\)代数包含\(\mathcal{E}\)，把这些\(\sigma-\)代数取交集，由于\(\sigma-\)代数的可数交还是\(\sigma-\)代数，因此我们就得到了一个包含了集族\(\mathcal{E}\)的最小\(\sigma-\)代数，称为集族\(\mathcal{E}\)生成的\(\sigma-\)代数，记作\(\mathcal{M}(\mathcal{E})\).显然我们有下面结论：
+	\begin{proposition}
+		若集族\(\mathcal{E}\subset \mathcal{M}(\mathcal{F})\),则集族\(\mathcal{E}\)生成的\(\sigma-\)代数\(\mathcal{M}(\mathcal{E})\subset \mathcal{M}(\mathcal{F}).\)
+	\end{proposition}
+	\begin{proof}
+		证明只需注意\(\mathcal{M}(\mathcal{F})\)这个\(\sigma-\)代数包含了\(\mathcal{E}\),因此也就包含了\(\mathcal{M}(\mathcal{E})\)。
+	\end{proof}
+	一个重要的例子是拓扑空间\(X\)中的开集族生成的\(\sigma-\)代数，我们称其为Borel\(\sigma-\)代数，记作\(\mathcal{B}_X\).\(\mathcal{B}_X\)内的所有元素称为Borel集。
+
+	在拓扑学中，我们知道开集对可数并封闭，闭集对可数交封闭，其他情况则不然。于是我们拓展开集和闭集：我们称开集的可数交为\(G_\delta\)集，闭集的可数并为\(F_\sigma\)集。后面我们将看到这两种集合和零测集构建了任意的可测集（\(\delta,\sigma\)这两个表示来源于德语中的交集和并集（Durchschnitt,Summe））。\(\mathcal{B}_X\)的范围很广：包括了开集、闭集、\(G_\delta\)集、\(F_\sigma\)集。
+
+	在各种Borel\(\sigma-\)代数中，我们最关心的是实直线上的Boerl\(\sigma-\)代数\(\mathcal{B}_\mathbb{R}\).实际上\(\mathcal{B}_\mathbb{R}\)可以由开区间、闭区间、左开右闭区间、左闭右开区间、到正负无穷的开闭区间族生成。
+
+
 
 	\section{测度}
+	测度实际上就是在\(\sigma-\)代数上以集合为自变量的非负函数（集函数）。
+	\begin{definition}[测度]
+		设集合\(X\)上有\(\sigma-\)代数\(\mathcal{M}\)，我们称集函数\(\mu\)为测度，如果：
+		\begin{enumerate}
+			\item \(\mu(\varnothing)=0\);
+			\item 可数可加性：设有一列互不相交的集合列\(\{E_n\}_{n\ge 1}\)，则
+			\[\mu(\bigcup_{n\ge 1}E_n)=\sum_{n\ge 1}\mu(E_n).\]
+		\end{enumerate}
+	\end{definition}
+	容易由测度的可数可加性得到有限可加性：只要取\(E_m=\varnothing,m\ge n\),再利用\(\mu(\varnothing)=0\).
+	\begin{definition}[测度空间]
+		设集合\(X\)非空，\(\sigma-\)代数\(\mathcal{M}\subset \mathcal{P}(X)\),则二元体\((X,\mathcal{M})\)就称为可测空间，\(\mathcal{M}\)中的元素称为可测集。若可测空间上还定义了测度\(\mu\),则称三元体\((X,\mathcal{M},\mu)\)为测度空间。
+	\end{definition}
+	\begin{note}
+		实际上概率空间\((\Omega,\mathcal{F},P)\)就是一个测度空间。
+	\end{note}
+	若所有测度为0的集合（零测集）都包含于\(\mathcal{M}\),那么说测度\(\mu\)是完备的。我们有下面的完备化定理：
+	\begin{theorem}[完备化]
+		设有测度空间\((X,\mathcal{M},\mu)\),设\(\mathcal{N}=\{N\in\mathcal{M}:\mu(N)=0\},\overline{\mathcal{M}}=\{E\cup F:E\in \mathcal{M},F\in \mathcal{N}\}\),则\(\overline{\mathcal{M}}\)也是一个\(\sigma-\)代数，而且存在测度\(\mu\)在\(\overline{\mathcal{M}}\)上的唯一延拓\(\overline{\mu}\),使得\(\overline{\mu}\)是\(\overline{\mathcal{M}}\)上的完备测度。
+	\end{theorem}
+	测度有下面的优良性质：
+	\begin{property}
+		设有测度空间\((X,\mathcal{M},\mu)\),
+		\begin{enumerate}
+			\item 单调性：若\(E,F\in \mathcal{M},E\subset F,\)则\(\mu(E)<\mu(F\).
+			\item 次可加性：设有一列集合列\(\{E_n\}_{n\ge 1}\)，则\(\mu(\cup_{n\ge 1}E_n)\le \sum_{n\ge 1}\mu(E_n)\).这里没有要求集合列互不相交。
+			\item （从）下连续性：设有一列集合列\(\{E_n\}_{n\ge 1}\subset \mathcal{M}\),且\(E_n\subset E_{n+1},n\ge 1\),则\(\mu(\cup_{n\ge 1}E_n)= \lim_{n\to \infty}\mu(E_n)\).
+			\item （从）上连续性：设有一列集合列\(\{E_n\}_{n\ge 1}\subset \mathcal{M}\),且\(E_{n+1}\subset E_{n},n\ge 1\),\(\mu(E_1)<\infty\),则\(\mu(\cup_{n\ge 1}E_n)= \lim_{n\to \infty}\mu(E_n)\).（注意这里的\(\mu(E_1)<\infty\)不能去掉）
+		\end{enumerate}
+	\end{property}
+	测度还可以配备一些描述测度“大小”的性质：
+	\begin{enumerate}
+		\item 若\(\mu(X)<\infty\),则称\(\mu\)为有限的。
+		\item 若空间\(X\)可以被分割成无交并,即\(X=\cup_{n\ge1}E_n,\ \{E_n\}_{n\ge 0}\)互不相交，那么如果对于任意的\(n,\)都有\(\mu(E_n)<\infty\),则称\(\mu\)为\(\sigma-\)有限的。
+	\end{enumerate}
 
 	\section{外测度}
 
