@@ -149,9 +149,52 @@
 	\begin{note}
 		我们由外测度的次可加性可以马上得到\(\mu^*(E)\le \mu^*(E\cap A)+\mu^*(E-A)\),因此如果要判断集合\(A\)是否\(\mu^*\)可测，只要验证反向不等式即可。而验证反向不等式时由于\(\mu^*(E)=\infty\)时的情况是平凡的，因此也只用考虑\(\mu^*(E)<\infty\)时的情况。
 	\end{note}
+	外测度并不具有可列可加性，但是由外测度我们可以衍生出测度和\(\sigma-\)代数结构。
+	\begin{theorem}[Carath\'{e}odory(T1.11)]
+		设\(\mu^*\)是\(X\)上的一个外测度，则\(\mu^*\)可测集形成的集类\(\mathcal{M}\)是一个\(\sigma-\)代数，并且\(\mu^*|\mathcal{M}\)是完备的测度。
+	\end{theorem}
+	\begin{note}
+		Carath\'{e}odory将预测度诱导的外测度扩张到测度，并构造了\(\sigma-\)代数结构，是测度论中的一个基础且重要的定理。
+	\end{note}
+	下面的命题说明了外测度是预测度的延拓。
+	\begin{proposition}[P1.13]
+		设\(\mu^*\)是代数\(\mathcal{A}\)上的预测度\(\mu_0\)诱导出的外测度，则
+		\begin{enumerate}
+			\item \(\mu^*|\mathcal{A}=\mu_0\);
+			\item 代数\(\mathcal{A}\)中的集合都是\(\mu^*\)可测的。
+		\end{enumerate}
+	\end{proposition}
+	最后Carath\'{e}odory扩张定理说明预测度、外测度、测度三者之间的关系。
+	\begin{theorem}[Carath\'{e}odory扩张定理]
+		设\(\mathcal{A}\subset \mathcal{P}(X)\)是配有预测度\(\mu_0\)的代数，代数\(\mathcal{A}\)生成的\(\sigma-\)代数为\(\mathcal{M}\)。则\(\mathcal{M}\)上存在测度\(\mu\)，使得\(\mu\)是预测度\(\mu_0\)在\(\mathcal{M}\)上的延拓，即\(\mu_0=\mu|\mathcal{A}\),且外测度\(\mu^*\)是测度\(\mu\)的延拓，即\(\mu=\mu^*|\mathcal{M}\).另外，如果\(\mu_0\)是\(\sigma-\)有限的，则\(\mu\)是\(\mathcal{M}\)上\(\mu\)唯一的测度延拓。
+	\end{theorem}
 
-	
 	\section{可测函数}
+	可测函数沟通了不同的\(\sigma-\)代数，保留了\(\sigma-\)代数的优良性质。可测性是积分论中的重要理论基础。我们先看逆映射：逆映射具有非常良好的性质，它对取补集、取交集、取并集的运算封闭，也就是对于\(\sigma-\)代数\(\mathcal{M}\subset \mathcal{P}(Y)\)中的任意集合\(E,F\)，映射\(f:\mathcal{P}(X)\to \mathcal{P}(Y)\)都有
+	\[f^{-1}(E\cup F)=f^{-1}(E)\cup f^{-1}(F)\in\mathcal{N},\]
+	\[f^{-1}(E\cap F)=f^{-1}(E)\cap f^{-1}(F)\in\mathcal{N},\]
+	\[f^{-1}(E^c)=(f^{-1}(E))^c\in\mathcal{N}.\]
+	其中\(\mathcal{N}\subset \mathcal{P}(X)\).
+
+	于是我们可以定义函数的可测性：
+	\begin{definition}[可测函数]
+		设有可测空间\((X,\mathcal{M}),(Y,\mathcal{N})\),函数\(f:X\to Y\)满足对于任意的\(E\in \mathcal{N}\),都有\(f^{-1}(E)\in \mathcal{M}\),则称函数\(f\)是\((\mathcal{M},\mathcal{N})\)可测的。
+
+		若函数\(f\)是\((\mathcal{M},\mathcal{B}_\mathbb{C}(\mathcal{B}_\mathbb{R}))\)可测的,则简称函数\(f\)是\(\mathcal{M}\)可测的。
+	\end{definition}
+	\begin{note}
+		显然若\(f\)是\((\mathcal{M},\mathcal{N})\)可测的，\(g\)是\((\mathcal{N},\mathcal{O})\)可测的，那么\(g\circ f\)是\((\mathcal{M},\mathcal{O})\)可测的。
+
+		实际上，\(f\)是\((\mathcal{M},\mathcal{N})\)可测的当且仅当\(\mathcal{N}\)由集族\(\mathcal{E}\)生成，且对于任意的\(E\in \mathcal{E}\)都有\(f^{-1}(E)\in \mathcal{M}\).
+	\end{note}
+	\begin{example}
+		Lebesgue可测函数是\((\mathcal{L},\mathcal{B}_\mathbb{C})\)可测的，Borel可测函数是\((\mathcal{B}_\mathbb{R},\mathcal{B}_\mathbb{C})\)可测的。注意：若\(f,g\)都是Lebesgue可测的，不一定能得到\(f\circ g\)也是Lebesgue可测的。但是若\(f\)Borel可测，\(g\)Lebesgue（Borel）可测，则\(f\circ g\)Lebesgue（Borel）可测。
+	\end{example}
+	下面我们讨论由函数列生成的\(\sigma-\)代数。在这之前，先引进坐标映射（coordinate map）的概念。
+	\begin{definition}[坐标映射]
+		
+	\end{definition}
+
 
 	\section{函数积分和收敛定理}
 
