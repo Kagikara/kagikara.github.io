@@ -53,13 +53,13 @@
 	最“小”的\(\sigma-\)代数就是\(\{X,\varnothing\}\),其中\(X\)是任意集合。最“大”的\(\sigma-\)代数就是\(\mathcal{P}(X)\),这就是\(X\)的幂集，它由集合\(X\)的所有子集构成（有些时候写成\(2^X\)，代表其中有\(2^{|X|}\)个元素）。
 
 	给定一个集族\(\mathcal{E}\),我们能找到很多个\(\sigma-\)代数，使得这个\(\sigma-\)代数包含\(\mathcal{E}\)，把这些\(\sigma-\)代数取交集，由于\(\sigma-\)代数的可数交还是\(\sigma-\)代数，因此我们就得到了一个包含了集族\(\mathcal{E}\)的最小\(\sigma-\)代数，称为集族\(\mathcal{E}\)生成的\(\sigma-\)代数，记作\(\mathcal{M}(\mathcal{E})\).显然我们有下面结论：
-	\begin{proposition}
+	\begin{proposition}[(L1.1)]
 		若集族\(\mathcal{E}\subset \mathcal{M}(\mathcal{F})\),则集族\(\mathcal{E}\)生成的\(\sigma-\)代数\(\mathcal{M}(\mathcal{E})\subset \mathcal{M}(\mathcal{F}).\)
 	\end{proposition}
 	\begin{proof}
 		证明只需注意\(\mathcal{M}(\mathcal{F})\)这个\(\sigma-\)代数包含了\(\mathcal{E}\),因此也就包含了\(\mathcal{M}(\mathcal{E})\)。
 	\end{proof}
-	一个重要的例子是拓扑空间\(X\)中的开集族生成的\(\sigma-\)代数，我们称其为Borel\(\sigma-\)代数，记作\(\mathcal{B}_X\).\(\mathcal{B}_X\)内的所有元素称为Borel集。
+	(P1.2)一个重要的例子是拓扑空间\(X\)中的开集族生成的\(\sigma-\)代数，我们称其为Borel\(\sigma-\)代数，记作\(\mathcal{B}_X\).\(\mathcal{B}_X\)内的所有元素称为Borel集。
 
 	在拓扑学中，我们知道开集对可数并封闭，闭集对可数交封闭，其他情况则不然。于是我们拓展开集和闭集：我们称开集的可数交为\(G_\delta\)集，闭集的可数并为\(F_\sigma\)集。后面我们将看到这两种集合和零测集构建了任意的可测集（\(\delta,\sigma\)这两个表示来源于德语中的交集和并集（Durchschnitt,Summe））。\(\mathcal{B}_X\)的范围很广：包括了开集、闭集、\(G_\delta\)集、\(F_\sigma\)集。
 
@@ -88,7 +88,7 @@
 	\begin{theorem}[完备化]
 		设有测度空间\((X,\mathcal{M},\mu)\),设\(\mathcal{N}=\{N\in\mathcal{M}:\mu(N)=0\},\overline{\mathcal{M}}=\{E\cup F:E\in \mathcal{M},F\in \mathcal{N}\}\),则\(\overline{\mathcal{M}}\)也是一个\(\sigma-\)代数，而且存在测度\(\mu\)在\(\overline{\mathcal{M}}\)上的唯一延拓\(\overline{\mu}\),使得\(\overline{\mu}\)是\(\overline{\mathcal{M}}\)上的完备测度。
 	\end{theorem}
-	测度有下面的优良性质：
+	测度有下面的优良性质(T1.8)：
 	\begin{property}
 		设有测度空间\((X,\mathcal{M},\mu)\),
 		\begin{enumerate}
@@ -98,6 +98,11 @@
 			\item （从）上连续性：设有一列集合列\(\{E_n\}_{n\ge 1}\subset \mathcal{M}\),且\(E_{n+1}\subset E_{n},n\ge 1\),\(\mu(E_1)<\infty\),则\(\mu(\cup_{n\ge 1}E_n)= \lim_{n\to \infty}\mu(E_n)\).（注意这里的\(\mu(E_1)<\infty\)不能去掉）
 		\end{enumerate}
 	\end{property}
+	\begin{proof}
+		证明只要利用测度的可列可加性，并作出互不相交的集列
+		\[F_n=E_n-\bigcup_{k=1}^{n-1}E_n\]
+		即可。
+	\end{proof}
 	测度还可以配备一些描述测度“大小”的性质：
 	\begin{enumerate}
 		\item 若\(\mu(X)<\infty\),则称\(\mu\)为有限的。
@@ -105,6 +110,45 @@
 	\end{enumerate}
 
 	\section{外测度}
+	这一节我们从最基本的集合开始，从代数的结构出发得到预测度，再延拓预测度到更广泛的集类上，最后再引出测度的构造。
+
+	\begin{definition}[预测度]
+		设集族\(\mathcal{A}\subset \mathcal{P}(X)\)是一个代数，我们称\(\mu_0:\mathcal{A}\to [0,\infty]\)为预测度，如果
+		\begin{enumerate}
+			\item \(\mu_o(\varnothing)=0\);
+			\item 可数可加性：设有一列互不相交的集合列\(\{E_n\}_{n\ge 1}\)，则
+			\[\mu(\bigcup_{n\ge 1}E_n)=\sum_{n\ge 1}\mu(E_n).\]
+		\end{enumerate}
+	\end{definition}
+	\begin{note}
+		预测度和测度的区别就在于预测度是定义在代数上而测度是定义在\(\sigma-\)代数上的。和测度同样，预测度也有有限可加性。
+	\end{note}
+	然而在应用预测度来测量复杂图形（如Contor集）的面积时我们遇到了不可避免的困难，因为这样的图形的构造步骤就是无穷多步的，而预测度无法确认可数个区间构成的图形是否能被测量。因此我们干脆用更几何化的视角来看待图形的测量问题：从外部逼近这个图形，取逼近的下确界为这个图形的“面积”，这就是外测度的出发点。
+	\begin{definition}[预测度诱导的外测度]
+		我们称
+		\[\mu^*(E)=\inf\{\sum_{n=1}^{\infty}\mu_0(A_n):A_j\in \mathcal{A},E\subset \cup_{n=1}^\infty A_n\}\]
+		为集合\(E\)的外测度，其中\(\mu_0\)是定义在代数\(\mathcal{A}\)上的预测度。
+	\end{definition}
+	\begin{note}
+		条件中的\(E\subset \bigcup_{n=1}^\infty A_n\)就是“从外部逼近”这个想法的数学体现，我们并不在意\(\bigcup_{n=1}^\infty A_n\)是否属于\(\mathcal{A}\)。
+	\end{note}
+	实际上，上面由预测度诱导的外测度的下确界定义并不是外测度的正式定义，但是我们可以验证上面的定义满足下面外测度的定义(P1.10)。
+	\begin{definition}[外测度]
+		外测度就是\(X\)上满足以下条件的集函数\(\mu^*:\mathcal{P}(X)\to [0,\infty]\)
+		\begin{enumerate}
+			\item \(\mu^*(\varnothing)=0\);
+			\item (单调性)若\(A\subset B\),则\(\mu^*(A)\le \mu^*(B)\);
+			\item (次可加性)\(\mu^*(\cup_{n=1}^\infty A_n)\le \sum_{n=1}^{\infty}\mu^*(A_n)\).
+		\end{enumerate}
+	\end{definition}
+	现在我们用可测性的概念揭示外测度和测度之间的联系。
+	\begin{definition}[\(\mu^*\)可测性]
+		设外测度\(\mu^*\)定义在空间\(X\)上，取\(X\)的子集\(A\),我们说\(A\)是\(\mu^*\)可测的，如果对于任意的\(E\subset X\)都有
+		\[\mu*(E)=\mu^*(E\cap A)+\mu^*(E-A).\]
+	\end{definition}
+	\begin{note}
+		我们由外测度的次可加性可以马上得到\(\mu^*(E)\le \mu^*(E\cap A)+\mu^*(E-A)\),因此如果要判断集合\(A\)是否\(\mu^*\)可测，只要验证反向不等式即可。而验证反向不等式时由于\(\mu^*(E)=\infty\)时的情况是平凡的，因此也只用考虑\(\mu^*(E)<\infty\)时的情况。
+	\end{note}
 
 	\section{可测函数}
 
