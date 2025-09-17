@@ -1771,7 +1771,6 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 
 	\end{proof}
 
-
 	\end{note}
 	我们给出一条泊松过程的渐近性质。
 	\begin{property}
@@ -1798,6 +1797,8 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda t}\sum_{n=0}^{\infty}\frac{(\lambda t(1-p))^n}{n!}\\
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda pt}.
 	\end{align*}
+
+
 	\subsection{泊松过程衍生分布}
 	我们已经知道在一小段时间内，泊松过程描述的事件最多能发生一次，因此\(N(t)\)是一个跳跃高度为1的阶梯函数。我们用\(T_n\)表示第\(n\)次事件发生的时刻，那么第\(n,n-1\)次事件发生的时间间隔\(X_n\)为\(X_n=T_n-T_{n-1}\)。我们知道\(\{N(t),t\ge 0
 \},\{T(n),n\in \mathbb{Z}\}\)分别是连续时间离散状态空间、离散时间连续状态空间的随机过程。这两者一一对应，即：
@@ -1831,6 +1832,58 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 	\begin{definition}[泊松过程3]
 		设计数过程\(\{N(t),t\ge 0\}\)满足每次事件发生的间隔独立同分布于\(\text{Exp}(\lambda)\),则其为参数为\(\lambda\)的泊松过程。
 	\end{definition}
+
+		关于泊松过程的一个有趣的事实是一段时间内发生事件的时点和均匀分布有关。下面的证明都应用了泊松过程的独立增量性。
+	\begin{proposition}
+		设有泊松过程\(\{N(t),t\ge 0\}\),若在时间段\((0,t]\)内只发生一次事件，则发生事件的时间服从分布\(U[0,t]\).
+	\end{proposition}
+	\begin{proof}
+		对任意的\(s\le t\):
+		\begin{align*}
+			P(T_1\le s|N(t)=1)&=\frac{P(T_1\le s,T_2\ge t)}{P(N(t)=1)}\\
+			&=\frac{P(N(s)=1)P(N(t)-N(s)=0)}{e^{-\lambda t}\lambda t}\\
+			&=\frac{e^{-\lambda s} \lambda s\cdot e^{-\lambda(t-s)}}{e^{-\lambda t}\lambda t}\\
+			&=\frac{s}{t}.
+		\end{align*}
+		这就是说，在\(N(t)=1\)的条件下，\(T_1\sim U[0,t]\).
+	\end{proof}
+	\begin{proposition}
+		设有泊松过程\(\{N(t),t\ge 0\}\),在已知\(N(t)=n\)时，发生\(n\)次事件的时刻\(T_1,\cdots T_n\)的联合密度函数为
+		\[f(t_1,\cdots t_n)=\frac{n!}{t^n},t_1<\cdots <t_n.\]
+		即\(n\)个独立同分布（\(U[0,t]\)）的随机变量的次序统计量的联合分布。
+	\end{proposition}
+	\begin{proof}
+		我们取\((0,t]\)的分割\(0<t_1<\cdots <t_n=t\),并取小数\(h_i\)使得\(t_i+h_i<t_{i+1}\).于是
+		\begin{align*}	
+			P(t_i\le T_i\le t_i+h_i,i=1,2\cdots n|N(t)=n)
+			&=P(N(t_i+h_i)-N(t_i)=1,N(t_{i+1})-N(t_i+h_i)=0,i=1,2\cdots n|N(t)=n)\\
+			&=\frac{P(N(t_i+h_i)-N(t_i)=1)P(N(t_{i+1})-N(t_i+h_i)=0)}{P(N(t)=n)}\\
+			&=\frac{\prod_{i=1}^{n}e^{-\lambda h_i}e^{-\lambda(t_{i+1}-t_i-h_i)}\lambda h_i}{e^{-\lambda t}(\lambda t)^n/n!}\\
+			&=\frac{n!}{t^n}\prod_{i=1}^{n}h_i.
+		\end{align*}
+		其中\(t_{n+1}=t.\)
+		于是联合密度函数
+		\begin{align*}
+			f(t_1,\cdots t_n)&=\lim_{h_i\to 0}\frac{P(t_i\le T_i\le t_i+h_i,i=1,2\cdots n|N(t)=n)}{\prod_{i=1}^{n}h_i}\\
+			&=\frac{n!}{t^n}.
+		\end{align*}
+	\end{proof}
+	\begin{example}
+		设乘客到达火车站是一个强度为\(\lambda\)的泊松过程，设火车在\(t\)时刻出发，求乘客等候时间总和的均值。
+	\end{example}
+	\begin{proof}
+		实际上就是求
+		\[\sum_{k=1}^{N(t)}E[t-T_k].\]
+		我们先求条件期望。
+		\begin{align*}
+			\sum_{k=1}^{N(t)}E[t-T_k|N(t)=n]&=\sum_{k=1}^{n}E[t-T_k]\\
+			&=nt-\sum_{k=1}^{n}E[T_k]\\
+			&=\frac{nt}{2}.
+		\end{align*}
+		于是由全期望公式，
+		\[\sum_{k=1}^{N(t)}E[t-T_k]=E[\frac{N(t)t}{2}]=\frac{\lambda t^2}{2}.\]
+	\end{proof}
+
 	\subsection{泊松过程的推广过程}
 	泊松过程的假设中，参数\(\lambda\)是常数，和时间无关。我们将泊松过程的参数换为和时间有关的函数\(\lambda(t)\),就得到了非齐次泊松过程。在实际应用中，由于设备的老化，设备出问题这种“稀有事件”的发生频率显然和时间有关，此时齐次泊松过程已经不适用。另外，我们还考虑复合泊松过程：设有一列独立同分布的随机变量\(Y_i,i=1,2,\cdots,N(t),\ \{N(t),t\ge 0\}\)是参数为\(\lambda\)的泊松过程.那么称\(X(t)=\sum_{i=1}^{N(t)}Y_i\)为复合泊松过程。复合泊松过程并不是一个计数过程,因此它也不是一个泊松过程.但是它在实践中有重要的应用，比如保险精算中，\(Y_i\)表示第\(i\)次事故的损失金额，\(N(t)\)表示在时间段\([0,t]\)内发生事故的次数，那么\(X(t)\)表示在时间段\([0,t]\)内的总损失金额。
 	我们类比泊松过程定义1非齐次泊松过程也有等价定义.
