@@ -188,12 +188,26 @@
 		实际上，\(f\)是\((\mathcal{M},\mathcal{N})\)可测的当且仅当\(\mathcal{N}\)由集族\(\mathcal{E}\)生成，且对于任意的\(E\in \mathcal{E}\)都有\(f^{-1}(E)\in \mathcal{M}\).
 	\end{note}
 	\begin{example}
-		Lebesgue可测函数是\((\mathcal{L},\mathcal{B}_\mathbb{C})\)可测的，Borel可测函数是\((\mathcal{B}_\mathbb{R},\mathcal{B}_\mathbb{C})\)可测的。注意：若\(f,g\)都是Lebesgue可测的，不一定能得到\(f\circ g\)也是Lebesgue可测的。但是若\(f\)Borel可测，\(g\)Lebesgue（Borel）可测，则\(f\circ g\)Lebesgue（Borel）可测。
+		Lebesgue可测函数是\((\mathcal{L},\mathcal{B}_\mathbb{C})\)可测的，Borel可测函数是\((\mathcal{B}_\mathbb{R},\mathcal{B}_\mathbb{C})\)可测的。注意：若\(f,g\)都是Lebesgue可测的，不一定能得到\(f\circ g\)也是Lebesgue可测的。但是若\(f\ \)Borel可测，\(g\ \)Lebesgue（Borel）可测，则\(f\circ g\ \)Lebesgue（Borel）可测。
 	\end{example}
 	下面我们讨论由函数列生成的\(\sigma-\)代数。在这之前，先引进坐标映射（coordinate map）的概念。
 	\begin{definition}[坐标映射]
-		
+		设有指标集\(A\)，若\(X=\prod_{\alpha\in A}X_\alpha,\)我们定义第\(\alpha\)投影，或者坐标映射\(\pi_\alpha:X\to X_\alpha,\pi_\alpha(f)=f(\alpha)\)。其中\(\prod_{\alpha\in A}X_\alpha\)指的是由指标集\(A\)到\(\cup_{\alpha\in A}X_\alpha\)的映射全体。
 	\end{definition}
+	\begin{definition}[乘积\(\sigma-\)代数]
+		令\(\{X_\alpha\}_{\alpha\in A}\)为一个有指标的非空集类，\(X=\prod_{\alpha\in A}X_\alpha\),并有坐标映射\(\pi_\alpha:X\to X_\alpha\).对任意的\(\alpha\in A,X_\alpha\)都有其上的\(\sigma-\)代数\(\mathcal{M}_\alpha\),我们称\(X\)上的乘积\(\sigma-\)代数是由下面的集类生成的：
+		\[\{\pi^{-1}_\alpha(E_\alpha):E_\alpha\in \mathcal{M}_\alpha,\alpha\in A\}.\]
+		记作\(\otimes_{\alpha\in A}\mathcal{M}_\alpha\).
+	\end{definition}
+	\begin{note}
+		注意这里的\(\pi^{-1}_\alpha(E_\alpha)\)并不是逆映射，因为投影映射并不是单射。这里的意思是\(E_\alpha\)的原像。
+	\end{note}
+	\begin{example}[无穷维数列的坐标映射]
+	设\(X = \mathbb{R}^\mathbb{N}, \quad \pi_3(f) = f(3).\)若\(B = [0,1],\)那么
+	\[\pi_3^{-1}(B) = \{ f \in \mathbb{R}^\mathbb{N} : f(3) \in [0,1] \}.\]
+	这表示所有“第三个坐标在区间 $[0,1]$ 内”的无穷维实数数列。
+	\end{example}
+
 
 
 	\section{函数积分和收敛定理}
