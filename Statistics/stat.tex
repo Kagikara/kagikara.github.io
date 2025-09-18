@@ -144,6 +144,17 @@
     \end{enumerate}
 
     \subsection{极大似然估计}
+    从极大似然估计的角度，我们也可以得出\(\hat{\beta}_0,\hat{\beta}_1\)，还有\(\sigma^2\)的估计。首先写出似然函数,由\(y_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)\)：
+    \[f(y;x_1,x_2,\cdots x_n)=\frac{1}{(\sqrt{2\pi}\sigma)^n}\exp{(-\frac{\sum_{i=1}^{n}(y-\beta_0-\beta_1 x_i)^2}{2\sigma^2})},\]
+    取对数：
+    \[\log{f}=-\frac{n}{2}\log{(2\pi\sigma^2)}-\frac{\sum_{i=1}^{n}(y-\beta_0-\beta_1 x_i)^2}{2\sigma^2},\]
+    对于\(\hat{\beta}_0,\hat{\beta}_1\)，求最值的步骤和最小二乘法相同。下面我们看\(\sigma^2\)的极大似然估计。对\(\sigma^2\)求偏导并令其为零：
+    \[\frac{\partial}{\partial \sigma^2}\log{f}=-\frac{n}{2\sigma^2}+\frac{\sum_{i=1}^{n}(y-\beta_0-\beta_1 x_i)^2}{2(\sigma^2)^2}=0,\]
+    解得
+    \[\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}\hat{\mu_i}^2.\]
+
+    然而\(\hat{\sigma}^2\)并不是\(\sigma^2\)的无偏估计。我们经常使用的是无偏估计版本:
+    \[\hat{\sigma}^2=\frac{1}{n-2}\sum_{i=1}^{n}\hat{\mu_i}^2.\]
 
     \subsection{一元线性回归模型的检验}
 

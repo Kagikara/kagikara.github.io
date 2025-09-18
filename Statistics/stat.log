@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  18 SEP 2025 22:45
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  19 SEP 2025 00:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1649,22 +1649,24 @@ LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
 [3]
 
 [4]
+
+[5]
 Chapter 3.
-
-
-[5
-
-]
-Chapter 4.
 
 
 [6
 
 ]
-Chapter 5.
+Chapter 4.
 
 
 [7
+
+]
+Chapter 5.
+
+
+[8
 
 ] (./stat.aux)
  ***********
@@ -1686,4 +1688,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  103i,12n,129p,689b,1376s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on stat.pdf (9 pages).
+Output written on stat.pdf (10 pages).
