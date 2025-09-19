@@ -132,8 +132,10 @@
         \end{enumerate}
     \end{proof}
     \begin{note}
-        我们从上面得出的参数分布可知，对于不同于\(x_i,i=1,2,\cdots n\)的样本点\(x_0\)来说，它的预测值\(\hat{y}_0=\hat{\beta}_0+\hat{\beta}_1x_0\)同样服从正态分布，即
-        \[\hat{y}_0\sim N(\beta_0+\beta_1x_0,(\frac{1}{n}+\frac{(x_0^2-\overline{x})^2}{L_{xx}})\sigma^2).\]
+        我们从上面得出的参数分布可知，对于不同于\(x_i,i=1,2,\cdots n\)的样本点\(x_0\)来说，它的预测值
+        \[\hat{y}_0=\hat{\beta}_0+\hat{\beta}_1x_0=\overline{y}-\hat{\beta}_1\overline{x}+\hat{\beta}_1x_0=\frac{\sum_{i=1}^{n}((x_i-\overline{x})(x_0-\overline{x})+\frac{L_{xx}}{n})y_i}{L_{xx}},\]
+        同样服从正态分布，即
+        \[\hat{y}_0\sim N(\beta_0+\beta_1x_0,(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\sigma^2).\]
     \end{note}
 
         我们得出的样本回归线有几条性质：
@@ -171,7 +173,7 @@
     在一元回归模型中，我们只考虑\(j=1\)的情况。
     我们知道\(\hat{\beta}_1\sim N(\beta_1,\frac{\sigma^2}{L_{xx}})\)，所以当\(H_0\)成立时，\(\hat{\beta}_1\sim N(0,\frac{\sigma^2}{L_{xx}})\)，由于方差未知，因此可以构造检验统计量
     \[t=\frac{\hat{\beta}_1/\sqrt{(\frac{\sigma^2}{L_{xx}})}}{\sqrt{\frac{\hat{\sigma}^2}{\sigma^2}}}=\frac{\hat{\beta}_1\sqrt{L_{xx}}}{\hat{\sigma}}\sim t(n-2),\]
-    其中\(\hat{\sigma}^2\)的定义取\(\sigma^2\)的无偏估计.所以上述检验的拒绝域为
+    其中\(\hat{\sigma}^2\)的定义取\(\sigma^2\)的无偏估计.所以上述检验的拒绝域为(水平为\(\alpha\))
     \[W=\{t:|t|>t_{\alpha/2}(n-2)\}.\]
     \begin{note}
         正态总体\(N(\mu,\sigma^2)\)中抽取的样本\(x_i,i=1,2,\cdots n\)满足
@@ -191,9 +193,66 @@
     \[\sum_{i=1}^{n}(y_i-\overline{y})^2=\sum_{i=1}^{n}(y_i-\hat{y}_i)^2+\sum_{i=1}^{n}(\hat{y}_i-\overline{y})^2,\]
     简记为
     \[SST=SSR+SSE\ (S_T=S_R+S_E).\]
-    其中\(SST\)是总离差平方和，它代表了实际数据和回归直线之间的距离，自由度为\(n-1\)；\(SSR\)是回归平方和，代表了拟合出的模型解释数据波动的能力，自由度为\(1\)；\(SSE\)是残差平方和，它代表了数据拟合的优良程度，也代表着模型没能解释的数据波动情况，自由度为\(n-2\)。于是我们想看去除自由度的影响后，衡量这个模型能解释多少数据波动情况，就得出了统计量\(F\):
+    其中\(SST\)是总离差平方和，它代表了实际数据和回归直线之间的距离，自由度为\(n-1\)；\(SSR\)是回归平方和，代表了拟合出的模型解释数据波动的能力，也就是预料之内的波动程度，自由度为\(1\)；\(SSE\)是残差平方和，它代表了数据拟合的优良程度，也代表着模型没能解释的数据波动情况，即意料之外的波动程度，自由度为\(n-2\)。于是我们想看去除自由度的影响后，衡量这个模型能解释多少数据波动情况，就得出了统计量\(F\):
     \[F=\frac{SSR/1}{SSE/(n-2)}.\]
     它代表了回归直线能解释的数据波动比例。
+
+    实际上，\(\frac{SSR}{\sigma^2}\sim \chi_1,\frac{SSE}{\sigma^2}\sim \chi_{n-2}\)，因此
+    \[F=\frac{SSR/1}{SSE/(n-2)}\sim F_{1,n-2}.\]
+    检验的拒绝域为(水平为\(\alpha\))
+    \[W=\{F:F>F_{\alpha}(1,n-2)\}.\]
+
+    第三个检验是相关系数的显著性检验，这并不是一个假设检验，只是算出一个系数来判断两个因素之间是否有相关性、相关性有多强。
+
+    我们称
+    \[r=\frac{\sum_{i=1}^{n}(x_i-\overline{x})(y_i-\overline{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\overline{x})^2}\sqrt{\sum_{i=1}^{n}(y_i-\overline{y})^2}}=\frac{L_{xy}}{\sqrt{L_{xx}}\sqrt{L_{yy}}}\]
+    为简单相关系数，简称相关系数。它衡量了因变量、自变量之间的线性相关程度。由Cauchy-Schwartz：\(|r|\le1.\)
+
+    由于\[r=\frac{L_{xy}}{\sqrt{L_{xx}}\sqrt{L_{yy}}}=\hat{\beta}_1\sqrt{\frac{L_{yy}}{L_{xx}}},\]因此所谓线性关系显著就代表了\(\hat{\beta}_1\)是否显著。
+
+    下面给出三种检验的关系：
+    \begin{enumerate}
+        \item t检验和F检验：我们知道，自由度为\(1,n\)的\(F\)分布随机变量可以写成\[F_{1,n}=\frac{\chi_1/1}{\chi_n/n},\]而\(\chi_1=(N(0,1))^2\)，因此还有\[F_{1,n}=\frac{(N(0,1))^2}{\chi_n/n},\]而自由度为\(n\)的\(t\)分布的构成为\(\frac{N(0,1)}{\sqrt{\chi_n/n}}\),因此\[F_{1,n}=t_n^2.\]从而我们知道t检验和F检验在一元回归中是等价的。
+        \item 相关系数检验和F检验：实际上\(SST=L_{yy},SSR=\hat{\beta}_1^2L_{xx}.\)因此对于F检验，我们有\[\frac{1}{1+\frac{n-2}{F}}=\frac{SSR}{SST}=\hat{\beta}_1^2\frac{L_{xx}}{L_{yy}}=r^2.\]
+    \end{enumerate}
+
+    最后一个检验是拟合优度检验，它比较了不同自变量对因变量的解释程度，也就是解决“哪个指标能更好的解释因变量”这个问题。我们引进“解释程度”变量：
+    \[r^2=\frac{SSR}{SST}.\]
+    这个比例代表了样本偏差中回归偏差的占比，越靠近1说明拟合效果越好。
+
+    \subsection{一元线性回归模型参数的区间估计}
+     假设检验和置信区间都应用了枢轴量来构造，因此具有天然的一一对应关系。我们考察\(\beta_0,\beta_1\)的置信区间。
+
+     我们知道\(\hat{\beta}_1\sim N(\beta_1,\frac{\sigma^2}{L_{xx}})\)，由于方差未知，我们构造t置信区间,枢轴量为
+     \[\frac{\hat{\beta}_1-\beta_1}{\sqrt{\frac{\hat{\sigma}^2}{L_{xx}}}}\sim t_{n-2},\]
+     置信区间如下构造：
+     \[P(|\frac{\hat{\beta}_1-\beta_1}{\sqrt{\frac{\hat{\sigma}^2}{L_{xx}}}}|\le t_{\alpha/2}(n-2))=1-\alpha,\]
+     解得\(1-\alpha\)置信区间为
+     \[\hat{\beta}_1\pm \frac{t_{\alpha/2}\hat{\sigma}}{\sqrt{L_{xx}}}.\]
+    对于\(\hat{\beta_0}\sim N(\beta_0,(\frac{1}{n}+\frac{\overline{x}^2}{L_{xx}})\sigma^2)\)也可同理构造t统计量。
+
+    \subsection{预测与控制}
+    单值控制：
+    \begin{enumerate}
+        \item \(\hat{y}_0=\hat{\beta}_0+\hat{\beta}_1x_0;\)
+        \item \(E[\hat{y}_0]=E[y_0]=E[Y|X=x_0].\)
+    \end{enumerate}
+    这两条分别代表了对于个体的预测和对于群体均值的预测。
+
+    区间预测：
+    我们已经说明了预测值\(\hat{y}_0\)和实际值\(y_0\)的分布为
+    \[\hat{y}_0\sim N(\beta_0+\beta_1x_0,(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\sigma^2),\ y_0\sim N(\beta_0+\beta_1x_0,\sigma^2),\]
+    并且\(\hat{y}_0,y_0\)相互独立：因为\(\hat{y}_0\)是\(y_i,i=1,2,\cdots n\)的线性函数，而\(y_0\)和其他数据都无关，因此\(y_0-\hat{y}_0\)同样服从正态分布
+    \[N(0,(1+\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\sigma^2).\]
+    这样我们又可以得到\(y_0\)水平为\(1-\alpha\)的t置信区间：
+    \[\hat{y}_0\pm t_{\alpha/2}(n-2)\sqrt{(1+\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\hat{\sigma}^2}=\hat{y}_0\pm t_{\alpha/2}(n-2)\sqrt{1+h_{00}}\hat{\sigma}.\]
+    其中\(h_{00}=\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}}.\)若选择\(\alpha=5\%\),则置信区间约为\(\hat{y}\pm 2\hat{\sigma}\).
+
+    同理可得\(\hat{y}_0-E[y_0]\)的分布为
+    \[N(0,(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\sigma^2),\]
+    得到\(E[y_0]\)水平为\(1-\alpha\)的t置信区间：
+    \[\hat{y}_0\pm t_{\alpha/2}(n-2)\sqrt{(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})}\hat{\sigma}.\]
+
 
 
     \chapter{时间序列分析}
