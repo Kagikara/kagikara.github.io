@@ -1324,6 +1324,15 @@ Lebesgue 分解定理也告诉我们任何随机变量的分布都是这三种�
 			上面可列线性中的非负条件可以去掉，只要注意\(\sum_{k=1}^{n}\xi\le \sum_{n=1}^{\infty}|\xi_n|<\infty\),且有\(\xi_n\xrightarrow{a.s.}\xi\).
 		\end{enumerate}
 	\end{property}
+	我们给出几个常用的概率不等式。
+	\begin{proposition}
+		\begin{enumerate}
+			\item (Jensen)设凸函数\(\phi:\mathbb{R}\to \mathbb{R},\ X\in L^1\)是随机变量,则\[\phi(E[X])\le E[\phi(X)].\]
+			\item (Chebyshev)设随机变量\(X\in L^2(\Omega,\mathcal{F},P)\)，对于任意正数\(\epsilon\)下式成立：\[P(|X-E[X]|\ge \epsilon)\le \frac{||X-E[X]||_{L^p}}{\epsilon^p},\]特别地当\(p=2\)有\[P(|X-E[X]|\ge \epsilon)\le \frac{V[X]}{\epsilon^2}.\]
+			\item (Kolmogorov)设独立随机变量列\(\{X_n\}_{n\ge1}\)，且\(E[X_n]=0,V[X_n]=\sigma^2_n\),设部分和\[S_k=\sum_{n=1}^{k}X_n,\]则对于任意正数\(\lambda\):\[P(\max_{1\le k \le n}|S_k|\ge \lambda)\le\frac{V[S_n]}{\lambda^2}=\frac{\sum_{k=1}^{n}\sigma^2_k}{\lambda^2}.\]
+			\item (Hájek–Rényi)设独立随机变量列\(\{X_n\}_{n\ge1}\)，且\(E[X_n]=0,V[X_n]=\sigma^2_n\),设部分和\[S_k=\sum_{n=1}^{k}X_n,\]则对于任意正数\(\lambda\)和权重列\(\{a_k\}_{1\le k\le n}\)满足\(a_i\le a_j,i\le j\):\[P(\max_{1\le k \le n}\frac{|S_k|}{a_k}\ge \lambda)\le\frac{V[S_n]}{\lambda^2}=\frac{1}{\lambda^2}\sum_{k=1}^{n}\frac{\sigma^2_k}{a_k^2}.\]
+		\end{enumerate}
+	\end{proposition}
 	
 	\chapter{条件期望}
 	\begin{introduction}
@@ -1549,6 +1558,14 @@ Lebesgue 分解定理也告诉我们任何随机变量的分布都是这三种�
 	\begin{note}
 		实际上这就是说从\(\mathcal{F}\)先后向\(\sigma(Y,Z),\sigma(Z)\)上投影的结果就是先后向\(\sigma(Z),\sigma(Y,Z)\)上投影的结果，两者都等于\(E[Z]\).
 	\end{note}
+	实际上这条性质还可以再推广到一般的\(\sigma-\)代数上：
+	\begin{corollary}[塔性]
+		设有\(\sigma-\)代数\(\mathcal{F},\mathcal{G}\)满足\(\mathcal{F}\subset \mathcal{G}\),和其上的随机变量\(X\),则
+		\[E[[E|\mathcal{G}]|\mathcal{F}]=E[[E|\mathcal{F}]|\mathcal{G}]=E[X|\mathcal{F}].\]
+	\end{corollary}
+	\begin{note}
+		这条性质用投影的角度来解释就是说，不论投影的顺序先后，投影的结果总是等于在更小那个\(\sigma-\)代数上的投影。
+	\end{note}
 	
 	
 	\chapter{随机过程}
@@ -1672,7 +1689,7 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 	时间序列分析里常用ARMA模型。
 	\begin{example}[ARMA]
 		\begin{enumerate}
-			\item 线性序列：设\(\{\epsilon(n),n\in \mathbb{Z}\}\)为\(WN(0,\sigma^2\)，数列\(\{a_n\}\)满足\(\sum_{n=-\infty}^{\infty}|a_n|<\infty.\),定义
+			\item 线性序列：设\(\{\epsilon(n),n\in \mathbb{Z}\}\)为\(WN(0,\sigma^2)\)，数列\(\{a_n\}\)满足\(\sum_{n=-\infty}^{\infty}|a_n|<\infty.\),定义
 			\[X(t)=\sum_{j=-\infty}^{\infty}a_j\epsilon(t-j),t\in \mathbb{Z},\]
 			则级数\(X(t)\)a.s.收敛,且称序列为线性序列。若级数只有有限项，则称\(\{X(t)\}\)为滑动平均序列。
 			\item AR模型：设\(\{\epsilon(n),n\in \mathbb{Z}\}\)为\(WN(0,\sigma^2\)，实数\(a\)满足\(|a|<1\),定义
@@ -1811,6 +1828,23 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda t}\sum_{n=0}^{\infty}\frac{(\lambda t(1-p))^n}{n!}\\
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda pt}.
 	\end{align*}
+	更一般地，我们有下面的结论：
+	\begin{theorem}[泊松过程的稀释过程]
+		设事件\(A\)的发生服从参数为\(\lambda\)的泊松过程，若每次事件发生时都有概率\(P(s)\)记录事件\(A\)的发生，并以\(M(t),t\ge 0\)记在时点\(t\)已经记录的事件数，则\(M(t),t\ge 0\)是参数为\(\lambda p\)的泊松过程,这里\(p=\frac{1}{t}\int_{0}^{t}P(s)ds\).
+	\end{theorem}
+	\begin{proof}
+		
+	\end{proof}
+
+	独立的泊松分布具有可加性，从而泊松分布可以合并和分解。
+	\begin{theorem}[泊松过程的合并]
+		设有参数分别为\(\lambda,\mu\)的相互独立的泊松过程\(\{N_1(t)\},\{N_2(t)\}\),则\(\{N_1(t)+N_2(t)\}\)是参数为\(\lambda+\mu\)的泊松过程。
+	\end{theorem}
+	\begin{proof}
+		平稳增量性由泊松分布的可加性得出，独立增量性：设有\(s<t,u<v\),则
+		\[N_1(t)-N_1(s)+N_2(t)-N_2(s),N_1(v)-N_1(u)+N_2(v)-N_2(u)\]
+		显然独立。
+	\end{proof}
 
 
 	\subsection{泊松过程衍生分布}
@@ -1917,6 +1951,18 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 			\[\lim_{h\to 0}\frac{P(N(t+h)-N(t)=1)}{h}=\lambda(t),\ \lim_{h\to 0}\frac{P(N(t+h)-N(t)\ge 2)}{t}=0.\]
 		\end{enumerate}
 	\end{definition}
+	非齐次泊松过程虽然不一定是泊松过程，但是可以和泊松过程建立起一一对应的关系。
+	\begin{theorem}
+		设\(\lambda(t)>0,m(t)=\int_0^t\lambda(u)du.\)若有强度为\(\lambda(t)\)的非齐次泊松过程\(\{N(t)\}\)，令\(N^*(t)=N(m^{-1}(t))\)，则\(\{N^*(t)\}\)是一个强度为1的泊松过程。反之，若\(\{N^*(t)\}\)是一个强度为1的泊松过程，则\(N(t)=N^*(m(t))\)是一个强度为\(\lambda(t)\)的非齐次泊松过程。
+	\end{theorem}
+	\begin{proof}
+		若有强度为\(\lambda(t)\)的非齐次泊松过程\(\{N(t)\}\),则
+		\[N^*(t+s)-N^*(t)=N(m^{-1}(t+s))-N(m^{-1}(t))\sim P(m(m^{-1}(t+s))-m(m^{-1}(t)))=P(t).\]
+		另一方面，若\(\{N^*(t)\}\)是一个强度为1的泊松过程，则
+		\[N(t+s)-N(t)=N^*(m(t+s))-N^*(m(s))\sim P(m(t+s)-m(s)).\]
+		这就是说\(\{N(t)\}\)是强度为\(\lambda(t)\)的非齐次泊松过程。
+	\end{proof}
+
 	除了非齐次泊松过程，我们还看复合泊松过程。复合泊松过程不一定是计数过程，我们看看保险公司理赔的例子。保险公司理赔的总金额就是事件发生的次数和每次事件损失的金额的加权和，而这里事件的发生次数\(\{N(t),t\ge 0\}\)是泊松过程，而每次赔偿金额独立同分布。满足这样的条件的随机过程就是复合泊松过程。
 	\begin{definition}[复合泊松过程]
 		设\(\{N(t),t\ge 0\}\)为参数为\(\lambda\)的泊松过程，且\(\{Y_i,i=1,2,\cdots\}\)为一列独立同分布的随机变量，且与\(\{N(t),t\ge 0\}\)独立.定义

@@ -177,11 +177,11 @@
     \[W=\{t:|t|>t_{\alpha/2}(n-2)\}.\]
     \begin{note}
         正态总体\(N(\mu,\sigma^2)\)中抽取的样本\(x_i,i=1,2,\cdots n\)满足
-        \[\frac{\sum_{i=1}^{n}(x_i-\overline{x})^2}{\sigma^2}\sim \chi_{n-1},\]
+        \[\frac{\sum_{i=1}^{n}(x_i-\overline{x})^2}{\sigma^2}\sim \chi^2_{n-1},\]
         而残差平方和由于在解最小二乘估计方程组时添加了两个条件，因此自由度为\(n-2\),也就是
-        \[\frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}{\sigma^2}\sim \chi_{n-2}.\]
+        \[\frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}{\sigma^2}\sim \chi^2_{n-2}.\]
         我们记残差平方和为\(SSE\)，则上式变为
-        \[\frac{SSE}{\sigma^2}\sim \chi_{n-2}.\]
+        \[\frac{SSE}{\sigma^2}\sim \chi^2_{n-2}.\]
     \end{note}
 
     然后是F检验。F检验又称模型显著性检验，它检验的对象是整个模型中的自变量是否至少有一个对因变量有关。所以一元线性回归中的t检验和F检验实际上是等价的。
@@ -197,7 +197,7 @@
     \[F=\frac{SSR/1}{SSE/(n-2)}.\]
     它代表了回归直线能解释的数据波动比例。
 
-    实际上，\(\frac{SSR}{\sigma^2}\sim \chi_1,\frac{SSE}{\sigma^2}\sim \chi_{n-2}\)，因此
+    实际上，\(\frac{SSR}{\sigma^2}\sim \chi^2_1,\frac{SSE}{\sigma^2}\sim \chi^2_{n-2}\)，因此
     \[F=\frac{SSR/1}{SSE/(n-2)}\sim F_{1,n-2}.\]
     检验的拒绝域为(水平为\(\alpha\))
     \[W=\{F:F>F_{\alpha}(1,n-2)\}.\]
@@ -212,12 +212,12 @@
 
     下面给出三种检验的关系：
     \begin{enumerate}
-        \item t检验和F检验：我们知道，自由度为\(1,n\)的\(F\)分布随机变量可以写成\[F_{1,n}=\frac{\chi_1/1}{\chi_n/n},\]而\(\chi_1=(N(0,1))^2\)，因此还有\[F_{1,n}=\frac{(N(0,1))^2}{\chi_n/n},\]而自由度为\(n\)的\(t\)分布的构成为\(\frac{N(0,1)}{\sqrt{\chi_n/n}}\),因此\[F_{1,n}=t_n^2.\]从而我们知道t检验和F检验在一元回归中是等价的。
+        \item t检验和F检验：我们知道，自由度为\(1,n\)的\(F\)分布随机变量可以写成\[F_{1,n}=\frac{\chi^2_1/1}{\chi^2_n/n},\]而\(\chi^2_1=(N(0,1))^2\)，因此还有\[F_{1,n}=\frac{(N(0,1))^2}{\chi^2_n/n},\]而自由度为\(n\)的\(t\)分布的构成为\(\frac{N(0,1)}{\sqrt{\chi^2_n/n}}\),因此\[F_{1,n}=t_n^2.\]从而我们知道t检验和F检验在一元回归中是等价的。
         \item 相关系数检验和F检验：实际上\(SST=L_{yy},SSR=\hat{\beta}_1^2L_{xx}.\)因此对于F检验，我们有\[\frac{1}{1+\frac{n-2}{F}}=\frac{SSR}{SST}=\hat{\beta}_1^2\frac{L_{xx}}{L_{yy}}=r^2.\]
     \end{enumerate}
 
     最后一个检验是拟合优度检验，它比较了不同自变量对因变量的解释程度，也就是解决“哪个指标能更好的解释因变量”这个问题。我们引进“解释程度”变量：
-    \[r^2=\frac{SSR}{SST}.\]
+    \[R^2=\frac{SSR}{SST}=(r)^2.\]
     这个比例代表了样本偏差中回归偏差的占比，越靠近1说明拟合效果越好。
 
     \subsection{一元线性回归模型参数的区间估计}
@@ -251,7 +251,10 @@
     同理可得\(\hat{y}_0-E[y_0]\)的分布为
     \[N(0,(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})\sigma^2),\]
     得到\(E[y_0]\)水平为\(1-\alpha\)的t置信区间：
-    \[\hat{y}_0\pm t_{\alpha/2}(n-2)\sqrt{(\frac{1}{n}+\frac{(x_0-\overline{x})^2}{L_{xx}})}\hat{\sigma}.\]
+    \[\hat{y}_0\pm t_{\alpha/2}(n-2)\sqrt{h_{00}}\hat{\sigma}.\]
+    \begin{note}
+        对比得到，均值预测的置信区间半径小于单值预测置信区间，因为总体更稳定。
+    \end{note}
 
 
 
