@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  22 SEP 2025 21:17
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  23 SEP 2025 23:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1658,6 +1658,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [4]
 
 [5]
+
+[6]
 Chapter 2.
 
 
@@ -1667,7 +1669,7 @@ Chapter 2.
 
 
 
-[6
+[7
 
 ]
 Chapter 3.
@@ -1678,28 +1680,26 @@ Chapter 3.
 
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 231.
+(Font)              scaled to size 12.0pt on input line 294.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 256.
+(Font)              scaled to size 10.0pt on input line 319.
 
 LaTeX Font Warning: Font shape `TU/KaiTi(0)/m/it' undefined
-(Font)              using `TU/KaiTi(0)/m/n' instead on input line 256.
+(Font)              using `TU/KaiTi(0)/m/n' instead on input line 319.
 
 
 
-[7
+[8
 
 ]
 
-[8]
-
 [9]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 384.
+
+[10]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 447.
  (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-
-[10]
 
 [11]
 
@@ -1708,6 +1708,8 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 [13]
 
 [14]
+
+[15]
 Chapter 4.
 
 
@@ -1717,40 +1719,40 @@ Chapter 4.
 
 
 
-[15
+[16
 
 ]
 
-[16]
+[17]
 Missing character: There is no ， ("FF0C) in font cmr10!
 
 LaTeX Font Warning: Font shape `TU/KaiTi(0)/b/n' undefined
-(Font)              using `TU/KaiTi(0)/m/n' instead on input line 745.
+(Font)              using `TU/KaiTi(0)/m/n' instead on input line 808.
 
 
-
-[17]
 
 [18]
 
 [19]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\(' on input line 894.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 894.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\)' on input line 894.
-
-
-
 [20]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\(' on input line 957.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 957.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\)' on input line 957.
+
+
+
 [21]
+
+[22]
 Chapter 5.
 
 
@@ -1760,15 +1762,15 @@ Chapter 5.
 
 
 
-[22
+[23
 
 ]
-
-[23]
 
 [24]
 
 [25]
+
+[26]
 Chapter 6.
 
 
@@ -1778,32 +1780,34 @@ Chapter 6.
 
 
 
-[26
+[27
 
 ]
-
-[27]
 
 [28]
 
 [29]
-Overfull \hbox (18.99643pt too wide) in paragraph at lines 1249--1250
+
+[30]
+Overfull \hbox (18.99643pt too wide) in paragraph at lines 1312--1313
 []\TU/KaiTi(0)/m/n/10 我 们 还 能 得 到 个 重 要 的 推 论：|  设 $\OML/cmm/m/it/10 f$ \TU/KaiTi(0)/m/n/10 是 \TU/TeXGyreTermesX(0)/m/n/10 Borel \TU/KaiTi(0)/m/n/10 函 数，|  若 $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^X\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 !\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 L[]$\TU/KaiTi(0)/m/n/10 ，|  则 $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^X\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 !\OT1/cmr/m/n/10 ))$ \TU/KaiTi(0)/m/n/10 期 望 存 在，|  其 期 望 为 $[][] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^X\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 !\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 dP\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 !\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 :$ 
  []
 
 Missing character: There is no ， ("FF0C) in font cmr10!
 
 
-[30]
-Underfull \hbox (badness 6063) in paragraph at lines 1300--1301
+[31]
+Underfull \hbox (badness 6063) in paragraph at lines 1363--1364
 []\TU/KaiTi(0)/m/n/10 设 $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 F[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g$ \TU/KaiTi(0)/m/n/10 是 一 列 分 布 函 数，|  若 存 在 单 调 不 减 函 数 $\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )$\TU/TeXGyreTermesX(0)/m/n/10 , \TU/KaiTi(0)/m/n/10 使 得 在 $\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )$ \TU/KaiTi(0)/m/n/10 的 所 有 连 续 点 上 都 有
  []
 
 
 
-[31]
-
 [32]
+
+[33]
+
+[34]
 Chapter 7.
 
 
@@ -1813,26 +1817,26 @@ Chapter 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\(' on input line 1343.
+(hyperref)                removing `\(' on input line 1420.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1343.
+(hyperref)                removing `superscript' on input line 1420.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Omega' on input line 1343.
+(hyperref)                removing `\Omega' on input line 1420.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\)' on input line 1343.
+(hyperref)                removing `\)' on input line 1420.
 
 
 
-[33
+[35
 
 ]
-Overfull \hbox (7.9193pt too wide) in paragraph at lines 1413--1415
+Overfull \hbox (7.9193pt too wide) in paragraph at lines 1490--1492
 []\TU/SimSun(0)/m/n/10 由 于 高 阶 矩 存 在 可 以 推 出 低 阶 矩 存 在，|  我 们 知 道 $\OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 (
 \OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 F\OML/cmm/m/it/10 ; P\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^Z \OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 (
 \OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 F\OML/cmm/m/it/10 ; P\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;$ \TU/SimSun(0)/m/n/10 上 面 条 件 期 望 的 假 设 是 $\OML/cmm/m/it/10 X; f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
@@ -1840,17 +1844,17 @@ Overfull \hbox (7.9193pt too wide) in paragraph at lines 1413--1415
 
 
 
-[34]
+[36]
 Missing character: There is no ， ("FF0C) in font cmr10!
 
-
-[35]
-
-[36]
 
 [37]
 
 [38]
+
+[39]
+
+[40]
 Chapter 8.
 
 
@@ -1860,68 +1864,68 @@ Chapter 8.
 
 
 
-[39
+[41
 
 ]
 
-[40]
-Underfull \hbox (badness 1132) in paragraph at lines 1668--1669
+[42]
+Underfull \hbox (badness 1132) in paragraph at lines 1745--1746
 []\TU/KaiTi(0)/m/n/10 我 们 首 先 看 比 较 严 格 的 平 稳 性 定 义。|  若 对 任 意 的 实 数 $\OML/cmm/m/it/10 h$\TU/KaiTi(0)/m/n/10 ，|  随 机 过 程 $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[]; t \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 T\OMS/cmsy/m/n/10 g$ \TU/KaiTi(0)/m/n/10 满 足 有 限 分 布 族
  []
 
 
 
-[41]
-Underfull \hbox (badness 1635) in paragraph at lines 1726--1727
+[43]
+Underfull \hbox (badness 1635) in paragraph at lines 1803--1804
 []\TU/KaiTi(0)/m/n/10 设 随 机 过 程 $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[]; t \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 T\OMS/cmsy/m/n/10 g$ \TU/KaiTi(0)/m/n/10 满 足 对 任 意 的 $\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 1$ \TU/KaiTi(0)/m/n/10 和 $\OML/cmm/m/it/10 t[]; t[]; []  ; t[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 T$\TU/TeXGyreTermesX(0)/m/n/10 , \TU/KaiTi(0)/m/n/10 都 有 $\OML/cmm/m/it/10 n$ \TU/KaiTi(0)/m/n/10 元 随 机 变 量 组
  []
 
 
 
-[42]
-
-[43]
-
 [44]
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1854.
-
 
 [45]
-Overfull \hbox (44.11552pt too wide) detected at line 1908
+
+[46]
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 1927.
+
+
+[47]
+Overfull \hbox (44.11552pt too wide) detected at line 1981
 []
  []
 
 
 
-[46]
-
-[47]
-
 [48]
-Overfull \hbox (2.83304pt too wide) in paragraph at lines 1994--1996
+
+[49]
+
+[50]
+Overfull \hbox (2.83304pt too wide) in paragraph at lines 2080--2082
 \TU/FangSong(0)/m/n/10 这 里 我 们 使 用 了 增 量 的 独 立 性\TU/TeXGyreTermesX(0)/m/n/10 :$\OML/cmm/m/it/10 E\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )] = \OML/cmm/m/it/10 E\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ))] = \OML/cmm/m/it/10 E\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]\OT1/cmr/m/n/10 )] + \OML/cmm/m/it/10 E\OT1/cmr/m/n/10 [(\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (0))(\OML/cmm/m/it/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@
  []
 
 
 
-[49]
+[51]
 Chapter 9.
 
 
-[50
+[52
 
 ]
 Chapter 10.
 
 
-[51
+[53
 
 ]
 Chapter 11.
 
 
-[52
+[54
 
 ] (./An&P.aux)
  ***********
@@ -1939,12 +1943,12 @@ Package logreq Info: Writing requests to 'An&P.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48000 strings out of 468442
- 1044683 string characters out of 5449249
+ 48056 strings out of 468442
+ 1047153 string characters out of 5449249
  2054828 words of memory out of 5000000
- 75631 multiletter control sequences out of 15000+600000
+ 75687 multiletter control sequences out of 15000+600000
  634603 words of font info for 117 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,14n,129p,689b,1425s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on An&P.pdf (55 pages).
+Output written on An&P.pdf (57 pages).

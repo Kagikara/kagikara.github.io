@@ -85,7 +85,7 @@
 		实际上概率空间\((\Omega,\mathcal{F},P)\)就是一个测度空间。
 	\end{note}
 	若所有测度为0的集合（零测集）都包含于\(\mathcal{M}\),那么说测度\(\mu\)是完备的。我们有下面的完备化定理：
-	\begin{theorem}[完备化]
+	\begin{theorem}[完备化][T1.9]
 		设有测度空间\((X,\mathcal{M},\mu)\),设\(\mathcal{N}=\{N\in\mathcal{M}:\mu(N)=0\},\overline{\mathcal{M}}=\{E\cup F:E\in \mathcal{M},F\in \mathcal{N}\}\),则\(\overline{\mathcal{M}}\)也是一个\(\sigma-\)代数，而且存在测度\(\mu\)在\(\overline{\mathcal{M}}\)上的唯一延拓\(\overline{\mu}\),使得\(\overline{\mu}\)是\(\overline{\mathcal{M}}\)上的完备测度。
 	\end{theorem}
 	测度有下面的优良性质(T1.8)：
@@ -165,7 +165,7 @@
 		\end{enumerate}
 	\end{proposition}
 	最后Carath\'{e}odory扩张定理说明预测度、外测度、测度三者之间的关系。
-	\begin{theorem}[Carath\'{e}odory扩张定理]
+	\begin{theorem}[Carath\'{e}odory扩张定理(T1.14)]
 		设\(\mathcal{A}\subset \mathcal{P}(X)\)是配有预测度\(\mu_0\)的代数，代数\(\mathcal{A}\)生成的\(\sigma-\)代数为\(\mathcal{M}\)。则\(\mathcal{M}\)上存在测度\(\mu\)，使得\(\mu\)是预测度\(\mu_0\)在\(\mathcal{M}\)上的延拓，即\(\mu_0=\mu|\mathcal{A}\),且外测度\(\mu^*\)是测度\(\mu\)的延拓，即\(\mu=\mu^*|\mathcal{M}\).另外，如果\(\mu_0\)是\(\sigma-\)有限的，则\(\mu\)是\(\mathcal{M}\)上\(\mu\)唯一的测度延拓。
 	\end{theorem}
 
@@ -207,10 +207,73 @@
 	\[\pi_3^{-1}(B) = \{ f \in \mathbb{R}^\mathbb{N} : f(3) \in [0,1] \}.\]
 	这表示所有“第三个坐标在区间 $[0,1]$ 内”的无穷维实数数列。
 	\end{example}
+	\begin{proposition}[P1.5]
+		设有可分度量空间\(X_1,\cdots X_n\)，记\(X=\prod_{i=1}^{n}X_i\),则
+		\[\otimes_{i=1}^n\mathcal{B}_{X_i}=\mathcal{B}_X.\]
+	\end{proposition}
+	由于有限维欧氏空间可分，我们知道
+	\begin{corollary}[C1.6]
+		\[\otimes_{i=1}^n\mathcal{B}_{\mathbb{R}}=\mathcal{B}_{\mathbb{R}^n}.\]
+	\end{corollary}
 
+	这时就可以引出函数族生成的\(\sigma-\)代数的概念。
+	\begin{definition}[函数族生成的\(\sigma-\)代数]
+		之前定义了\(\sigma-\)代数上函数的可测性，现在延展可测性的定义到普通集合上。设有可测空间\((X,\mathcal{M})\)和上面的函数\(f\)，若集合\(E\in \mathcal{M}\)满足对于任意的Borel集\(B\)都有\(f^{-1}(B)\cap E\in \mathcal{M}\)，则称函数\(f\)在\(E\)上可测。
 
+		给定集合\(X\)和可测空间族\(\{Y_\alpha,\mathcal{M}_\alpha\}\),和函数族\(f_\alpha:X\to Y_\alpha\),则称由\(f^{-1}_\alpha(E_\alpha),E_\alpha\in \mathcal{M}_\alpha,\alpha\in A\)生成的\(\sigma-\)代数为函数族\(\{f_\alpha\}\)生成的\(\sigma-\)代数。
+	\end{definition}
+	\begin{proposition}[P2.4]
+		设有可测空间\((X,\mathcal{M}),(Y_\alpha,\mathcal{N}_\alpha)(\alpha\in A),\ Y=\prod_{\alpha\in A}Y_\alpha,\mathcal{N}=\otimes_{\alpha\in A}\mathcal{N}_\alpha\),并配有坐标映射\(\pi_\alpha:X\to Y_\alpha\),则函数\(f:X\to Y\)是\((\mathcal{M},\mathcal{N})\)可测的当且仅当\(f_\alpha=\pi_\alpha\circ f\)对于任意\(\alpha\in A\)是\((\mathcal{M},\mathcal{N}_\alpha)\)可测的.
+	\end{proposition}
+	\begin{corollary}[C2.5]
+		作为推论，复函数\(f:X\to\mathbb{C}\)是\(\mathcal{M}\)可测的当且仅当\(\Im f,\Re f\)是\(\mathcal{M}\)可测的。
+	\end{corollary}
+	为了论述方便，我们引进广义实数域\(\overline{\mathbb{R}}=[-\infty,\infty].\)规定\(0\cdot \infty=0\).接下来来讨论可测函数的运算性质：函数的可测性对于可测函数的加法、数乘、乘法、上下极限运算下封闭。
+	\begin{proposition}[P2.6]
+		设\(f,g:X\to\mathbb{C}\)是\(\mathcal{M}\)可测的,则\(f+g,fg,cf\)也是\(\mathcal{M}\)可测的,其中\(c\)是常数。
+	\end{proposition}
+	\begin{proof}
+		这个命题的证明不同于其他教科书的证明，它活用了\(\sigma-\)代数的乘积性质。数乘的情形易证。
+
+		设函数\(F:X\to \mathbb{C}\times \mathbb{C},\ \phi:\mathbb{C}\to \mathbb{C}\times \mathbb{C},\psi:\mathbb{C}\to \mathbb{C}\times \mathbb{C}.\)且有
+		\[F(x)=(f(x),g(x)),\phi(z,w)=z+w,\psi(z,w)=zw.\]
+		由于\(\mathcal{B}_{\mathbb{C}\times \mathbb{C}}=\mathcal{B}_\mathbb{C}\otimes\mathcal{B}_\mathbb{C}\),实际上\(F\)就是一个“复函数”，其分量都是\(\mathcal{M}\)可测的，因此\(F\)是\((\mathcal{M},\mathcal{B}_{\mathbb{C}\times \mathbb{C}})\)可测的。而\(\phi,\psi\)都是\(\mathbb{C}\times \mathbb{C}\)上的连续函数，因此它的逆将\(\mathbb{C}\)中的开集映为\(\mathbb{C}\times \mathbb{C}\)中的开集，也就是说它们是\((\mathcal{B}_{\mathbb{C}\times \mathbb{C}},\mathcal{B}_\mathbb{C})\)可测的。从而由复合可测函数保持可测性知道\(\phi \circ F=f+g,\psi\circ F=fg\)都是\((\mathcal{M},\mathcal{B}_{\mathbb{C}})\)可测的。
+	\end{proof}
+	\begin{proposition}[P2.7]
+		设有一列\((X,\mathcal{M}),\overline{\mathbb{R}}\)上的函数\(\{f_j\}\),则下列极限函数也是\(\mathcal{M}\)可测的：
+		\begin{enumerate}
+			\item \(\sup_jf_j(x)\);
+			\item \(\inf_jf_j(x)\);
+			\item \(\limsup_{j\to \infty}f_j(x)\);
+			\item \(\liminf_{j\to \infty}f_j(x)\).
+		\end{enumerate}
+		特殊地，若函数列极限存在，则极限函数也是\(\mathcal{M}\)可测的。
+	\end{proposition}
+	\begin{proof}
+		证明类似Borel\(\sigma-\)代数的扩充。
+	\end{proof}
+	\begin{corollary}[C2.8]
+		设可测函数\(f,g\)，则\(\max(f,g),\min(f,g)\)也可测。于是知道函数的正负部\(f^+=\max(f,0),f^-=\max(-f,0)\)也是可测的。进一步知道，函数\(f=f^+-f^-\)可测当且仅当\(f^+,f^-\)都可测。
+	\end{corollary}	
+	\begin{proof}
+		证\(h=\min(f,g)\)可测：对任意\(t\in \overline{R},\)
+		\[\{x:h(x)<t\}=\{x:f(x)<t\}\cup \{x:g(x)<t\}.\]
+		\(\max(f,g)\)情形类似。
+	\end{proof}
+	\begin{proposition}
+		设完备可测空间\((X,\mathcal{M})\),若可测函数\(f\)满足\(f=g,a.e.\)，则\(g\)也是可测的。
+	\end{proposition}
+	\begin{proof}
+		这个定理中的可测空间完备性必不可少，因为若零测集也是可测集，就能将\(g\)视作\(f\)操作，从而完成证明。
+	\end{proof}
+
+	最后我们给出可测函数的简单函数逼近性质。
+	\begin{theorem}[可测函数的简单函数逼近]
+		设有可测空间\((X,\mathcal{M})\),则存在简单函数渐升列\(\{\phi_n(x)\}\)使得\(\phi_n\le\phi_{n+1}\)几乎处处点态收敛于非负可测函数\(f\)。若\(f\)有界，这样的收敛还是一致的。
+	\end{theorem}
 
 	\section{函数积分和收敛定理}
+
 
 	\section{乘积测度与Fubini-Tonelli定理}
 
@@ -1333,6 +1396,20 @@ Lebesgue 分解定理也告诉我们任何随机变量的分布都是这三种�
 			\item (Hájek–Rényi)设独立随机变量列\(\{X_n\}_{n\ge1}\)，且\(E[X_n]=0,V[X_n]=\sigma^2_n\),设部分和\[S_k=\sum_{n=1}^{k}X_n,\]则对于任意正数\(\lambda\)和权重列\(\{a_k\}_{1\le k\le n}\)满足\(a_i\le a_j,i\le j\):\[P(\max_{1\le k \le n}\frac{|S_k|}{a_k}\ge \lambda)\le\frac{V[S_n]}{\lambda^2}=\frac{1}{\lambda^2}\sum_{k=1}^{n}\frac{\sigma^2_k}{a_k^2}.\]
 		\end{enumerate}
 	\end{proposition}
+	接下来给出著名的Borel-Cantelli引理，它是证明几种收敛关系的重要工具。
+	\begin{theorem}[Borel-Cantelli]
+		设有一列事件\(\{A_n\}\).
+		\begin{enumerate}
+			\item 若\(\sum_{n=1}^{\infty}P(A_n)<\infty,\)则\[P(\limsup_{n}A_n)=0;\]
+			\item 若事件列\(\{A_n\}\)相互独立，且\(\sum_{n=1}^{\infty}P(A_n)=\infty,\)则\[P(\limsup_{n}A_n)=1.\]
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		\begin{enumerate}
+			\item 首先\(P(\limsup_{n}A_n)=\lim_{n\to \infty}P(\bigcup_{k\ge n}A_k)\le \lim_{n\to \infty}\sum_{k\ge n}P(A_k)\),而由于级数收敛，因此该级数的余项趋于零，即\(\sum_{k\ge n}P(A_k)\to 0,n\to \infty.\)这就完成了证明。
+			\item 对于正数\(N>n,\)由独立性：\[P(\bigcap_{k=n}^NA_k^c)=\prod_{k=n}^{N}(1-P(A_n))\le\exp{(-\sum_{k=n}^{N}P(A_k))}\to 0,n\to\infty.\]因此由DeMorgan知道\(P(\cup_{k\ge n}A_k)=1\)，从而证得结论。
+		\end{enumerate}
+	\end{proof}
 	
 	\chapter{条件期望}
 	\begin{introduction}
@@ -1828,15 +1905,8 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda t}\sum_{n=0}^{\infty}\frac{(\lambda t(1-p))^n}{n!}\\
 		&=\frac{(\lambda pt)^m}{m!}e^{-\lambda pt}.
 	\end{align*}
-	更一般地，我们有下面的结论：
-	\begin{theorem}[泊松过程的稀释过程]
-		设事件\(A\)的发生服从参数为\(\lambda\)的泊松过程，若每次事件发生时都有概率\(P(s)\)记录事件\(A\)的发生，并以\(M(t),t\ge 0\)记在时点\(t\)已经记录的事件数，则\(M(t),t\ge 0\)是参数为\(\lambda p\)的泊松过程,这里\(p=\frac{1}{t}\int_{0}^{t}P(s)ds\).
-	\end{theorem}
-	\begin{proof}
-		
-	\end{proof}
-
-	独立的泊松分布具有可加性，从而泊松分布可以合并和分解。
+	
+	独立的泊松分布具有可加性，从而泊松分布可以合并和分解。稀释泊松过程实际上就是泊松过程的分解。
 	\begin{theorem}[泊松过程的合并]
 		设有参数分别为\(\lambda,\mu\)的相互独立的泊松过程\(\{N_1(t)\},\{N_2(t)\}\),则\(\{N_1(t)+N_2(t)\}\)是参数为\(\lambda+\mu\)的泊松过程。
 	\end{theorem}
@@ -1916,6 +1986,19 @@ M_{S_1,\cdots,S_n}(t_1,\cdots,t_n)
 			&=\frac{n!}{t^n}.
 		\end{align*}
 	\end{proof}
+	对于稀释泊松过程，我们有下面更一般的结论：
+	\begin{theorem}[泊松过程的稀释过程]
+		设事件\(A\)的发生服从参数为\(\lambda\)的泊松过程，若在时点\(s\)时事件发生都有概率\(P(s)\)记录事件\(A\)的发生，并以\(M(t),t\ge 0\)记在时点\(t\)已经记录的事件数，则\(M(t),t\ge 0\)是参数为\(\lambda p\)的泊松过程,这里\(p=\frac{1}{t}\int_{0}^{t}P(s)ds\).
+	\end{theorem}
+	\begin{proof}
+		不妨设\(A\)发生为状态\(I=1\)，否则\(I=0\),那么
+		\[P(I=1)=E[I]=E[E[I|S]],\]
+		而
+		\[E[I|S]=E[I|S=s]_{s=S}=P(S),\]
+		而由于在\([0,t]\)上\(A\)的发生时间点\(S\sim U(0,t)\)，于是
+		\[P(I=1)=\frac{1}{t}\int_{0}^{t}P(s)ds.\]
+	\end{proof}
+
 	\begin{example}
 		设乘客到达火车站是一个强度为\(\lambda\)的泊松过程，设火车在\(t\)时刻出发，求乘客等候时间总和的均值。
 	\end{example}
