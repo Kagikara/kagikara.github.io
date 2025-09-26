@@ -25,9 +25,9 @@
 \begin{document}
 	
 	\definecolor{structurecolor}{RGB}{18, 33, 79}
-	\definecolor{main}{RGB}{88, 63, 125}
-	\definecolor{second}{RGB}{220, 220, 235}
-	\definecolor{third}{RGB}{46, 139, 139}
+	\definecolor{main}{RGB}{220, 220, 235}
+	\definecolor{second}{RGB}{46, 139, 139}
+	\definecolor{third}{RGB}{88, 63, 125}
 	
 	\maketitle
 	\frontmatter
@@ -255,6 +255,116 @@
     \begin{note}
         对比得到，均值预测的置信区间半径小于单值预测置信区间，因为总体更稳定。
     \end{note}
+    \section{多元线性回归模型}
+    \subsection{模型形式}
+    有多个解释变量的线性回归模型就是多元线性回归模型。我们可以类比一元回归模型的思想来看待它。有\(p\)个解释变量的\(p\)元总体回归函数形式为
+    \[y = \beta_0 + \beta_1x_1+\beta_2x_2+\cdots+\beta_px_p+\epsilon.\]
+    其中\(\beta_i,i=0,1,2,\cdots p\)是\(p+1\)个未知常数；\(x_i,i=1,2,\cdots p\)是因变量，它们是确定的数据；随机误差\(\epsilon\)是随机变量，它是数据的随机波动造成的误差，或者说是和回归函数之间的偏移；\(y\)是因变量，由于\(\epsilon\)的影响也是一个随机变量。
+
+    假设观察到了\(n\)组数据\(y_i=\beta_0 + \beta_1x_{i1}+\beta_2x_{i2}+\cdots+\beta_px_{ip}+\epsilon_i,i=1,2,\cdots n\),我们用矩阵的形式来记录这多组因变量、自变量、回归系数与随机误差：
+
+    \[\mathbf{y} =
+    \begin{bmatrix}
+        y_1\\
+        y_2\\
+        \vdots\\
+        y_n
+    \end{bmatrix}
+    ,
+    \mathbf{X} =
+    \begin{bmatrix}
+        1 & x_{11} & x_{12} & \cdots & x_{1p} \\
+        1 & x_{21} & x_{22} & \cdots & x_{2p} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        1 & x_{n1} & x_{n2} & \cdots & x_{np}
+    \end{bmatrix}
+    ,
+    \mathbf{\beta} =
+    \begin{bmatrix}
+        \beta_0\\
+        \beta_1\\
+        \vdots\\
+        \beta_p\\
+    \end{bmatrix}
+    ,
+    \mathbf{\epsilon} =
+    \begin{bmatrix}
+        \epsilon_1\\
+        \epsilon_n\\
+        \vdots\\
+        \epsilon_n\\
+    \end{bmatrix}
+    \]
+    于是上面的\(n\)个线性组合就能被紧凑地写成矩阵形式
+    \[\mathbf{y}=\mathbf{X}\mathbf{\beta}+\mathbf{\epsilon}.\]
+    \begin{note}
+        注意这里的\(\mathbf{X}\)比原数据多加了一列1向量，这是因为要配合\(\beta_0\)的乘法。这样\(\mathbf{X}\)就是\(n\times p+1\)的矩阵。
+    \end{note}
+    和一元时的情况同理，我们也对随机误差项做一些假设。
+    \begin{enumerate}
+        \item \(\mathbf{X}\)列满秩。这就要求列向量之间线性无关，排除了自变量多重共线性的可能。同时满足\(rank(\mathbf{X})=p+1<n\)，这意味着自变量个数不能超过数据个数，实际上这保证了后面OLS的解的存在性和稳定性。
+        \item 随机误差项满足Gauss-Markov条件，也就是\[\begin{cases}
+            E[\epsilon_i]=0,i=1,2,\cdots n\\
+            cov(\epsilon_i,\epsilon_j)=\begin{cases}
+                \sigma^2,i=j\\
+                0,o.w.
+            \end{cases}
+            i,j=1,2,\cdots n.
+        \end{cases}\]
+        \item 随机误差项\(\epsilon_i,i=1,2,\cdots n\)独立同分布于正态分布\(N(0,\sigma^2)\).
+    \end{enumerate}
+    \subsection{多元线性回归的回归系数最小二乘法}
+    如何估计回归系数？我们自然可以和一元OLS的情形一样，对损失函数
+    \[Q(\mathbf{\beta})=||\mathbf{y}-\mathbf{\beta}^T\mathbf{X}||_2^2\]
+    求偏导并令偏导为0求出驻点解出\(\mathbf{\beta}\),但是我们可以用矩阵求导的办法来更紧凑地求出OLS的解。在这之前先介绍矩阵求导的规则。
+    \begin{proposition}[矩阵求导]
+        设有向量\(\mathbf{c},\mathbf{y}\)和矩阵\(\mathbf{X}\):
+    \[\mathbf{c} =
+    \begin{bmatrix}
+        c_1\\
+        c_2\\
+        \vdots\\
+        c_n
+    \end{bmatrix}
+    ,
+        \mathbf{y} =
+    \begin{bmatrix}
+        y_1\\
+        y_2\\
+        \vdots\\
+        y_n
+    \end{bmatrix}
+    ,
+    \mathbf{X} =
+    \begin{bmatrix}
+        x_{11} & x_{12} & \cdots & x_{1p} \\
+        x_{21} & x_{22} & \cdots & x_{2p} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        x_{n1} & x_{n2} & \cdots & x_{np}
+    \end{bmatrix}
+    \]
+    则：
+    \begin{enumerate}
+        \item (线性函数)\(\frac{\partial}{\partial \mathbf{y}}\mathbf{c^T\mathbf{y}}=\frac{\partial}{\partial \mathbf{y}}\mathbf{\mathbf{y}^T\mathbf{c}}=\mathbf{c}\);
+        \item (二次型)\(\frac{\partial}{\partial \mathbf{y}}\mathbf{y}^T\mathbf{X}\mathbf{y}=(\mathbf{X}+\mathbf{X}^T)\mathbf{y}\);
+        \item (矩阵乘法)\(\frac{\partial}{\partial \mathbf{y}}\mathbf{X}\mathbf{y}=\mathbf{X}^T\).
+    \end{enumerate}
+    \end{proposition}
+    于是多元线性回归的OLS可以这样表述：
+    \begin{theorem}[多元线性回归OLS]
+        在假设设计矩阵列满秩的假设下，多元线性回归的回归系数最小二乘估计为
+        \[\hat{\mathbf{\beta}}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}.\]
+    \end{theorem}
+    \begin{proof}
+        损失函数
+        \[Q(\mathbf{\beta})=||\mathbf{y}-\mathbf{\beta}^T\mathbf{X}||_2^2=(\mathbf{y}-\mathbf{\beta}^T\mathbf{X})^T\mathbf{y}-\mathbf{\beta}^T\mathbf{X}=\mathbf{y}^T\mathbf{y}-2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y}+\mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}.\]
+        关于\(\mathbf{\beta}\)求导得到
+        \[\frac{\partial}{\partial \mathbf{\beta}}Q(\mathbf{\beta})=-2\mathbf{X}^T\mathbf{y}+2\mathbf{X}^T\mathbf{X}\mathbf{\beta}=0,\]
+        就得到正规方程
+        \[\mathbf{X}^T\mathbf{X}\mathbf{\beta}=\mathbf{X}^T\mathbf{y},\]
+        由于假设\(mathbf{X}\)列满秩，因此矩阵\(\mathbf{X}^T\mathbf{X}\)可逆，于是得到显式解
+        \[\hat{\mathbf{\beta}}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}.\]
+    \end{proof}
 
 
 
