@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  27 SEP 2025 00:40
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  27 SEP 2025 11:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1659,22 +1659,24 @@ LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
 [8]
 
 [9]
+
+[10]
 Chapter 3.
-
-
-[10
-
-]
-Chapter 4.
 
 
 [11
 
 ]
-Chapter 5.
+Chapter 4.
 
 
 [12
+
+]
+Chapter 5.
+
+
+[13
 
 ] (./stat.aux)
  ***********
@@ -1688,19 +1690,19 @@ Package rerunfilecheck Warning: File `stat.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `stat.out':
-(rerunfilecheck)             Before: E6756A2BA0FE01592C9F7B60C36A46D3;1995
-(rerunfilecheck)             After:  3723FC20056A8779B6C9A13AAE086557;2343.
+(rerunfilecheck)             Before: 5F4745686DFD4055155248BD9936A968;2557
+(rerunfilecheck)             After:  DA19446561508C39620F370378096FAA;2723.
 Package logreq Info: Writing requests to 'stat.run.xml'.
 \openout1 = `stat.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47305 strings out of 468442
- 1019093 string characters out of 5449249
- 2038470 words of memory out of 5000000
- 74945 multiletter control sequences out of 15000+600000
+ 47312 strings out of 468442
+ 1019232 string characters out of 5449249
+ 2039064 words of memory out of 5000000
+ 74952 multiletter control sequences out of 15000+600000
  632860 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,14n,129p,689b,1419s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on stat.pdf (14 pages).
+Output written on stat.pdf (15 pages).

@@ -25,7 +25,7 @@
 \begin{document}
 	
 	\definecolor{structurecolor}{RGB}{18, 33, 79}
-	\definecolor{main}{RGB}{220, 220, 235}
+	\definecolor{main}{RGB}{110, 170, 235}
 	\definecolor{second}{RGB}{46, 139, 139}
 	\definecolor{third}{RGB}{88, 63, 125}
 	
@@ -192,7 +192,7 @@
     我们由平方和分解：
     \[\sum_{i=1}^{n}(y_i-\overline{y})^2=\sum_{i=1}^{n}(y_i-\hat{y}_i)^2+\sum_{i=1}^{n}(\hat{y}_i-\overline{y})^2,\]
     简记为
-    \[SST=SSR+SSE\ (S_T=S_R+S_E).\]
+    \[SST=SSE+SSR\ (S_T=S_E+S_R).\]
     其中\(SST\)是总离差平方和，它代表了实际数据和回归直线之间的距离，自由度为\(n-1\)；\(SSR\)是回归平方和，代表了拟合出的模型解释数据波动的能力，也就是预料之内的波动程度，自由度为\(1\)；\(SSE\)是残差平方和，它代表了数据拟合的优良程度，也代表着模型没能解释的数据波动情况，即意料之外的波动程度，自由度为\(n-2\)。于是我们想看去除自由度的影响后，衡量这个模型能解释多少数据波动情况，就得出了统计量\(F\):
     \[F=\frac{SSR/1}{SSE/(n-2)}.\]
     它代表了回归直线能解释的数据波动比例。
@@ -362,10 +362,74 @@
         \[\frac{\partial}{\partial \mathbf{\beta}}Q(\mathbf{\beta})=-2\mathbf{X}^T\mathbf{y}+2\mathbf{X}^T\mathbf{X}\mathbf{\beta}=0,\]
         就得到正规方程
         \[\mathbf{X}^T\mathbf{X}\mathbf{\beta}=\mathbf{X}^T\mathbf{y},\]
-        由于假设\(mathbf{X}\)列满秩，因此矩阵\(\mathbf{X}^T\mathbf{X}\)可逆，于是得到显式解
+        由于假设\(\mathbf{X}\)列满秩，因此矩阵\(\mathbf{X}^T\mathbf{X}\)可逆，于是得到显式解
         \[\hat{\mathbf{\beta}}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}.\]
     \end{proof}
+    因此OLS得到的预测
+    \[\hat{\mathbf{y}}=\mathbf{X}\hat{\beta}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y},\]
+    我们截取\(\mathbf{y}\)前面这部分矩阵，将其称为帽子矩阵\(\mathbf{H}\):
+    \[\mathbf{H}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T.\]
+    也就是\(\hat{\mathbf{y}}=\mathbf{H}\mathbf{y}\).从这里我们也可以看出\(\mathbf{y}\)的估计\(\hat{\mathbf{y}}\)也是\(\mathbf{y}\)的线性组合。
+    \(\mathbf{H}\)有很多优良性质：
+    \begin{property}
+        \begin{enumerate}
+            \item \(\mathbf{H}\)将\(\mathbf{y}\)投影到\(\mathbf{X}\)的列空间\(\mathcal{C}(\mathbf{X})\)上，从这个角度来看它是幂等的。当然也可以计算得到：\[\mathbf{H}^2=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{X})(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T=\mathbf{H}.\]
+            \item \(\mathbf{H}\)对称。只要注意\[\mathbf{H}^T=(\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T=\mathbf{H}.\]
+            \item \(\mathbf{H}\)的迹(trace)\[tr(\mathbf{H})=p+1.\]只要注意到迹的性质：\(tr(AB)=tr(BA)\)再对\(\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\)应用即可，它的迹就是\(\mathbf{I_{p+1}}\)的迹。
+        \end{enumerate}
+    \end{property}
+    真实值和OLS估计值之间的差异就是残差\(\mathbf{e}\)，残差可以看作是随机误差项的估计。
+    \[\mathbf{e}=\mathbf{y}-\hat{\mathbf{y}}=\mathbf{y}-\mathbf{H}\mathbf{y}=(\mathbf{I}-\mathbf{H})\mathbf{y}.\]
+    容易证明\(\mathbf{I-H}\)也是对称幂等的。
 
+    我们用矩阵视角来看残差的数字性质。先看数学期望：残差的数学期望是0向量。
+    
+    代入\(\mathbf{Y}=\mathbf{X\beta+\epsilon}\),残差\(\mathbf{e}=\mathbf{(I-H)y}=(\mathbf{I-\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T})(\mathbf{X\beta+\epsilon})=\mathbf{(I-H)\epsilon}.\)由于经典假设下设计矩阵是固定的，不是随机矩阵，因此\(E[\mathbf{e}]=\mathbf{(I-H)}E[\mathbf{\epsilon}]=0.\)
+    
+    然后看残差的方差。先定义协方差矩阵。
+    \begin{definition}[协方差矩阵]
+        设有两列随机变量\(\mathbf{X}=\{X_n\},\mathbf{Y}=\{Y_m\}\),则它们的协方差矩阵\(\mathbf{cov(X,Y)}\)定义为\[\mathbf{cov(X,Y)}(ij)=cov(X_i,Y_j)=E[(\mathbf{X-E[X]})(\mathbf{Y-E[Y]})].\]
+    \end{definition}
+    \begin{property}
+        \begin{enumerate}
+            \item 和协方差同理，协方差矩阵也有双线性性：\[\mathbf{cov(AX+b,AX+b)}=\mathbf{Acov(X,X)A^T}.\]
+            \item 协方差矩阵半正定。
+        \end{enumerate}
+    \end{property}
+    残差\(\mathbf{e}\)的方差矩阵为
+    \[\mathbf{cov(e,e)}=\mathbf{cov((I-H)y,(I-H)y)}=(\mathbf{(I-H)cov(y,y)(I-H)^T})=\sigma^2(\mathbf{I-H}).\]
+    其中用到了\(\mathbf{cov(y,y)}=\sigma^2\mathbf{I_{p+1}}\).这样我们就知道\(\mathbf{e}\)第\(i\)个分量的方差
+    \[V[e_i]=\sigma^2(1-h_{ii}).\]
+    实际上这样就可以简便地计算一元线性回归中的残差的方差：
+    设\[
+    \mathbf{X}=
+    \begin{bmatrix}
+        1 & x_1\\
+        1 & x_2\\
+        \vdots\\
+        1 & x_n    
+    \end{bmatrix}
+    \]
+    则\(\mathbf{H}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\)就是
+    $$ \mathbf{h_{ii}} = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{L_{xx}} $$
+    其中 $L_{xx} = \sum_{i=1}^n (x_i - \bar{x})^2$。
+
+    因此\[V[e_i]=\sigma^2(1-h_{ii})=\sigma^2(1-\frac{1}{n} - \frac{(x_i - \bar{x})^2}{L_{xx}}).\]
+    在一元的情形中我们说过，\(\sigma^2\)的无偏估计是\(\frac{1}{n-2}SSE\),现在我们在多元的情形下证明普遍情况。
+    \begin{theorem}[方差的无偏估计]
+        随机误差项的方差\(\sigma^2\)的一个无偏估计为
+        \[\frac{1}{n-p-1}SSE.\]
+    \end{theorem}
+    \begin{proof}
+        \[E[SSE]=\sum_{i=1}^{n}E[e_i^2]=\sum_{i=1}^{n}(V[e_i]+(E[e_i])^2)=\sum_{i=1}^{n}V[e_i]=\sum_{i=1}^{n}\sigma^2(1-h_{ii})=(n-p-1)\sigma^2.\]
+        其中用了\(E[e_i]=0,tr(\mathbf{H})=p+1.\)
+    \end{proof}
+    \subsection{多元线性回归参数的极大似然估计}
+    类比一元情况，当假设随机误差项服从\(N(\mathbf{0},\sigma^2\mathbf{I_n})\)时\(y\)也服从正态分布\(\mathbf{X\beta},\sigma^2\mathbf{I_n}\).则极大似然函数为
+    \[L(\beta,\sigma^2)=(2\pi\sigma^2)^{-\frac{n}{2}}\exp{(-\frac{1}{2\sigma^2}||\mathbf{y-X\beta}||_2^2)},\]
+    同样的步骤可以得出\(\beta\)的MLE同OLS给出的形式，而\(\sigma^2\)的MLE为\(\frac{1}{n}SSE\).这个估计是渐近无偏的。
+    \subsection{回归系数的数字特征}
+    
 
 
     \chapter{时间序列分析}
