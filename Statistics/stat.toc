@@ -11,8 +11,8 @@
 \contentsline {section}{\numberline {2.2}多元线性回归模型}{8}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}模型形式}{8}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}多元线性回归的回归系数最小二乘法}{8}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}多元线性回归参数的极大似然估计}{10}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}回归系数的数字特征}{10}{subsection.2.2.4}%
-\contentsline {chapter}{\numberline {第 3{} 章}时间序列分析}{11}{chapter.3}%
-\contentsline {chapter}{\numberline {第 4{} 章}统计模拟}{12}{chapter.4}%
-\contentsline {chapter}{\numberline {第 5{} 章}抽样方法}{13}{chapter.5}%
+\contentsline {subsection}{\numberline {2.2.3}多元线性回归参数的极大似然估计}{11}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}回归系数的性质}{11}{subsection.2.2.4}%
+\contentsline {chapter}{\numberline {第 3{} 章}时间序列分析}{12}{chapter.3}%
+\contentsline {chapter}{\numberline {第 4{} 章}统计模拟}{13}{chapter.4}%
+\contentsline {chapter}{\numberline {第 5{} 章}抽样方法}{14}{chapter.5}%

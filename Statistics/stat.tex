@@ -313,6 +313,10 @@
         \end{cases}\]
         \item 随机误差项\(\epsilon_i,i=1,2,\cdots n\)独立同分布于正态分布\(N(0,\sigma^2)\).
     \end{enumerate}
+    \begin{note}
+        \\
+        若满足Gauss-Markov条件，则\[E[\mathbf{y}]=E[\mathbf{X\beta+\epsilon}]=\mathbf{X\beta},\]\[cov(\mathbf{y,y})=cov(\mathbf{X\beta+\epsilon,X\beta+\epsilon})=cov(\epsilon,\epsilon)=\sigma^2\mathbf{I_{n}}.\]
+    \end{note}
     \subsection{多元线性回归的回归系数最小二乘法}
     如何估计回归系数？我们自然可以和一元OLS的情形一样，对损失函数
     \[Q(\mathbf{\beta})=||\mathbf{y}-\mathbf{\beta}^T\mathbf{X}||_2^2\]
@@ -392,7 +396,7 @@
     \end{definition}
     \begin{property}
         \begin{enumerate}
-            \item 和协方差同理，协方差矩阵也有双线性性：\[\mathbf{cov(AX+b,AX+b)}=\mathbf{Acov(X,X)A^T}.\]
+            \item 和协方差同理，协方差矩阵也有双线性性：\[\mathbf{V[Ax+b]}=\mathbf{cov(AX+b,AX+b)}=\mathbf{Acov(X,X)A^T}.\]
             \item 协方差矩阵半正定。
         \end{enumerate}
     \end{property}
@@ -428,8 +432,23 @@
     类比一元情况，当假设随机误差项服从\(N(\mathbf{0},\sigma^2\mathbf{I_n})\)时\(y\)也服从正态分布\(\mathbf{X\beta},\sigma^2\mathbf{I_n}\).则极大似然函数为
     \[L(\beta,\sigma^2)=(2\pi\sigma^2)^{-\frac{n}{2}}\exp{(-\frac{1}{2\sigma^2}||\mathbf{y-X\beta}||_2^2)},\]
     同样的步骤可以得出\(\beta\)的MLE同OLS给出的形式，而\(\sigma^2\)的MLE为\(\frac{1}{n}SSE\).这个估计是渐近无偏的。
-    \subsection{回归系数的数字特征}
-    
+    \subsection{回归系数的性质}
+    在上面我们已经说过，\(\hat{\beta}\)是\(\mathbf{y}\)的线性变换，因此OLS得到的回归系数也服从正态分布。下面来看回归系数的性质。
+    \begin{property}
+        \begin{enumerate}
+        \item \(\hat{\beta}\)是\(\beta\)的无偏估计。
+        \item \(\hat{\beta}\)的协方差矩阵为\(\sigma^2(\mathbf{X}^T\mathbf{X})^{-1}\).
+        \item 在Gauss-Markov条件下，任给向量\(\mathbf{c}\in\mathbb{R}^{p+1}\)，线性函数\(\mathbf{c}^T\beta\)的最小方差线性无偏估计是\(\mathbf{c}^T\hat{\beta}\).
+        \item 若假设随机误差项服从正态分布，则\(\hat{\beta},\hat{\sigma}^2\)相互独立。并且\(\hat{\beta}\sim N(\beta,\sigma^2(\mathbf{(X^TX)^{-1}})),SSE/\sigma^2\sim \chi_{n-p-1}^2.\)
+    \end{enumerate}
+    \end{property}
+    \begin{proof}
+        \begin{enumerate}
+            \item 经典假设下设计矩阵非随机。故\(E[\hat{\beta}]=E[(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}]=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^TE[\mathbf{y}]=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{X}\beta=\beta.\)
+            \item 应用协方差矩阵的性质得到\[V[\hat{\beta}]=V[(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}]=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^TV[\mathbf{y}]\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\sigma^2\mathbf{I_n}\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}=\sigma^2(\mathbf{X}^T\mathbf{X})^{-1}.\]
+            \item 设线性函数\(\mathbf{c}^T\beta\)的一个无偏估计为\(\mathbf{d}^Ty\),即\(E[\mathbf{d}^Ty]=E[\mathbf{d}^T\mathbf{X}\beta]=\mathbf{d}^T\mathbf{X}\beta=\mathbf{c}^T\beta.\)这个式子对于任意的\(\beta\in \mathbb{R}^{p+1}\)都成立，因此由任意性知道\(\mathbf{d}^T\mathbf{X}=\mathbf{c}^T\)成立。要证明结论成立，只要证明\[V[\mathbf{d}^Ty]=\sigma^2\mathbf{d}^T\mathbf{d}\ge V[\mathbf{c}^T\hat{\beta}]=\sigma^2\mathbf{c}^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{c},\]即证明\[\mathbf{d}^T\mathbf{d}\ge \mathbf{c}^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{c}.\]代入\(\mathbf{d}^T\mathbf{X}=\mathbf{c}^T\)化简得到\[\mathbf{d}^T(\mathbf{I-H})\mathbf{d}\ge 0.\]也就是说只要证明\(\mathbf{I-H}\)是半正定的。实际上我们知道\(\mathbf{I-H}\)就是一个将\(\mathbf{y}\)投影到\(\mathbf{X}\)的列空间\(\mathcal{C}(\mathbf{X})\)上的投影矩阵，它是对称幂等矩阵，因此它是半正定的。
+        \end{enumerate}
+    \end{proof}
 
 
     \chapter{时间序列分析}

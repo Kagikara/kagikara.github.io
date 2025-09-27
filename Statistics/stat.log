@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  27 SEP 2025 11:33
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.9)  27 SEP 2025 14:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1661,48 +1661,48 @@ LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
 [9]
 
 [10]
+Overfull \hbox (3.48172pt too wide) detected at line 448
+\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 [[]] = \OML/cmm/m/it/10 V\OT1/cmr/m/n/10 [(\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[]\OT1/cmr/bx/n/10 X[]y\OT1/cmr/m/n/10 ] = (\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[]\OT1/cmr/bx/n/10 X[]\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 [\OT1/cmr/bx/n/10 y\OT1/cmr/m/n/10 ]\OT1/cmr/bx/n/10 X\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[] = (\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[]\OT1/cmr/bx/n/10 X[]\OML/cmm/m/it/10 ^^[[][]\OT1/cmr/bx/n/10 X\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[] = \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 X[]X\OT1/cmr/m/n/10 )[]\OML/cmm/m/it/10 :
+ []
+
+
+
+[11]
 Chapter 3.
-
-
-[11
-
-]
-Chapter 4.
 
 
 [12
 
 ]
-Chapter 5.
+Chapter 4.
 
 
 [13
+
+]
+Chapter 5.
+
+
+[14
 
 ] (./stat.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
-
-
-Package rerunfilecheck Warning: File `stat.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `stat.out':
-(rerunfilecheck)             Before: 5F4745686DFD4055155248BD9936A968;2557
-(rerunfilecheck)             After:  DA19446561508C39620F370378096FAA;2723.
+Package rerunfilecheck Info: File `stat.out' has not changed.
+(rerunfilecheck)             Checksum: AF54B6F146FBF2B7B5611D221F493D1F;2707.
 Package logreq Info: Writing requests to 'stat.run.xml'.
 \openout1 = `stat.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47312 strings out of 468442
- 1019232 string characters out of 5449249
- 2039064 words of memory out of 5000000
- 74952 multiletter control sequences out of 15000+600000
+ 47309 strings out of 468442
+ 1019178 string characters out of 5449249
+ 2036223 words of memory out of 5000000
+ 74949 multiletter control sequences out of 15000+600000
  632860 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,14n,129p,689b,1419s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,14n,129p,807b,1419s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on stat.pdf (15 pages).
+Output written on stat.pdf (16 pages).
