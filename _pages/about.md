@@ -2,16 +2,14 @@
 layout: about
 title: about
 permalink: /
-subtitle: Undergraduate Student, <a href='https://ssds.sufe.edu.cn/ssds_en/'>School of Statistics and Data Science, </a>. Shanghai University of Finance and Economics, kagikara79@gmail.com.
+subtitle: Undergraduate Student, <a href='https://ssds.sufe.edu.cn/ssds_en/'>School of Statistics and Data Science, </a> Shanghai University of Finance and Economics, kagikara79@gmail.com.
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Shanghai</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
