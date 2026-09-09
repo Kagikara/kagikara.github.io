@@ -40,7 +40,7 @@ cv:
         location: Shanghai
         start_date: "2025-10"
         end_date: "2026-02"
-        summary: Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.
+        summary: "Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic. "
         highlights:
           - functional data analysis
           - financial mathemetics
@@ -50,6 +50,7 @@ cv:
         location: Shanghai
         start_date: "2026-04"
         end_date: "2026-08"
+        summary: "Studied the combinatorial full-bandit setting where only aggregate subset rewards are observable. Proposed a three-stage algorithm with regret analysis. Proved lemmas on magnitude estimation of variance matrix diagonal entries, establishing probabilistic upper bound controls for the first two stages.
         highlights:
           - Description 1.
           - Description 2.
@@ -59,6 +60,7 @@ cv:
         location: Shanghai
         start_date: "2026-06"
         end_date: "present"
+        summary: "Designed experiments to compare the performance of TS, UCB and $\epsilon$-greedy in the setting of contextual combinatorial bandit, in the scenario of short video recommendation. Now deriving the theoretical part of the algorithm."
 
 
     Publications:
