@@ -1,1 +1,17 @@
+<!-- Custom CSS -->
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
+<!-- GLightbox -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"
+        defer></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const lightbox = GLightbox({
+    selector: ".my-glightbox"
+  });
+});
+</script>
