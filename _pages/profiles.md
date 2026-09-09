@@ -17,9 +17,9 @@ profiles:
     image_circular: false # crops the image to make it circular
     more_info: >
     
-  - align: left
+  - align: right
     content: about_me_2.md
     image_circular: false # crops the image to make it circular
     more_info: >
-      <p>Some notes of Tractatus Logico-Philosophicus, click for full script</p>
+      <p>Some notes of Tractatus Logico-Philosophicus, click the picture for full script</p>
 ---
