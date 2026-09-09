@@ -1,3 +1,7 @@
 Alexander Grothendieck was driven by his childish naive to complete a lot of astonishing works. "Maybe with some efforts, one day I will understand the miraculous reality named 'rhyme'." (translated from Japanese translation version)
 
 Discovering is always facsinating. We enjoy the feeling of thinking of certain questions, no matter the importance or realm. Stepping into the maze of thinking, one may struggle to find the untimate answer, however, the progress and temporary achievements can nourish us. Even if the final desired quesions are not successfully solved, the discovering itself is invaluable.
+
+I'm not the one with prizes in multiple competitions. Though I did participate in some of them. I found that there are something seems to be more attractive to me. In fact in contrast to figure out an artificial difficult calculus problem, I think renewing the framework of understanding of the object itself is far more important. 
+
+Why don't you invent it by yourself if you cannot understand it? For years I believe this opinion. Rather describing ourselves as scientists or engineers, maybe a better name is 'artist'. As artists we create and invent things that does not exist in the world with our personal tastes and perspective, drawing our conclusions in different styles but in the language of logic. We think and derive theories, then commit and put them into practice. We don't always calculate costs and future profits to decide if we accept the plan but try to describe the world's facts.
