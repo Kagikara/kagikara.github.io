@@ -1,0 +1,1 @@
+Alexander Grothendieck was driven by his childish naive to complete a lot of astonishing works. "Maybe with some efforts, one day I will understand the miraculous reality named 'rhyme'." (translated from Japanese translation version)
