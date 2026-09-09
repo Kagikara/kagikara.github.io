@@ -1,1 +1,3 @@
 Alexander Grothendieck was driven by his childish naive to complete a lot of astonishing works. "Maybe with some efforts, one day I will understand the miraculous reality named 'rhyme'." (translated from Japanese translation version)
+
+Discovering is always facsinating. We enjoy the feeling of thinking of certain questions, no matter the importance or realm. Stepping into the maze of thinking, one may struggle to find the untimate answer, however, the progress and temporary achievements can nourish us. Even if the final desired quesions are not successfully solved, the discovering itself is invaluable.
