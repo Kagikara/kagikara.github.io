@@ -101,34 +101,19 @@ cv:
         summary: "Fluent"
 
     Interests:
-      - name: Physics
+      - name: Statistics, mathemetics...
         icon: fa-solid fa-tag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+        keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making, Quant Finance..."
 
-    Certificates:
-      - name: Machine Learning
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-location-dot
-
-      - name: Quantum Computing
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-tag
-
-      - name: Quantum Information
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-envelope
 
     Projects:
-      - name: Quantum Computing
-        summary: Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.
+      - name: Hull Tactical - SP 500 Market Prediction
+        summary:   Built a stock return prediction framework using Logistic Regression, SVM, Random Forest, and XGBoost, progressively engineering market factors (M4, S2, P7, etc.) to capture interaction effects and improve generalization. After 5\% transaction costs, the best-performing XGBoost strategy achieved an annualized return of 11.62\% with a maximum drawdown of 9.33%, versus 25.02% for the market, providing empirical evidence for discussion of weak-form EMH.  Explored a low-frequency trading framework (Sniper Strategy) to reduce return erosion from transaction costs. Applied to the RF model, this improved annualized return by 4.62\% and reduced maximum drawdown by 7.33\% relative to the baseline.
         highlights:
-          - Quantum Teleportation
-          - Quantum Cryptography
-        start_date: 2018-01-01
-        end_date: 2018-01-01
+          - Machine Learning
+          - Quant Finance
+        start_date: 2025-10
+        end_date: 2025-12
 
     References:
       - name: Professor John Doe
