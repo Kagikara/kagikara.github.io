@@ -108,7 +108,7 @@ cv:
 
     Projects:
       - name: Hull Tactical - SP 500 Market Prediction
-        summary:   Built a stock return prediction framework using Logistic Regression, SVM, Random Forest, and XGBoost, progressively engineering market factors (M4, S2, P7, etc.) to capture interaction effects and improve generalization. After 5\% transaction costs, the best-performing XGBoost strategy achieved an annualized return of 11.62\% with a maximum drawdown of 9.33%, versus 25.02% for the market, providing empirical evidence for discussion of weak-form EMH.  Explored a low-frequency trading framework (Sniper Strategy) to reduce return erosion from transaction costs. Applied to the RF model, this improved annualized return by 4.62\% and reduced maximum drawdown by 7.33\% relative to the baseline.
+        summary:   Built a stock return prediction framework using Logistic Regression, SVM, Random Forest, and XGBoost, progressively engineering market factors (M4, S2, P7, etc.) to capture interaction effects and improve generalization. After 5% transaction costs, the best-performing XGBoost strategy achieved an annualized return of 11.62% with a maximum drawdown of 9.33%, versus 25.02% for the market, providing empirical evidence for discussion of weak-form EMH.  Explored a low-frequency trading framework (Sniper Strategy) to reduce return erosion from transaction costs. Applied to the RF model, this improved annualized return by 4.62% and reduced maximum drawdown by 7.33% relative to the baseline.
         highlights:
           - Machine Learning
           - Quant Finance
