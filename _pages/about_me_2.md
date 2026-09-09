@@ -1,12 +1,17 @@
-<a href="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}"
+<a href="{{ '/assets/img/Ludwig-Wittgenstein.webp' | relative_url }}"
    data-lightbox="my-album"
-   data-title="front page p1">
-  <img src="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}"
+   data-title="Wittgenstein">
+  <img src="{{ '/assets/img/Ludwig-Wittgenstein.webp' | relative_url }}"
        alt="opening page"
        class="img-fluid rounded z-depth-1">
 </a>
 
 <div style="display: none;">
+  <a href="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}"
+     data-lightbox="my-album"
+     data-title="p1">
+    <img src="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}" alt="p2">
+  </a>
 
   <a href="{{ '/assets/img/album/IMG_4396.jpg' | relative_url }}"
      data-lightbox="my-album"
