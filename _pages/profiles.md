@@ -16,8 +16,9 @@ profiles:
     more_info: >
     
   - align: left
-    image: album/IMG_4395.jpg
+    # image: album/IMG_4395.jpg
     content: about_me_2.md
     image_circular: false # crops the image to make it circular
     more_info: >
+      <p>Some notes of Tractatus Logico-Philosophicus, click for full script</p>
 ---
