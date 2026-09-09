@@ -23,28 +23,28 @@ cv:
 
   sections:
     Education:
-      - institution: University of Zurich
-        location: Zurich, Switzerland
-        url: https://www.uzh.ch/
-        area: Physics
-        studyType: PhD
-        start_date: 1900
-        end_date: 1905
-        score: ""
-        courses: "Theory of Relativity"
-        highlights:
-          - Description 1.
-          - Description 2.
+      - institution: Shanghai University of Finance and Economics
+        location: Shanghai, China
+        url: https://www.sufe.edu.cn/
+        area: Statistics
+        studyType: Bachelor
+        start_date: 2023
+        end_date: "2027 (expected)""
+        score: "3.83/4.0"
+        courses: "Stochastic Processes, Functions of Real Variable, Multivariate Statistical Analysis, etc."
+        # highlights:
+        #   - Description 1.
+        #   - Description 2.
 
-      - institution: Eidgenössische Technische Hochschule
-        location: Zurich, Switzerland
-        area: Physics
-        studyType: Federal teaching diploma
-        start_date: 1896
-        end_date: 1900
-        highlights:
-          - Description 1.
-          - Description 2.
+      # - institution: Eidgenössische Technische Hochschule
+      #   location: Zurich, Switzerland
+      #   area: Physics
+      #   studyType: Federal teaching diploma
+      #   start_date: 1896
+      #   end_date: 1900
+      #   highlights:
+      #     - Description 1.
+      #     - Description 2.
 
     Research Experience:
       - company: Shanghai University of Finance and Economics
@@ -53,7 +53,7 @@ cv:
         start_date: 2025-10
         end_date: 2026-02
         # summary: Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic. 
-        highlights: 
+        highlighs: 
           - functional data analysis
           - financial mathemetics
 
