@@ -39,7 +39,7 @@ cv:
         location: Shanghai
         start_date: "2025-10"
         end_date: "2026-02"
-        summary: "Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic. "
+        # summary: "Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic. "
         highlights:
           - "functional data analysis"
           - "financial mathemetics"
@@ -49,7 +49,7 @@ cv:
         location: Shanghai
         start_date: "2026-04"
         end_date: "2026-08"
-        summary: "Studied the combinatorial full-bandit setting where only aggregate subset rewards are observable. Proposed a three-stage algorithm with regret analysis. Proved lemmas on magnitude estimation of variance matrix diagonal entries, establishing probabilistic upper bound controls for the first two stages.
+        # summary: "Studied the combinatorial full-bandit setting where only aggregate subset rewards are observable. Proposed a three-stage algorithm with regret analysis. Proved lemmas on magnitude estimation of variance matrix diagonal entries, establishing probabilistic upper bound controls for the first two stages.
         highlights:
           - "combinatorial MAB (pure exploration)"
 
@@ -58,7 +58,7 @@ cv:
         location: Shanghai
         start_date: "2026-06"
         end_date: "present"
-        summary: "Designed experiments to compare the performance of TS, UCB and $\epsilon$-greedy in the setting of contextual combinatorial bandit, in the scenario of short video recommendation. Now deriving the theoretical part of the algorithm."
+        # summary: "Designed experiments to compare the performance of TS, UCB and $\epsilon$-greedy in the setting of contextual combinatorial bandit, in the scenario of short video recommendation. Now deriving the theoretical part of the algorithm."
         highlighs: 
           - "contextual combinatorial MAB"
           - "recommendation system"
