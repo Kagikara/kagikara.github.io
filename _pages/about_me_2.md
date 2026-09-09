@@ -51,3 +51,5 @@
       data-gallery="my-album" 
       data-glightbox="title: p11;"></a>
 </div>
+
+Nobody interested in logic and math will have no interests in the linguistics. Languages shape us and determined what can we see and think. About 3 years ago I read the famous Tractatus Logico-Philosophicus by Wittgenstein. Though I cannot remember the details now, I dare say this short but insightful book changed my opinions towards languages. It was a naive attempt on understanding this abstract realm, however, it also enabled me to transfer my thinking mode from the paticular one to more abstract thinking.
