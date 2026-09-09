@@ -46,7 +46,7 @@ cv:
       #     - Description 1.
       #     - Description 2.
 
-    Research Experience:
+    Experience:
       - company: Shanghai University of Finance and Economics
         position: Research Assistant
         location: Shanghai
@@ -124,11 +124,11 @@ cv:
         url: https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt
         summary: In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921.
 
-    Research Interests:
-      - name: Statistics
-        level: Bachelor
-        icon: fa-solid fa-hashtag
-        keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making..."
+    # Research Interests:
+    #   - name: Statistics
+    #     level: Bachelor
+    #     icon: fa-solid fa-hashtag
+    #     keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making..."
 
     Languages:
       - name: Chinese
@@ -140,10 +140,11 @@ cv:
       - name: Japanese
         summary: "Fluent"
 
-    # Interests:
-    #   - name: Physics
-    #     icon: fa-solid fa-tag
-    #     keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+    Interests:
+      - name: Statistics
+        level: Bachelor
+        icon: fa-solid fa-hashtag
+        keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making..."
 
     # Certificates:
     #   - name: Machine Learning
