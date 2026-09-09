@@ -1,63 +1,52 @@
 <a href="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}"
-   class="my-glightbox"
-   data-gallery="my-album"
-   data-glightbox="title: front page p1;">
+   data-lightbox="my-album"
+   data-title="front page p1">
   <img src="{{ '/assets/img/album/IMG_4395.jpg' | relative_url }}"
        alt="opening page"
-       class="img-fluid rounded z-depth-1" />
+       class="img-fluid rounded z-depth-1">
 </a>
 
 <div style="display: none;">
 
   <a href="{{ '/assets/img/album/IMG_4396.jpg' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p2;"></a>
+     data-lightbox="my-album"
+     data-title="p2"></a>
 
   <a href="{{ '/assets/img/album/IMG_4397.jpg' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p3;"></a>
+     data-lightbox="my-album"
+     data-title="p3"></a>
 
   <a href="{{ '/assets/img/album/IMG_4398.jpg' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p4;"></a>
+     data-lightbox="my-album"
+     data-title="p4"></a>
 
   <a href="{{ '/assets/img/album/IMG_4399.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p5;"></a>
+     data-lightbox="my-album"
+     data-title="p5"></a>
 
   <a href="{{ '/assets/img/album/IMG_4400.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p6;"></a>
+     data-lightbox="my-album"
+     data-title="p6"></a>
 
   <a href="{{ '/assets/img/album/IMG_4401.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p7;"></a>
+     data-lightbox="my-album"
+     data-title="p7"></a>
 
   <a href="{{ '/assets/img/album/IMG_4402.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p8;"></a>
+     data-lightbox="my-album"
+     data-title="p8"></a>
 
   <a href="{{ '/assets/img/album/IMG_4403.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p9;"></a>
+     data-lightbox="my-album"
+     data-title="p9"></a>
 
   <a href="{{ '/assets/img/album/IMG_4404.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p10;"></a>
+     data-lightbox="my-album"
+     data-title="p10"></a>
 
   <a href="{{ '/assets/img/album/IMG_4405.webp' | relative_url }}"
-     class="my-glightbox"
-     data-gallery="my-album"
-     data-glightbox="title: p11;"></a>
+     data-lightbox="my-album"
+     data-title="p11"></a>
 
 </div>
 
