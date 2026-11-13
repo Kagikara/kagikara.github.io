@@ -2,7 +2,6 @@ cv:
   name: Jiming Yang
   # label: Scientist
   email: kagikara79@gmail.com
-  image: ""
   # summary: A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time
 
   social_networks:
@@ -28,7 +27,8 @@ cv:
         area: Statistics
         studyType: Bachelor
         start_date: 2023
-        end_date: "2027 (expected)"
+        end_date: 2027
+        summary: "Expected graduation in 2027."
         score: "3.83/4.0"
         courses: "Stochastic Processes, Functions of Real Variable, Multivariate Statistical Analysis, etc."
 
