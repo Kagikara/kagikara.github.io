@@ -32,7 +32,6 @@ cv:
         score: "3.83/4.0"
         courses: "Stochastic Processes, Functions of Real Variable, Multivariate Statistical Analysis, etc."
 
-
     Experience:
       - company: Shanghai University of Finance and Economics
         position: Research Assistant
@@ -59,10 +58,9 @@ cv:
         start_date: "2026-06"
         end_date: "present"
         summary: "Designed experiments to compare the performance of TS, UCB and epsilon-greedy in the setting of contextual combinatorial bandit, in the scenario of short video recommendation. Now deriving the theoretical part of the algorithm."
-        highlights: 
+        highlights:
           - "contextual combinatorial MAB"
           - "recommendation system"
-
 
     Publications:
       - title: Zur Elektrodynamik bewegter Körper
@@ -73,14 +71,13 @@ cv:
         url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
         summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
 
-
     Languages:
       - name: Chinese
         summary: "Native speaker"
 
       - name: English
         summary: "Fluent"
-      
+
       - name: Japanese
         summary: "Fluent"
 
@@ -89,10 +86,9 @@ cv:
         icon: fa-solid fa-tag
         keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making, Quant Finance..."
 
-
     Projects:
       - name: Hull Tactical - SP 500 Market Prediction
-        summary:   Built a stock return prediction framework using Logistic Regression, SVM, Random Forest, and XGBoost, progressively engineering market factors (M4, S2, P7, etc.) to capture interaction effects and improve generalization. After 5% transaction costs, the best-performing XGBoost strategy achieved an annualized return of 11.62% with a maximum drawdown of 9.33%, versus 25.02% for the market, providing empirical evidence for discussion of weak-form EMH.  Explored a low-frequency trading framework (Sniper Strategy) to reduce return erosion from transaction costs. Applied to the RF model, this improved annualized return by 4.62% and reduced maximum drawdown by 7.33% relative to the baseline.
+        summary: Built a stock return prediction framework using Logistic Regression, SVM, Random Forest, and XGBoost, progressively engineering market factors (M4, S2, P7, etc.) to capture interaction effects and improve generalization. After 5% transaction costs, the best-performing XGBoost strategy achieved an annualized return of 11.62% with a maximum drawdown of 9.33%, versus 25.02% for the market, providing empirical evidence for discussion of weak-form EMH.  Explored a low-frequency trading framework (Sniper Strategy) to reduce return erosion from transaction costs. Applied to the RF model, this improved annualized return by 4.62% and reduced maximum drawdown by 7.33% relative to the baseline.
         highlights:
           - Machine Learning
           - Quant Finance

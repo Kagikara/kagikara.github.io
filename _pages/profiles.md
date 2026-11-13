@@ -16,7 +16,7 @@ profiles:
     content: about_me_1.md
     image_circular: false # crops the image to make it circular
     more_info: >
-    
+
   - align: right
     content: about_me_2.md
     image_circular: false # crops the image to make it circular

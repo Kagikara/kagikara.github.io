@@ -48,7 +48,7 @@ jobs:
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5"
+          ruby-version: "3.3"
           bundler-cache: true
 
       - name: Setup Python 🐍
@@ -67,6 +67,7 @@ jobs:
         run: npm ci
 
       - name: Run style contract lint 🧷
+        if: github.repository == 'alshedivat/al-folio'
         run: npm run lint:style-contract
 
       - name: Install build prerequisites 🔧
@@ -74,13 +75,21 @@ jobs:
           sudo apt-get update && sudo apt-get install -y imagemagick
           pip3 install --upgrade nbconvert
 
+      # Demo-content checks apply to the upstream starter; this site has its own content.
+      - name: Run personal site integration test
+        if: github.repository == 'Kagikara/kagikara.github.io'
+        run: bash test/integration_site.sh
+
       - name: Run comments integration test 🧪
+        if: github.repository == 'alshedivat/al-folio'
         run: bash test/integration_comments.sh
 
       - name: Run plugin toggle integration test 🔌
+        if: github.repository == 'alshedivat/al-folio'
         run: bash test/integration_plugin_toggles.sh
 
       - name: Run distill integration test 📄
+        if: github.repository == 'alshedivat/al-folio'
         run: bash test/integration_distill.sh
 
       - name: Run bootstrap compatibility integration test 🧩
@@ -93,4 +102,5 @@ jobs:
         run: bash test/integration_css_minify.sh
 
       - name: Run new plugin integration checks 🧩
+        if: github.repository == 'alshedivat/al-folio'
         run: bash test/integration_new_plugins.sh

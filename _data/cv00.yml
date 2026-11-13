@@ -42,8 +42,8 @@ cv:
         location: Shanghai
         start_date: 2025-10
         end_date: 2026-02
-        # summary: Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic. 
-        highlighs: 
+        # summary: Extended the Fully-Functional method from i.i.d. to weakly dependent $\alpha$-mixing functional data, constructing an online structural change monitoring framework for functional implied volatility. Constructed an infeasible test statistic and established consistency of the covariance estimator, deriving the asymptotic distribution of the feasible statistic.
+        highlighs:
           - functional data analysis
           - financial mathemetics
 
