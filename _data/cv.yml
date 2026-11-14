@@ -62,14 +62,14 @@ cv:
           - "contextual combinatorial MAB"
           - "recommendation system"
 
-    Publications:
-      - title: Zur Elektrodynamik bewegter Körper
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-06-30
-        url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
-        summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
+    # Publications:
+    #   - title: Zur Elektrodynamik bewegter Körper
+    #     authors:
+    #       - Albert Einstein
+    #     publisher: Annalen der Physik
+    #     releaseDate: 1905-06-30
+    #     url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
+    #     summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
 
     Languages:
       - name: Chinese
@@ -84,7 +84,7 @@ cv:
     Interests:
       - name: Statistics, mathemetics...
         icon: fa-solid fa-tag
-        keywords: "Stochastic MAB, Adversarial MAB, Functional Data Analyis, Policy Making, Quant Finance..."
+        keywords: "Sequential Decision-Making, Multi-Armed Bandits, Reinforcement Learning, Machine Learning, Functional Data Analyis, Quant Finance..."
 
     Projects:
       - name: Hull Tactical - SP 500 Market Prediction
@@ -96,10 +96,14 @@ cv:
         end_date: 2025-12
 
     References:
-      - name: Professor John Doe
+      - name: Professor Hongsong Yuan
         icon: fa-solid fa-laptop
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+        reference: Associate Professor,  School of Information Management and Engineering,  Shanghai University of Finance and Economics,  Shanghai,  China. 
 
-      - name: Professor Jane Smith
+      - name: Professor Zhiyuan Zhang
         icon: fa-solid fa-thumbtack
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+        reference: Associate Professor,  School of Statistics and Data Science,  Shanghai University of Finance and Economics,  Shanghai,  China.
+             
+      - name: Professor Yiyun Luo
+        icon: fa-solid fa-thumbtack
+        reference: Assistant Professor,  School of Statistics and Data Science,  Shanghai University of Finance and Economics,  Shanghai,  China.
