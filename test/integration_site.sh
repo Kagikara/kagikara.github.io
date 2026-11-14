@@ -14,6 +14,9 @@ read_page = ->(path) { Nokogiri::HTML(File.read(File.join(root, path))) }
 assert = ->(condition, message) { abort(message) unless condition }
 
 home = read_page.call("index.html")
+assert.call(home.css("nav").none? { |nav| nav.text.match?(/submenus|bookshelf/i) }, "Removed navigation entries are still visible")
+assert.call(!File.exist?(File.join(root, "dropdown.html")), "Submenus page must not be generated")
+assert.call(!File.exist?(File.join(root, "books")), "Bookshelf pages must not be generated")
 nav = home.css("nav a").find { |link| link["href"] == "/people/" }
 assert.call(nav && nav.text.strip == "Miscellaneous", "Navigation must show Miscellaneous")
 people = read_page.call("people/index.html")
