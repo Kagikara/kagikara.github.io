@@ -1,0 +1,11 @@
+{% al_search_assets %}
+<script>
+  {
+    const palette = document.querySelector("ninja-keys");
+    const hiddenSections = new Set(["Projects", "News", "Teachings"]);
+    const visibleSocials = new Set(["social-cv", "social-email"]);
+    palette.data = palette.data.filter(
+      (entry) => !hiddenSections.has(entry.section) && (entry.section !== "Socials" || visibleSocials.has(entry.id))
+    );
+  }
+</script>
