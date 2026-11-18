@@ -7,8 +7,6 @@ subtitle: Undergraduate Student, <a href='https://ssds.sufe.edu.cn/ssds_en/'>Sch
 profile:
   align: right
   image: 1.jpg
-  more_info: >
-    <p>Shanghai</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # hides social icons at the bottom of the page
