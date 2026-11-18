@@ -6,6 +6,7 @@ subtitle: Undergraduate Student, <a href='https://ssds.sufe.edu.cn/ssds_en/'>Sch
 
 profile:
   align: right
+  image: 1.jpg
   more_info: >
     <p>Shanghai</p>
 
